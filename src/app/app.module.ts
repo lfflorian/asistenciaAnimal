@@ -10,18 +10,12 @@ import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { UserProfileComponent } from './admin/user-profile/user-profile.component';
-import { TableListComponent } from './admin/table-list/table-list.component';
-import { TypographyComponent } from './admin/typography/typography.component';
-import { IconsComponent } from './admin/icons/icons.component';
-import { MapsComponent } from './admin/maps/maps.component';
-import { NotificationsComponent } from './admin/notifications/notifications.component';
-import { UpgradeComponent } from './admin/upgrade/upgrade.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+
 import {
   AgmCoreModule
 } from '@agm/core';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+
 
 @NgModule({
   imports: [
