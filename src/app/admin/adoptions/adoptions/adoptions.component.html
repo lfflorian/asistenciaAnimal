@@ -1,1 +1,30 @@
-<p>adoptions works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 order-lg-12 col-lg-3">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Opciones</h4>
+                    </div>
+                    <div class="card-body">
+                        <a [routerLink]="['/admin', 'administrador-inmueble']" class="btn btn-warning btn-block">Agregar
+                            nuevo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12  col-lg-9">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">TITULO</h4>
+                        <p class="card-category">Listado de *</p>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="Data">
+                            <app-table-list [Data]="Data"></app-table-list>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
