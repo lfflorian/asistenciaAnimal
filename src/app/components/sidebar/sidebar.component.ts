@@ -8,14 +8,14 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+    { path: '/perfil', title: 'Perfil',  icon:'account_circle', class: '' },
+    { path: '/mascotas', title: 'Mascotas',  icon:'pets', class: '' },
+    { path: '/articulos', title: 'Articulos',  icon:'library_books', class: '' },
+    { path: '/consultas-generales', title: 'Consultas Generales',  icon:'record_voice_over', class: '' },
+    { path: '/consultas-privadas', title: 'Consultas privadas',  icon:'chat', class: '' },
+    { path: '/alertas', title: 'Alertas',  icon: 'report_problem', class: '' },
+    { path: '/adopciones', title: 'Adopciones',  icon:'loyalty', class: '' },
+    { path: '/citas', title: 'Citas',  icon:'event', class: '' },
 ];
 
 @Component({
