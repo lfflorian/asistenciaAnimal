@@ -32,8 +32,7 @@ import {
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
-
+    AdminLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
