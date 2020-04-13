@@ -7,16 +7,40 @@
                         <h4 class="card-title">Opciones</h4>
                     </div>
                     <div class="card-body">
-                        <a [routerLink]="['/admin', 'administrador-inmueble']" class="btn btn-warning btn-block">Agregar
-                            nuevo</a>
+                        <a [routerLink]="['/admin', 'administrador-inmueble']" class="btn btn-warning btn-block">Configurar formulario de adopción</a>
+                    </div>
+                    <div class="card-body">
+                        <a [routerLink]="['/admin', 'administrador-inmueble']" class="btn btn-warning btn-block">Configurar formulario de contrato</a>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12 col-md-12  col-lg-9">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">TITULO</h4>
-                        <p class="card-category">Listado de *</p>
+                        <h4 class="card-title">Mascotas en adopción</h4>
+                        <p class="card-category">Mascotas registradas en adopción</p>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="Data">
+                            <app-table-list [Data]="Data"></app-table-list>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Solicitudes de adopción</h4>
+                        <p class="card-category">Listado de solicitudes de adopción recibidas</p>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="Data">
+                            <app-table-list [Data]="Data"></app-table-list>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Contratos de adopción</h4>
+                        <p class="card-category">Listado de contratos de adopción</p>
                     </div>
                     <div class="card-body">
                         <div *ngIf="Data">
