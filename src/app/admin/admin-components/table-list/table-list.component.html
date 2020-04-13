@@ -1,0 +1,28 @@
+<div class="col-sm-12">
+    <div class="form-group">
+      <input type="text" value="" [(ngModel)]="filterOption" placeholder="Buscar" class="form-control" />
+    </div>
+  </div>
+  <div class="card-content table-responsive table-full-width">
+    <table class="table">
+      <thead class="text-danger">
+        <th *ngFor="let head of Headers"><div *ngIf="head != 'link'">{{head}}</div></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of ShowData  | filter:filterOption; let i = index" (click)="selected(i.link)">
+          <td *ngFor="let j of Headers"><div *ngIf="j != 'link'">{{ i[j] }}</div></td>
+        </tr>
+      </tbody>
+    </table>
+    <ul class="pagination justify-content-center" style="margin:20px 0">
+      <li class="page-item">
+        <a class="page-link" (click)="changePage(1)">«</a>
+      </li>
+      <li class="page-item ng-scope" *ngFor="let page of range(Pages) ; let i = index">
+        <a class="page-link ng-binding" (click)="changePage(i+1)">{{ i+1 }}</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" (click)="changePage(Pages)">»</a>
+      </li>
+    </ul>
+  </div>

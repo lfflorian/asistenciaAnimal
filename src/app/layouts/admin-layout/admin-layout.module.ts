@@ -12,6 +12,7 @@ import { GeneralConsultationsComponent } from 'app/admin/generalConsultations/ge
 import { PrivateConsultationsComponent } from 'app/admin/privateConsultations/private-consultations/private-consultations.component';
 import { PetsComponent } from 'app/admin/pets/pets/pets.component';
 import { ProfileComponent } from 'app/admin/profile/profile/profile.component';
+import { AdminComponentsModule } from 'app/admin/admin-components/admin-components.module';
 
 import {
   MatButtonModule,
@@ -21,6 +22,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+
 
 @NgModule({
   imports: [
@@ -34,6 +36,7 @@ import {
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    AdminComponentsModule
   ],
   declarations: [
     AlertsComponent, 
