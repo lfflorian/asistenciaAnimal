@@ -8,6 +8,7 @@ import { AlertsComponent } from 'app/admin/alerts/alerts/alerts.component';
 import { AdoptionsComponent } from 'app/admin/adoptions/adoptions/adoptions.component';
 import { AppointmentsComponent } from 'app/admin/appointments/appointments/appointments.component';
 import { ArticlesComponent } from 'app/admin/articles/articles/articles.component';
+import { ArticleEditorComponent } from 'app/admin/articles/article-editor/article-editor.component';
 import { GeneralConsultationsComponent } from 'app/admin/generalConsultations/general-consultations/general-consultations.component';
 import { PrivateConsultationsComponent } from 'app/admin/privateConsultations/private-consultations/private-consultations.component';
 import { PetsComponent } from 'app/admin/pets/pets/pets.component';
@@ -22,6 +23,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+
 
 
 @NgModule({
@@ -43,6 +45,7 @@ import {
     AdoptionsComponent,
     AppointmentsComponent,
     ArticlesComponent,
+    ArticleEditorComponent,
     GeneralConsultationsComponent,
     PrivateConsultationsComponent,
     PetsComponent,
