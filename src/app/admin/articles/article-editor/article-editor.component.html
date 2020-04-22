@@ -1,1 +1,21 @@
-<p>article-editor works!</p>
+<!-- <p>article-editor works!</p> -->
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12  col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Articulos</h4>
+                        <p class="card-category">Listado de articulos</p>
+                    </div>
+                    <div class="card-body">
+                        <button (click)="Guardar()" >Guardar</button>
+                        <ckeditor [editor]="Editor"   (change)="onChange($event)"></ckeditor>
+                        <div class="content" #content>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

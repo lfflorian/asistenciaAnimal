@@ -15,6 +15,8 @@ import { PetsComponent } from 'app/admin/pets/pets/pets.component';
 import { ProfileComponent } from 'app/admin/profile/profile/profile.component';
 import { AdminComponentsModule } from 'app/admin/admin-components/admin-components.module';
 
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 import {
   MatButtonModule,
   MatInputModule,
@@ -28,6 +30,7 @@ import {
 
 @NgModule({
   imports: [
+    CKEditorModule,
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
     FormsModule,
