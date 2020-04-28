@@ -15,6 +15,10 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import {
   AgmCoreModule
 } from '@agm/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore/public_api';
+import { AngularFireStorageModule } from '@angular/fire/storage/public_api';
+import { environment } from 'environments/environment';
 
 
 @NgModule({
@@ -26,6 +30,9 @@ import {
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     })
