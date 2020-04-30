@@ -16,6 +16,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'citas',      component: AppointmentsComponent },
     { path: 'articulos',      component: ArticlesComponent },
     { path: 'edicion-articulo',      component: ArticleEditorComponent },
+    { path: 'edicion-articulo/:id',      component: ArticleEditorComponent },
     { path: 'consultas-generales',      component: GeneralConsultationsComponent },
     { path: 'consultas-privadas',      component: PrivateConsultationsComponent },
     { path: 'mascotas',      component: PetsComponent },

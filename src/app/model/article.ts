@@ -1,5 +1,8 @@
 import { Entity } from 'app/model/entity';
 
 export interface Article extends Entity {
-    id: string;
+    Title : string
+    Content : string
+    IdAuthor : string
+    Date : Date
 }
