@@ -57,7 +57,7 @@ export class ArticleEditorComponent implements OnInit {
           this.Data = info.Content;
         } else
         {
-          this.router.navigateByUrl('admin/propietarios')
+          this.router.navigateByUrl('admin/articulos')
         }
       }, error => {
         alert('Hubo un error al intentar obtener el articulo')
@@ -76,7 +76,7 @@ export class ArticleEditorComponent implements OnInit {
     {
       this.articleService.updateArticle(this.ArticleForm.value as Article).then(success => {
         alert('articulo actualizado!')
-        this.router.navigateByUrl('admin/edicion-articulo')
+        this.router.navigateByUrl('admin/articulos')
       }, error => {
         alert('Hubo un error al actualizar el articulo')
       })
@@ -85,7 +85,7 @@ export class ArticleEditorComponent implements OnInit {
     {
       this.articleService.createArticle(this.ArticleForm.value as Article).then(success => {
         alert('articulo creado!')
-      this.router.navigateByUrl('admin/edicion-articulo')
+      this.router.navigateByUrl('admin/articulos')
       }, error => {
         alert('Hubo un error al crear el articulo')
       })
@@ -96,7 +96,7 @@ export class ArticleEditorComponent implements OnInit {
     var id = this.ArticleForm.get('id').value;
     this.articleService.deleteArticle(id).then(success => {
       alert('articulo eliminado!')
-      this.router.navigateByUrl('admin/edicion-articulo')
+      this.router.navigateByUrl('admin/articulos')
     }, error => {
       alert('Hubo un error al eliminar el articulo')
     })
@@ -105,7 +105,7 @@ export class ArticleEditorComponent implements OnInit {
   Cancel() {
     if (confirm("Desea cancelar los cambios?"))
     {
-      this.router.navigateByUrl('admin/edicion-articulo')
+      this.router.navigateByUrl('admin/articulos')
     }
   }
 

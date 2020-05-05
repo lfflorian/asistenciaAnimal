@@ -8,14 +8,14 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/perfil', title: 'Perfil',  icon:'account_circle', class: '' },
-    { path: '/mascotas', title: 'Mascotas',  icon:'pets', class: '' },
-    { path: '/articulos', title: 'Articulos',  icon:'library_books', class: '' },
-    { path: '/consultas-generales', title: 'Consultas Generales',  icon:'record_voice_over', class: '' },
-    { path: '/consultas-privadas', title: 'Consultas privadas',  icon:'chat', class: '' },
-    { path: '/alertas', title: 'Alertas',  icon: 'report_problem', class: '' },
-    { path: '/adopciones', title: 'Adopciones',  icon:'loyalty', class: '' },
-    { path: '/citas', title: 'Citas',  icon:'event', class: '' },
+    { path: '/admin/perfil', title: 'Perfil',  icon:'account_circle', class: '' },
+    { path: '/admin/mascotas', title: 'Mascotas',  icon:'pets', class: '' },
+    { path: '/admin/articulos', title: 'Articulos',  icon:'library_books', class: '' },
+    { path: '/admin/consultas-generales', title: 'Consultas Generales',  icon:'record_voice_over', class: '' },
+    { path: '/admin/consultas-privadas', title: 'Consultas privadas',  icon:'chat', class: '' },
+    { path: '/admin/alertas', title: 'Alertas',  icon: 'report_problem', class: '' },
+    { path: '/admin/adopciones', title: 'Adopciones',  icon:'loyalty', class: '' },
+    { path: '/admin/citas', title: 'Citas',  icon:'event', class: '' },
 ];
 
 @Component({
