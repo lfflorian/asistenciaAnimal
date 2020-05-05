@@ -16,7 +16,7 @@
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-12">
-                                    <ckeditor [editor]="Editor" (change)="onChange($event)"></ckeditor>
+                                    <ckeditor [editor]="Editor" formControlName="Content" (change)="onChange($event)"></ckeditor>
                                 </div>
                             </div>
                         </form>

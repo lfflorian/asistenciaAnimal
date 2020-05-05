@@ -21,7 +21,7 @@ export class ArticleEditorComponent implements OnInit {
   public Editor = ClassicEditor;
   @ViewChild('content', { static: true }) someInput: ElementRef;
 
-  Data: any;
+  Data: string;
   ArticleForm: FormGroup;
   Edicion: boolean;
 
@@ -31,6 +31,9 @@ export class ArticleEditorComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+
+    console.log(this.Editor);
+
     let Id  = this.route.snapshot.paramMap.get("id")
     this.ArticleForm = this._fb.group({
       Title : ['', Validators.required],
@@ -50,6 +53,8 @@ export class ArticleEditorComponent implements OnInit {
           this.ArticleForm.controls['IdAuthor'].setValue(info.IdAuthor)
           this.ArticleForm.controls['Date'].setValue(info.Date)
           this.ArticleForm.addControl('id', new FormControl(info.id))
+          console.log(info.Content)
+          this.Data = info.Content;
         } else
         {
           this.router.navigateByUrl('admin/propietarios')
