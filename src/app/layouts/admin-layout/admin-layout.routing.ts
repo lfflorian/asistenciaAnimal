@@ -8,16 +8,22 @@ import { GeneralConsultationsComponent } from 'app/admin/generalConsultations/ge
 import { PrivateConsultationsComponent } from 'app/admin/privateConsultations/private-consultations/private-consultations.component';
 import { PetsComponent } from 'app/admin/pets/pets/pets.component';
 import { ProfileComponent } from 'app/admin/profile/profile/profile.component';
+import { GeneralConsultationEditorComponent } from 'app/admin/generalConsultations/general-consultation-editor/general-consultation-editor.component';
+import { AlertEditorComponent } from 'app/admin/alerts/alert-editor/alert-editor.component';
 
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'alertas',      component: AlertsComponent },
+    { path: 'edicion-alerta',      component: AlertEditorComponent },
+    { path: 'edicion-alerta/:id',      component: AlertEditorComponent },
     { path: 'adopciones',      component: AdoptionsComponent },
     { path: 'citas',      component: AppointmentsComponent },
     { path: 'articulos',      component: ArticlesComponent },
     { path: 'edicion-articulo',      component: ArticleEditorComponent },
     { path: 'edicion-articulo/:id',      component: ArticleEditorComponent },
     { path: 'consultas-generales',      component: GeneralConsultationsComponent },
+    { path: 'edicion-consulta-general',      component: GeneralConsultationEditorComponent },
+    { path: 'edicion-consulta-general/:id',      component: GeneralConsultationEditorComponent },
     { path: 'consultas-privadas',      component: PrivateConsultationsComponent },
     { path: 'mascotas',      component: PetsComponent },
     { path: 'perfil',      component: ProfileComponent }
