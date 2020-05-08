@@ -58,7 +58,7 @@ export class AlertEditorComponent implements OnInit {
     if (this.Edicion == true)
     {
       this.alertService.updateAlert(this.AlertForm.value as Alert).then(success => {
-        alert('Propietario actualizado!')
+        alert('alerta actualizada!')
         this.router.navigateByUrl('admin/alertas')
       }, error => {
         alert('Hubo un error al actualizar la alerta')
@@ -67,7 +67,7 @@ export class AlertEditorComponent implements OnInit {
     } else 
     {
       this.alertService.createAlert(this.AlertForm.value as Alert).then(success => {
-        alert('Propietario creado!')
+        alert('alerta creada!')
       this.router.navigateByUrl('admin/alertas')
       }, error => {
         alert('Hubo un error al crear la alerta')
@@ -78,7 +78,7 @@ export class AlertEditorComponent implements OnInit {
   Delete() {
     var id = this.AlertForm.get('id').value;
     this.alertService.deleteAlert(id).then(success => {
-      alert('Propietario eliminado!')
+      alert('alerta eliminada!')
       this.router.navigateByUrl('admin/alertas')
     }, error => {
       alert('Hubo un error al eliminar la alerta')
