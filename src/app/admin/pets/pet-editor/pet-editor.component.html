@@ -1,0 +1,78 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12  col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Mascota</h4>
+                        <p class="card-category">Agregar mascota</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="PetForm">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="Name" placeholder="Nombre">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="Age" placeholder="Edad">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="Race" placeholder="Raza">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="Height" placeholder="Altura">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="Weight" placeholder="Peso">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput formControlName="Color" placeholder="Color">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-profile">
+                    <div class="card-body left">
+                        <label class="input-file">
+                            <input type="file" (change)="FileUploadEvent($event)" class="btn-file"
+                                accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps" multiple> Agregar
+                            Fotos
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="image-card" *ngFor="let item of Images; let i = index">
+                                    <img [src]="item.Url || 'assets/img/cover.jpg'" alt="">
+                                    <div class="erase"><a (click)='deleteImage(i)' class="erase-button"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-profile">
+                    <div class="card-body left">
+                        <a (click)="Save()" class="btn btn-info left">Guardar mascota</a>
+                        <a (click)="Delete()" *ngIf="Edicion" class="btn btn-info">Eliminar mascota</a>
+                        <a (click)="Cancel()" class="btn btn-info float-right">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

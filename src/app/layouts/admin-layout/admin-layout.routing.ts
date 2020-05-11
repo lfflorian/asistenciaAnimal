@@ -10,6 +10,7 @@ import { PetsComponent } from 'app/admin/pets/pets/pets.component';
 import { ProfileComponent } from 'app/admin/profile/profile/profile.component';
 import { GeneralConsultationEditorComponent } from 'app/admin/generalConsultations/general-consultation-editor/general-consultation-editor.component';
 import { AlertEditorComponent } from 'app/admin/alerts/alert-editor/alert-editor.component';
+import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -26,5 +27,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'edicion-consulta-general/:id',      component: GeneralConsultationEditorComponent },
     { path: 'consultas-privadas',      component: PrivateConsultationsComponent },
     { path: 'mascotas',      component: PetsComponent },
+    { path: 'edicion-mascota',      component: PetEditorComponent },
+    { path: 'edicion-mascota/:id',      component: PetEditorComponent },
     { path: 'perfil',      component: ProfileComponent }
 ];

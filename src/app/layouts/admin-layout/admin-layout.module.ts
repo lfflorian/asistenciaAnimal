@@ -27,6 +27,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.component';
 
 
 
@@ -58,6 +59,7 @@ import {
     GeneralConsultationEditorComponent,
     PrivateConsultationsComponent,
     PetsComponent,
+    PetEditorComponent,
     ProfileComponent
   ]
 })
