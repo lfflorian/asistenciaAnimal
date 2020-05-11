@@ -65,6 +65,8 @@ export class AlertEditorComponent implements OnInit {
   disabledButton : boolean = false;
   async Save() {
     this.disabledButton = true;
+    this.AlertForm.controls['Date'].setValue(new Date());
+
     if (this.Edicion == true)
     {
       var Uid = this.AlertForm.get("Uid").value;

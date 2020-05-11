@@ -10,12 +10,12 @@ import { Router } from '@angular/router';
 export class ArticlesComponent implements OnInit {
 
   Data: any;
-  constructor(private ownerService:ArticleService,
+  constructor(private modelService:ArticleService,
               private router: Router) { }
 
   ngOnInit() {
-    this.ownerService.getArticles().subscribe(owners => {
-      this.Data = owners.map(article => 
+    this.modelService.getArticles().subscribe(articles => {
+      this.Data = articles.map(article => 
         Object.assign({}, {Titulo: article.Title,
           Fecha: article.Date,
           link: this.router.createUrlTree(['admin','edicion-articulo', article.id]).toString() }))
