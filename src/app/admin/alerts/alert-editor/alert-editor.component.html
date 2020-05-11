@@ -8,7 +8,7 @@
                         <p class="card-category">Agregar alerta</p>
                     </div>
                     <div class="card-body">
-                        <form [formGroup]="ArticleForm">
+                        <form [formGroup]="AlertForm">
                             <div class="row">
                                 <div class="col-sm-12 col-md-8">
                                     <mat-form-field class="example-full-width">
@@ -17,11 +17,31 @@
                                 </div>
                                 <div class="col-sm-12">
                                     <mat-form-field class="example-full-width">
-                                        <textarea matInput formControlName="Descripcion" placeholder="Mensaje" rows="5"></textarea>
-                                      </mat-form-field>
+                                        <textarea matInput formControlName="Content" placeholder="Mensaje"
+                                            rows="5"></textarea>
+                                    </mat-form-field>
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-profile">
+                    <div class="card-body left">
+                        <label class="input-file">
+                            <input type="file" (change)="FileUploadEvent($event)" class="btn-file"
+                                accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps" multiple> Agregar
+                            Fotos
+                        </label>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="image-card" *ngFor="let item of Images; let i = index">
+                                    <img [src]="item.Url || 'assets/img/cover.jpg'" alt="">
+                                    <div class="erase"><a (click)='deleteImage(i)' class="erase-button"></a></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

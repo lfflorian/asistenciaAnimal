@@ -1,6 +1,6 @@
 import { AngularFireStorage } from '@angular/fire/storage';
 
-export class FileManagment {
+export class StorageManagment {
     
     constructor(private afs: AngularFireStorage) {
     }
