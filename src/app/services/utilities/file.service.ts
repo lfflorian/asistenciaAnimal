@@ -23,4 +23,12 @@ export class FileService {
 
     return Promise.all(promises)
   }
+
+  async UploadFile(file : any, model : string) {
+    var promises = []; 
+    var path = `${model}/${file.name}`;
+
+    await this.FileManagment.UploadFile(path,file)
+    return await  this.FileManagment.GetURL(path);
+  }
 }
