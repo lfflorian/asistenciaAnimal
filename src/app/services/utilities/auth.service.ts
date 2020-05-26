@@ -39,8 +39,10 @@ export class AuthService {
     return this.afa.auth.currentUser;
   }
 
-  getUser() {
-    return this.afa.auth;
+  async getUser() {
+    var email = this.afa.auth.currentUser.email;
+    var users = await this.userService.getUserByEmail(email);
+    return users[0];
   }
   getStatus() {
     return this.afa.authState;

@@ -14,6 +14,8 @@ import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.compone
 
 
 export const AdminLayoutRoutes: Routes = [
+    { path: '',      component: ProfileComponent },
+    { path: 'perfil',      component: ProfileComponent },
     { path: 'alertas',      component: AlertsComponent },
     { path: 'edicion-alerta',      component: AlertEditorComponent },
     { path: 'edicion-alerta/:id',      component: AlertEditorComponent },
@@ -28,6 +30,5 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'consultas-privadas',      component: PrivateConsultationsComponent },
     { path: 'mascotas',      component: PetsComponent },
     { path: 'edicion-mascota',      component: PetEditorComponent },
-    { path: 'edicion-mascota/:id',      component: PetEditorComponent },
-    { path: 'perfil',      component: ProfileComponent }
+    { path: 'edicion-mascota/:id',      component: PetEditorComponent }
 ];

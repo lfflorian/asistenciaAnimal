@@ -28,6 +28,10 @@ export class UserService {
     return this.crudService.get(id);
   }
 
+  getUserByEmail(email : string) {
+    return this.crudService.listByReference(email, 'Email');
+  }
+
   updateUser(user: User) {
     return this.crudService.update(user);
   }
