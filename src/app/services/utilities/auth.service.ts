@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { UserService } from '../user.service';
 import { User } from 'app/model/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class AuthService {
     });
   }
 
-  loginWithEmail(email: string, password: string) {
+  LoginWithEmail(email: string, password: string) {
     return this.afa.auth.signInWithEmailAndPassword(email, password);
   }
 
