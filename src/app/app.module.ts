@@ -19,6 +19,7 @@ import {
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore/public_api';
 import { AngularFireStorageModule } from '@angular/fire/storage/public_api';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from 'environments/environment';
 
 
@@ -33,6 +34,7 @@ import { environment } from 'environments/environment';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     AngularFireStorageModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
