@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'app/services/utilities/auth.service';
 import { User } from 'app/model/user';

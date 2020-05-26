@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   resetPasswordInit(email: string) {
-    return this.afa.auth.sendPasswordResetEmail(email, { url: 'https://suscripcionmuv.firebaseapp.com/web/login' });
+    return this.afa.auth.sendPasswordResetEmail(email);
   }
 
   getCurrentUser() {
