@@ -49,6 +49,7 @@ export class ProfileComponent implements OnInit {
       this.UserForm.addControl('id', new FormControl(user.id))
       this.Image = new ImageUpload(user.ProfileImage);
       this.Image.Url = user.ProfileImage;
+      this.Image.ItsNew = false;
     } else {
       alert('Hubo un error al cargar la información de perfil de usuario')
     }
@@ -60,7 +61,9 @@ export class ProfileComponent implements OnInit {
     this.UserForm.controls['Date'].setValue(new Date());
 
     var Uid = this.UserForm.get("Uid").value;
-    await this.UploadImage();
+    if (this.Image.ItsNew)
+    { await this.UploadImage(); }
+    
     this.modelService.updateUser(this.UserForm.value as User).then(success => {
       alert('usuario actualizado!')
       this.router.navigateByUrl('admin')
