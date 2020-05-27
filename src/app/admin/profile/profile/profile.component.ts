@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   Data: any;
   UserForm: FormGroup = this._fb.group({
     Uid: [''],
-      Username: ['', Validators.required],
+      Email: ['', Validators.required],
       FullName: ['', Validators.required],
       FullLastName: ['', Validators.required],
       Birthday: ['', Validators.required],
@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
     var user = await this.authService.getUser();
     if (user !== null) {
       this.UserForm.controls['Uid'].setValue(user.Uid)
-      this.UserForm.controls['Username'].setValue(user.Email)
+      this.UserForm.controls['Email'].setValue(user.Email)
       this.UserForm.controls['FullName'].setValue(user.FullName)
       this.UserForm.controls['FullLastName'].setValue(user.FullLastName)
       this.UserForm.controls['Birthday'].setValue(user.Birthday)
@@ -48,6 +48,7 @@ export class ProfileComponent implements OnInit {
       this.UserForm.controls['ProfileImage'].setValue(user.ProfileImage)
       this.UserForm.addControl('id', new FormControl(user.id))
       this.Image = new ImageUpload(user.ProfileImage);
+      this.Image.Url = user.ProfileImage;
     } else {
       alert('Hubo un error al cargar la información de perfil de usuario')
     }
@@ -83,10 +84,13 @@ export class ProfileComponent implements OnInit {
       this.FileName = file.name;
       var reader = new FileReader();
       reader.onload = (event: any) => {
+        console.log(event)
         this.Image.Image = file;
         this.Image.ItsNew = true;
         this.Image.Url = event.target.result;
       }
+
+      reader.readAsDataURL(file)
     }
   }
 
