@@ -28,6 +28,7 @@ import {
   MatSelectModule
 } from '@angular/material';
 import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.component';
+import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form.component';
 
 
 
@@ -52,6 +53,7 @@ import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.compone
     AlertsComponent,
     AlertEditorComponent, 
     AdoptionsComponent,
+    ConfigFormComponent,
     AppointmentsComponent,
     ArticlesComponent,
     ArticleEditorComponent,

@@ -11,7 +11,7 @@ import { ProfileComponent } from 'app/admin/profile/profile/profile.component';
 import { GeneralConsultationEditorComponent } from 'app/admin/generalConsultations/general-consultation-editor/general-consultation-editor.component';
 import { AlertEditorComponent } from 'app/admin/alerts/alert-editor/alert-editor.component';
 import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.component';
-
+import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: '',      component: ProfileComponent },
@@ -20,6 +20,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'edicion-alerta',      component: AlertEditorComponent },
     { path: 'edicion-alerta/:id',      component: AlertEditorComponent },
     { path: 'adopciones',      component: AdoptionsComponent },
+    { path: 'configuracion-formulario',      component: ConfigFormComponent },
     { path: 'citas',      component: AppointmentsComponent },
     { path: 'articulos',      component: ArticlesComponent },
     { path: 'edicion-articulo',      component: ArticleEditorComponent },
