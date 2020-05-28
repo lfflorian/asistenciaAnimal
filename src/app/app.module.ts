@@ -20,6 +20,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore/public_api';
 import { AngularFireStorageModule } from '@angular/fire/storage/public_api';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { NgSurveysModule } from 'ng-surveys';
 import { environment } from 'environments/environment';
 
 
@@ -32,6 +33,7 @@ import { environment } from 'environments/environment';
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
+    NgSurveysModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
