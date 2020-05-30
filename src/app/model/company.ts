@@ -1,4 +1,5 @@
 import { Entity } from 'app/model/entity';
+import { Tag } from './tag';
 
 export interface Company extends Entity {
     Uid: string;
@@ -9,5 +10,6 @@ export interface Company extends Entity {
     Logo: string;
     Date: Date;
     User: string;
+    tags: Tag[];
     /* Aqui es donde iran los usuarios normales, asociaciones y demas */
 }

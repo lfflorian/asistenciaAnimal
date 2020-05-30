@@ -10,4 +10,5 @@ export interface Pet extends Entity {
     Color: string;
     Date: string;
     Images: string[]
+    InAdoption : boolean
 }
