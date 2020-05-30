@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { PostService } from 'app/services/post.service';
 import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
-import { Alert } from 'app/model/alert';
 import { ImageUpload } from 'app/model/imageUpload';
 import { FileService } from 'app/services/utilities/file.service';
 import { Post } from 'app/model/post';

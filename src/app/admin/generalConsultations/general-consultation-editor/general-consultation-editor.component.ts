@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { PostService } from 'app/services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GeneralConsultation } from 'app/model/generalConsultation';
 import { Post } from 'app/model/post';
 import { AuthService } from 'app/services/utilities/auth.service';
 

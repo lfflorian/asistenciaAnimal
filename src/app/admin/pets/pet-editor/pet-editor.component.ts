@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Pet } from 'app/model/pet';
 import { ImageUpload } from 'app/model/imageUpload';
 import { FileService } from 'app/services/utilities/file.service';
+import { AuthService } from 'app/services/utilities/auth.service';
 
 @Component({
   selector: 'app-pet-editor',
@@ -15,7 +16,6 @@ import { FileService } from 'app/services/utilities/file.service';
 export class PetEditorComponent implements OnInit {
 
   Data: any;
-  PetForm: FormGroup;
   Edicion: boolean;
   Images : ImageUpload[] = [];
 
@@ -23,22 +23,28 @@ export class PetEditorComponent implements OnInit {
     private _fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private fileService : FileService) {
+    private fileService : FileService,
+    private authService: AuthService) {
     }
 
-  ngOnInit() {
+  PetForm = this._fb.group({
+    IdUser: [''],
+    Uid: [''],
+    Name: ['', Validators.required],
+    Age: ['', Validators.required],
+    Race: [''],
+    Height: [''],
+    Weight: [''],
+    Color: [''],
+    Date: [''],
+    Images: ['']
+  });
+
+  async ngOnInit() {
     let Id  = this.route.snapshot.paramMap.get("id")
-    this.PetForm = this._fb.group({
-      Uid: [''],
-      Name : ['', Validators.required],
-      Age : ['', Validators.required],
-      Race : [''],
-      Height : [''],
-      Weight : [''],
-      Color : [''],
-      Date : [''],
-      Images : ['']
-    });
+    let user = await this.authService.getUser();
+    console.log(user.id)
+    this.PetForm.controls['IdUser'].setValue(user.id)
 
     if (Id !== null)
     {

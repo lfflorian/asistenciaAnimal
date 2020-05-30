@@ -10,7 +10,6 @@ import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 import { PostService } from 'app/services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Article } from 'app/model/article';
 import { Post } from 'app/model/post';
 import { AuthService } from 'app/services/utilities/auth.service';
 

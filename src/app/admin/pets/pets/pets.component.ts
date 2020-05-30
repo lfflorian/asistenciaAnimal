@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PetService } from 'app/services/pet.service';
+import { AuthService } from 'app/services/utilities/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,10 +12,12 @@ export class PetsComponent implements OnInit {
 
   Data: any;
   constructor(private modelService: PetService,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
-  ngOnInit() {
-    this.modelService.getPets().subscribe(pets => {
+  async ngOnInit() {
+    let user = await this.authService.getUser();
+    this.modelService.getPetsByReference(user.id).then((pets) => {
       this.Data = pets.map(pet =>
         Object.assign({}, {
           Nombre: pet.Name,
@@ -23,9 +26,9 @@ export class PetsComponent implements OnInit {
           Fecha: pet.Date,
           link: this.router.createUrlTree(['admin', 'edicion-mascota', pet.id]).toString()
         }))
-    }, error => {
+    }, (error) => {
       alert('Hubo un error en la comunicación con el servido')
-    });
+    })
   }
 
 }
