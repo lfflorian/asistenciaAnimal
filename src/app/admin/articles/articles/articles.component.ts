@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from 'app/services/article.service';
+import { PostService } from 'app/services/post.service';
+import { AuthService } from 'app/services/utilities/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,18 +11,20 @@ import { Router } from '@angular/router';
 export class ArticlesComponent implements OnInit {
 
   Data: any;
-  constructor(private modelService:ArticleService,
-              private router: Router) { }
+  constructor(private modelService:PostService,
+              private router: Router,
+              private authService: AuthService) { }
 
-  ngOnInit() {
-    this.modelService.getArticles().subscribe(articles => {
+  async ngOnInit() {
+    let user = await this.authService.getUser();
+    this.modelService.getPostsByTypeAndAuth('Articulo', user.id).then((articles) => {
       this.Data = articles.map(article => 
         Object.assign({}, {Titulo: article.Title,
           Fecha: article.Date,
           link: this.router.createUrlTree(['admin','edicion-articulo', article.id]).toString() }))
-    }, error => {
+    }, (error) => {
       alert('Hubo un error en la comunicación con el servido')
-    });
+    })
   }
 
 }

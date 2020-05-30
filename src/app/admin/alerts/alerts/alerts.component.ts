@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService } from 'app/services/alert.service';
+import { PostService } from 'app/services/post.service';
+import { AuthService } from 'app/services/utilities/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,20 +11,22 @@ import { Router } from '@angular/router';
 export class AlertsComponent implements OnInit {
 
   Data: any;
-  constructor(private modelService: AlertService,
-    private router: Router) { }
+  constructor(private modelService: PostService,
+    private router: Router,
+    private authService: AuthService) { }
 
-  ngOnInit() {
-    this.modelService.getAlerts().subscribe(alerts => {
+  async ngOnInit() {
+    let user = await this.authService.getUser();
+    this.modelService.getPostsByTypeAndAuth('Alerta', user.id).then((alerts) => {
       this.Data = alerts.map(alert =>
         Object.assign({}, {
           Titulo: alert.Title,
           Fecha: alert.Date,
           link: this.router.createUrlTree(['admin', 'edicion-alerta', alert.id]).toString()
         }))
-    }, error => {
-      alert('Hubo un error en la comunicación con el servido')
-    });
+    }, (error) => {
+      alert('Hubo un error en la comunicación con el servido' + error)
+    })
   }
 
 }

@@ -8,9 +8,11 @@ import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
 import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
-import { ArticleService } from 'app/services/article.service';
+import { PostService } from 'app/services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'app/model/article';
+import { Post } from 'app/model/post';
+import { AuthService } from 'app/services/utilities/auth.service';
 
 @Component({
   selector: 'app-article-editor',
@@ -22,30 +24,32 @@ export class ArticleEditorComponent implements OnInit {
   @ViewChild('content', { static: true }) someInput: ElementRef;
 
   Data: string;
-  ArticleForm: FormGroup;
   Edicion: boolean;
 
-  constructor(private articleService:ArticleService,
+  constructor(private modelService:PostService,
     private _fb: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
 
-  ngOnInit() {
+  ArticleForm = this._fb.group({
+    Title: ['', Validators.required],
+    Content: ['', Validators.required],
+    IdAuthor: ['', Validators.required],
+    Type: ['Articulo'],
+    Date: ['']
+  });
 
-    console.log(this.Editor);
-
+  async ngOnInit() {
     let Id  = this.route.snapshot.paramMap.get("id")
-    this.ArticleForm = this._fb.group({
-      Title : ['', Validators.required],
-      Content : ['', Validators.required],
-      IdAuthor : ['', Validators.required],
-      Date : ['']
-    });
+    let user = await this.authService.getUser();
+
+    this.ArticleForm.controls['IdAuthor'].setValue(user.id)
 
     if (Id !== null)
     {
       this.Edicion = true;
-      var owner  = this.articleService.getArticle(Id).subscribe(info => {
+      var owner  = this.modelService.getPost(Id).subscribe(info => {
         if (info !== undefined)
         {
           this.ArticleForm.controls['Title'].setValue(info.Title)
@@ -74,7 +78,7 @@ export class ArticleEditorComponent implements OnInit {
 
     if (this.Edicion == true)
     {
-      this.articleService.updateArticle(this.ArticleForm.value as Article).then(success => {
+      this.modelService.updatePost(this.ArticleForm.value as Post).then(success => {
         alert('articulo actualizado!')
         this.router.navigateByUrl('admin/articulos')
       }, error => {
@@ -83,7 +87,7 @@ export class ArticleEditorComponent implements OnInit {
       
     } else 
     {
-      this.articleService.createArticle(this.ArticleForm.value as Article).then(success => {
+      this.modelService.createPost(this.ArticleForm.value as Post).then(success => {
         alert('articulo creado!')
       this.router.navigateByUrl('admin/articulos')
       }, error => {
@@ -94,7 +98,7 @@ export class ArticleEditorComponent implements OnInit {
 
   Delete() {
     var id = this.ArticleForm.get('id').value;
-    this.articleService.deleteArticle(id).then(success => {
+    this.modelService.deletePost(id).then(success => {
       alert('articulo eliminado!')
       this.router.navigateByUrl('admin/articulos')
     }, error => {

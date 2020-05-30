@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { generalConsultationService } from 'app/services/general-consultation.service';
+import { PostService } from 'app/services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralConsultation } from 'app/model/generalConsultation';
+import { Post } from 'app/model/post';
+import { AuthService } from 'app/services/utilities/auth.service';
 
 @Component({
   selector: 'app-general-consultation-editor',
@@ -12,41 +14,43 @@ import { GeneralConsultation } from 'app/model/generalConsultation';
 export class GeneralConsultationEditorComponent implements OnInit {
 
   Data: any;
-  ConsultationForm: FormGroup;
   Edicion: boolean;
 
-  constructor(private modelService:generalConsultationService,
-              private _fb: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router) { }
+  constructor(private modelService: PostService,
+    private _fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService) { }
 
-  ngOnInit() {
-    let Id  = this.route.snapshot.paramMap.get("id")
-    this.ConsultationForm = this._fb.group({
-      Title : ['', Validators.required],
-      Message : ['', Validators.required],
-      Date : ['']
-    });
-   
-    if (Id !== null)
-    {
+  ConsultationForm = this._fb.group({
+    Title: ['', Validators.required],
+    Content: ['', Validators.required],
+    Date: [''],
+    Type: ['ConsultaGeneral'],
+    IdAuthor: ['']
+  });
+
+  async ngOnInit() {
+    let Id = this.route.snapshot.paramMap.get("id")
+    let user = await this.authService.getUser();
+    
+    this.ConsultationForm.controls['IdAuthor'].setValue(user.id)
+
+    if (Id !== null) {
       this.Edicion = true;
-      var owner  = this.modelService.getGeneralConsultation(Id).subscribe(info => {
-        if (info !== undefined)
-        {
+      var owner = this.modelService.getPost(Id).subscribe(info => {
+        if (info !== undefined) {
           this.ConsultationForm.controls['Title'].setValue(info.Title)
-          this.ConsultationForm.controls['Message'].setValue(info.Message)
+          this.ConsultationForm.controls['Content'].setValue(info.Content)
           this.ConsultationForm.controls['Date'].setValue(info.Date)
           this.ConsultationForm.addControl('id', new FormControl(info.id))
-        } else
-        {
+        } else {
           this.router.navigateByUrl('admin/consultas-generales')
         }
       }, error => {
         alert('Hubo un error al intentar obtener la consulta general')
       });
-    } else 
-    {
+    } else {
       this.Edicion = false;
     }
   }
@@ -55,20 +59,18 @@ export class GeneralConsultationEditorComponent implements OnInit {
   Save() {
     this.ConsultationForm.controls['Date'].setValue(new Date());
 
-    if (this.Edicion == true)
-    {
-      this.modelService.updateGeneralConsultation(this.ConsultationForm.value as GeneralConsultation).then(success => {
+    if (this.Edicion == true) {
+      this.modelService.updatePost(this.ConsultationForm.value as Post).then(success => {
         alert('Consultas General actualizado!')
         this.router.navigateByUrl('admin/consultas-generales')
       }, error => {
         alert('Hubo un error al actualizar el consulta general')
       })
-      
-    } else 
-    {
-      this.modelService.createGeneralConsultation(this.ConsultationForm.value as GeneralConsultation).then(success => {
+
+    } else {
+      this.modelService.createPost(this.ConsultationForm.value as Post).then(success => {
         alert('Consultas General creado!')
-      this.router.navigateByUrl('admin/consultas-generales')
+        this.router.navigateByUrl('admin/consultas-generales')
       }, error => {
         alert('Hubo un error al crear el consulta general')
       })
@@ -77,7 +79,7 @@ export class GeneralConsultationEditorComponent implements OnInit {
 
   Delete() {
     var id = this.ConsultationForm.get('id').value;
-    this.modelService.deleteGeneralConsultation(id).then(success => {
+    this.modelService.deletePost(id).then(success => {
       alert('Consultas General eliminado!')
       this.router.navigateByUrl('admin/consultas-generales')
     }, error => {
@@ -86,8 +88,7 @@ export class GeneralConsultationEditorComponent implements OnInit {
   }
 
   Cancel() {
-    if (confirm("Desea cancelar los cambios?"))
-    {
+    if (confirm("Desea cancelar los cambios?")) {
       this.router.navigateByUrl('admin/consultas-generales')
     }
   }

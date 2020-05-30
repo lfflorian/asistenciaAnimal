@@ -77,6 +77,23 @@ export class FirestoreCrudService<T extends Entity> {
         });
     }
 
+    listByReferenceAndUser(id: string, field : string, idAuth : string, user : string) : Promise<T[]> {
+        return new Promise((resolve, reject) => {
+            this.collection
+            .ref.where(field, '==', id)
+            .where(user, '==', idAuth)
+            .onSnapshot(el => {
+                const newelements = [];
+                el.forEach(doc => {
+                    var element = doc.data() as T;
+                    element.id = doc.id;
+                    newelements.push(element)
+                })
+                resolve(newelements);
+            })
+        });
+    }
+
     update(entity: T): Promise<T> {
         return new Promise<T>((resolve, reject) => {
             this.collection

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { AlertService } from 'app/services/alert.service';
+import { PostService } from 'app/services/post.service';
 import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
 import { Alert } from 'app/model/alert';
 import { ImageUpload } from 'app/model/imageUpload';
 import { FileService } from 'app/services/utilities/file.service';
+import { Post } from 'app/model/post';
+import { AuthService } from 'app/services/utilities/auth.service';
 
 @Component({
   selector: 'app-alert-editor',
@@ -15,31 +17,37 @@ import { FileService } from 'app/services/utilities/file.service';
 export class AlertEditorComponent implements OnInit {
 
   Data: any;
-  AlertForm: FormGroup;
   Edicion: boolean;
   Images : ImageUpload[] = [];
 
-  constructor(private alertService:AlertService,
+  constructor(private modelService:PostService,
     private _fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private fileService : FileService) {
+    private fileService : FileService,
+    private authService: AuthService) {
     }
 
-  ngOnInit() {
+  AlertForm = this._fb.group({
+    Uid: [''],
+    Title: ['', Validators.required],
+    Content: ['', Validators.required],
+    Date: [''],
+    Type: ['Alerta'],
+    Images: [''],
+    IdAuthor: ['']
+  });
+
+  async ngOnInit() {
     let Id  = this.route.snapshot.paramMap.get("id")
-    this.AlertForm = this._fb.group({
-      Uid: [''],
-      Title : ['', Validators.required],
-      Content : ['', Validators.required],
-      Date : [''],
-      Images : ['']
-    });
+    let user = await this.authService.getUser();
+
+    this.AlertForm.controls['IdAuthor'].setValue(user.id)
 
     if (Id !== null)
     {
       this.Edicion = true;
-      this.alertService.getAlert(Id).subscribe(info => {
+      this.modelService.getPost(Id).subscribe(info => {
         if (info !== undefined)
         {
           this.AlertForm.controls['Uid'].setValue(info.Uid)
@@ -71,7 +79,7 @@ export class AlertEditorComponent implements OnInit {
     {
       var Uid = this.AlertForm.get("Uid").value;
       await this.UploadImages(this.Images, Uid);
-      this.alertService.updateAlert(this.AlertForm.value as Alert).then(success => {
+      this.modelService.updatePost(this.AlertForm.value as Post).then(success => {
         alert('alerta actualizada!')
         this.router.navigateByUrl('admin/alertas')
       }, error => {
@@ -83,7 +91,7 @@ export class AlertEditorComponent implements OnInit {
       var uuid = this.GuidGenerate();
       this.AlertForm.controls['Uid'].setValue(uuid)
       await this.UploadImages(this.Images, uuid);
-      this.alertService.createAlert(this.AlertForm.value as Alert).then(success => {
+      this.modelService.createPost(this.AlertForm.value as Post).then(success => {
         alert('alerta creada!')
       this.router.navigateByUrl('admin/alertas')
       }, error => {
@@ -94,7 +102,7 @@ export class AlertEditorComponent implements OnInit {
 
   Delete() {
     var id = this.AlertForm.get('id').value;
-    this.alertService.deleteAlert(id).then(success => {
+    this.modelService.deletePost(id).then(success => {
       alert('alerta eliminada!')
       this.router.navigateByUrl('admin/alertas')
     }, error => {
