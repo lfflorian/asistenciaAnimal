@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { FormLayoutComponent } from './layouts/form-layout/form-layout.component';
 
 import {
   AgmCoreModule
@@ -45,7 +46,8 @@ import { environment } from 'environments/environment';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginLayoutComponent
+    LoginLayoutComponent,
+    FormLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
