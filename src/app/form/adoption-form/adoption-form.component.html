@@ -1,1 +1,160 @@
-
+<div class="container">
+    <div class="box">
+        <form [formGroup]="AdoptionForm">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>Datos personales</h5>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="NombreAdoptivo" placeholder="Nombre adoptivo">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="Nombre" placeholder="Nombre del adoptante">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="Apellido" placeholder="Apellido del adoptante">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="NoDPI" placeholder="No DPI">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="number" formControlName="Email" placeholder="Correo Electrónico">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="tel" formControlName="Telefono" placeholder="Teléfono">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="tel" formControlName="Celular" placeholder="Celular">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="Direccion" placeholder="Dirección">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="Facebook" placeholder="Facebook">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="instagram" placeholder="Instagram">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>Datos del hogar</h5>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="number" formControlName="NoPersonasEnCasa" placeholder="numero de personas en casa">
+                    </mat-form-field>
+                </div>
+                <!-- <div>listado de personas</div> -->
+                <div class="col-sm-12 col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput type="number" formControlName="NoPerrosEnCasa" placeholder="numero de perros en casa">
+                    </mat-form-field>
+                </div>
+                <!-- <div>listado de perros</div> -->
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <mat-checkbox formControlName="LugarSinEscapar" class="example-margin">¿El lugar es seguro para que no se escape?</mat-checkbox>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <mat-checkbox formControlName="TienePatio" class="example-margin">¿El lugar tiene patio?</mat-checkbox>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <mat-checkbox formControlName="TieneJardin" class="example-margin">¿El lugar tiene Jardín?</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <mat-checkbox formControlName="TieneSuficienteEspacio" class="example-margin">¿Hay suficiente espacio?</mat-checkbox>
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <label id="example-radio-group-label">¿en que ambiente donde dormira?</label> <br>
+                    <mat-radio-group formControlName="AmbienteADormir" aria-label="¿Ambiente donde dormira?">
+                        <mat-radio-button value="Fuera">Fuera del hogar</mat-radio-button>
+                        <mat-radio-button value="Dentro">Dentro del hogar</mat-radio-button>
+                      </mat-radio-group>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="DescripcionDelLugarADormir" placeholder="breve descripción del lugar donde dormira">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>Compromisos al adoptar</h5>
+                </div>
+                <div class="col-sm-6 col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="RazonDeAdopcion" placeholder="Razón por la que quieres adoptar">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <mat-checkbox formControlName="CompromisoCuidarlo" class="example-margin">¿Estas comprometido a cuidarlo?</mat-checkbox>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <mat-checkbox formControlName="CompromisoCambioHogar" class="example-margin">¿Estas comprometido si en caso de realizar una mudanza, llevartelo?</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <mat-checkbox formControlName="CompromisoGastos" class="example-margin">¿Estas comprometido a realizar los gastos necesarios?</mat-checkbox>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <mat-checkbox formControlName="CompromisoEnvioFotografias" class="example-margin">¿Estas comprometido a enviar fotografías cuando se te solicite?</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <mat-checkbox formControlName="ConcienciaDeRetiro" class="example-margin">¿Estas conciente de que podemos retirarte a la mascota si no cumples con tus compromisos?</mat-checkbox>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <mat-checkbox formControlName="CompromisoPaciencia" class="example-margin">¿Estas comprometido a ser paciente con tu mascota?</mat-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="HorarioDeActividades" placeholder="¿Cuales son tus horarios de trabajo o estudio?">
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput formControlName="PersonaResponsableEnHorasNoHabiles" placeholder="¿Quien estará con la mascota en horas no habiles?">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
