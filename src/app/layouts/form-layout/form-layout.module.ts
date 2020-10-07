@@ -6,6 +6,16 @@ import { FormLayoutRoutes } from './form-layout.routing';
 
 import { AdoptionFormComponent } from 'app/form/adoption-form/adoption-form.component';
 
+import {
+  MatButtonModule,
+  MatInputModule,
+  MatRippleModule,
+  MatFormFieldModule,
+  MatTooltipModule,
+  MatSelectModule,
+  MatCheckboxModule,
+  MatRadioModule
+} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -13,6 +23,14 @@ import { AdoptionFormComponent } from 'app/form/adoption-form/adoption-form.comp
     RouterModule.forChild(FormLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   declarations: [
     AdoptionFormComponent

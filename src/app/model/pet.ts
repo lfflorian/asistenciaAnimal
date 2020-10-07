@@ -1,7 +1,7 @@
 import { Entity } from 'app/model/entity';
 
 export interface Pet extends Entity {
-    IdUser : string;
+    IdCompany : string;
     Uid: string;
     Name: string;
     Age: number;
