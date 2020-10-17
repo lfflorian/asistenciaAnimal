@@ -1,7 +1,9 @@
 import { Entity } from 'app/model/entity';
 
 export interface User extends Entity {
-    Uid: string;
+    Uid : string;
+    Id_company : string;
+    Rol : string;
     Email: string;
     FullName: string;
     FullLastName: string;
@@ -9,5 +11,5 @@ export interface User extends Entity {
     Date: Date;
     ProfileImage: string;
     Company: boolean;
-    /* Aqui es donde iran los usuarios normales, asociaciones y demas */
+    Phone: string;
 }

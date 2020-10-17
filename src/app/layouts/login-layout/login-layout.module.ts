@@ -7,7 +7,8 @@ import { LoginLayoutRoutes } from './login-layout.routing';
 import { SinginComponent } from 'app/login/singin/singin.component';
 import { SingupComponent } from 'app/login/singup/singup.component';
 import { ForgottenPasswordComponent } from 'app/login/forgotten-password/forgotten-password.component';
-import { MatInputModule } from '@angular/material';
+import { InformationRegisterComponent } from 'app/login/information-register/information-register.component';
+import { MatInputModule, MatSlideToggleModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -15,12 +16,14 @@ import { MatInputModule } from '@angular/material';
     FormsModule,
     RouterModule.forChild(LoginLayoutRoutes),
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSlideToggleModule
   ],
   declarations: [
     SinginComponent,
     SingupComponent,
-    ForgottenPasswordComponent
+    ForgottenPasswordComponent,
+    InformationRegisterComponent
   ]
 })
 export class LoginLayoutModule { }

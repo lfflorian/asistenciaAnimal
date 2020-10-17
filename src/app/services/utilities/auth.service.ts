@@ -10,8 +10,17 @@ import { Router } from '@angular/router';
 
 export class AuthService {
 
+  authState : any = null;
+
   constructor(private afa: AngularFireAuth,
-    private userService: UserService) { }
+    private userService: UserService) {
+      // this.afa.authState.subscribe( authState => {
+      //   console.log(authState)
+      //   this.authState = authState;
+      // }, error => {
+      //   console.log(error)
+      // });
+     }
 
   async RegisterWithEmail(user: User, password: string) {
     await this.afa.auth.createUserWithEmailAndPassword(user.Email, password).then(async (data) => {
@@ -41,11 +50,18 @@ export class AuthService {
   }
 
   async getUser() {
-    var email = this.afa.auth.currentUser.email;
-    var users = await this.userService.getUserByEmail(email);
+    var user = await new Promise<any>(resolve => {
+      this.afa.authState.subscribe(u => {
+        resolve(u)
+      });
+    }) 
+
+    var users = await this.userService.getUserByEmail(user.email);
     return users[0];
   }
   getStatus() {
     return this.afa.authState;
   }
 }
+
+// referencia : https://stackoverflow.com/questions/42073340/angular2-firebase-get-current-user

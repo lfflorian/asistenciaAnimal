@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Registro de información</h5>
+            <form class="form-signin" [formGroup]="UserForm">
+              <div class="form-label-group">
+                <mat-form-field>
+                  <input matInput formControlName="FullName"  id="inputEmail" placeholder="Nombre completo"
+                    required autofocus>
+                </mat-form-field>
+              </div>
+              <div class="form-label-group">
+                <mat-form-field>
+                  <input matInput formControlName="FullLastName"  id="inputEmail" placeholder="Apellido completo"
+                    required autofocus>
+                </mat-form-field>
+              </div>
+              <div class="form-label-group">
+                <mat-form-field>
+                  <input matInput formControlName="Birthday" id="inputEmail" placeholder="Fecha de nacimiento"
+                    required autofocus>
+                </mat-form-field>
+              </div>
+              <div class="form-label-group">
+                <mat-form-field>
+                  <input matInput formControlName="Phone" id="inputEmail" placeholder="Teléfono"
+                    required autofocus>
+                </mat-form-field>
+              </div>
+            </form>
+              <div class="form-label-group">
+                <mat-slide-toggle [(ngModel)]="companyFormEnabled" [ngModelOptions]="{standalone: true}">¿Eres una empresa o asociación?</mat-slide-toggle>
+              </div>
+              <div *ngIf="companyFormEnabled" class="copmany-form">
+                <form class="form-signin" [formGroup]="CompanyForm">
+                <div class="form-label-group">
+                    <mat-form-field>
+                      <input matInput formControlName="Name" id="inputEmail" placeholder="Nombre"
+                        required autofocus>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-label-group">
+                    <mat-form-field>
+                      <input matInput formControlName="Description" id="inputEmail" placeholder="Descripción"
+                        required autofocus>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-label-group">
+                    <mat-form-field>
+                      <input matInput formControlName="DateIgnauration" id="inputEmail" placeholder="Fecha de ignauración"
+                        required autofocus>
+                    </mat-form-field>
+                  </div>
+                  <div class="form-label-group">
+                    <mat-form-field>
+                      <input matInput formControlName="AsociationType" id="inputEmail" placeholder="Tipo de asociación"
+                        required autofocus>
+                    </mat-form-field>
+                  </div>
+                </form>
+              </div>
+              <button (click)="RegisterInformation()" class="btn btn-lg btn-primary btn-block text-uppercase"
+                type="submit">Registrar</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

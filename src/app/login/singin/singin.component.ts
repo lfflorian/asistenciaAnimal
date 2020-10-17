@@ -26,7 +26,7 @@ export class SinginComponent implements OnInit {
     if (this.LoginForm.valid) {
       this.auth.LoginWithEmail(email, password).then((data) => {
         if (data.user.emailVerified) {
-          this.router.navigate(['admin'])
+          this.router.navigate(['session/information'])
         } else {
           alert("Usuario no a confirmado correo")
         }
