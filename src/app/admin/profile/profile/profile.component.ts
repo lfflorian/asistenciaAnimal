@@ -7,6 +7,9 @@ import { FileService } from 'app/services/utilities/file.service';
 import { UserService } from 'app/services/user.service';
 import { User } from 'app/model/user';
 import { AuthService } from 'app/services/utilities/auth.service';
+import { CompanyService } from 'app/services/company.service';
+import { take } from 'rxjs/Operators';
+import { Company } from 'app/model/company';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +19,7 @@ import { AuthService } from 'app/services/utilities/auth.service';
 export class ProfileComponent implements OnInit {
 
   Data: any;
+  ShowCompany : boolean = false;
   UserForm: FormGroup = this._fb.group({
     Uid: [''],
       Email: ['', Validators.required],
@@ -25,10 +29,20 @@ export class ProfileComponent implements OnInit {
       Date: [''],
       ProfileImage: ['']
   });
+
+  CompanyForm = this._fb.group({
+    Id_creator_user: [''],
+    Name: [''],
+    Description: [''],
+    DateIgnauration: [''],
+    AsociationType: ['']
+  })
+
   Edicion: boolean;
   Image: ImageUpload;
 
   constructor(private modelService: UserService,
+    private companyService: CompanyService,
     private _fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -50,6 +64,17 @@ export class ProfileComponent implements OnInit {
       this.Image = new ImageUpload(user.ProfileImage);
       this.Image.Url = user.ProfileImage;
       this.Image.ItsNew = false;
+
+      if (user.Company) {
+        this.ShowCompany = true;
+        var company = await this.companyService.getCompany(user.Id_company).pipe(take(1)).toPromise();
+        console.log(company)
+        this.CompanyForm.controls['Name'].setValue(company.Name)
+        this.CompanyForm.controls['Description'].setValue(company.Description)
+        this.CompanyForm.controls['DateIgnauration'].setValue(company.DateIgnauration)
+        this.CompanyForm.controls['AsociationType'].setValue(company.AsociationType)
+      }
+
     } else {
       alert('Hubo un error al cargar la información de perfil de usuario')
     }
@@ -75,6 +100,22 @@ export class ProfileComponent implements OnInit {
   async UploadImage() {
     var urlImage = await this.fileService.UploadFile(this.Image.Image, 'Profile');
     this.UserForm.controls['ProfileImage'].setValue(urlImage);
+  }
+
+  saveCompany() {
+    this.disabledButton = true;
+
+    var Uid = this.UserForm.get("Uid").value;
+    // if (this.Image.ItsNew)
+    // { await this.UploadImage(); }
+    
+    this.companyService.updateCompany(this.CompanyForm.value as Company).then(success => {
+      alert('empresa actualizada!')
+      this.router.navigateByUrl('admin')
+    }, error => {
+      console.log(error)
+      alert('Hubo un error al actualizar os datos de la empresa')
+    })
   }
 
 

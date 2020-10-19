@@ -18,6 +18,7 @@ export class PetEditorComponent implements OnInit {
   Data: any;
   Edicion: boolean;
   Images : ImageUpload[] = [];
+  InAdoptionEnable : boolean = false;
 
   constructor(private petService:PetService,
     private _fb: FormBuilder,
@@ -37,14 +38,17 @@ export class PetEditorComponent implements OnInit {
     Weight: [''],
     Color: [''],
     Date: [''],
+    MoreAbout : [''],
+    InAdoption : [false],
     Images: ['']
   });
 
   async ngOnInit() {
     let Id  = this.route.snapshot.paramMap.get("id")
     let user = await this.authService.getUser();
-    console.log(user.id)
+
     this.PetForm.controls['IdUser'].setValue(user.id)
+    this.InAdoptionEnable = (user.Rol == "empresa");
 
     if (Id !== null)
     {
@@ -60,7 +64,9 @@ export class PetEditorComponent implements OnInit {
           this.PetForm.controls['Weight'].setValue(info.Weight)
           this.PetForm.controls['Color'].setValue(info.Color)
           this.PetForm.controls['Date'].setValue(info.Date)
+          this.PetForm.controls['MoreAbout'].setValue(info.MoreAbout)
           this.PetForm.controls['Images'].setValue(info.Images)
+          this.PetForm.controls['InAdoption'].setValue(info.InAdoption)
           this.PetForm.addControl('id', new FormControl(info.id))
           info.Images.forEach(i => { this.Images.push(new ImageUpload(i)) })
         } else

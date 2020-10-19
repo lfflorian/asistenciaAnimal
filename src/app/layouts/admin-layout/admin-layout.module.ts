@@ -25,7 +25,8 @@ import {
   MatRippleModule,
   MatFormFieldModule,
   MatTooltipModule,
-  MatSelectModule
+  MatSelectModule,
+  MatSlideToggleModule
 } from '@angular/material';
 import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.component';
 import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form.component';
@@ -47,6 +48,7 @@ import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatSlideToggleModule,
     AdminComponentsModule
   ],
   declarations: [

@@ -21,7 +21,8 @@ export class InformationRegisterComponent implements OnInit {
     FullName: [''],
     FullLastName: [''],
     Birthday: [''],
-    Phone : ['']
+    Phone : [''],
+    Date: ['']
   })
 
   CompanyForm = this.fb.group({
@@ -29,7 +30,8 @@ export class InformationRegisterComponent implements OnInit {
     Name: [''],
     Description: [''],
     DateIgnauration: [''],
-    AsociationType: ['']
+    AsociationType: [''],
+    Date: ['']
   })
 
   constructor(private fb: FormBuilder,
@@ -44,7 +46,7 @@ export class InformationRegisterComponent implements OnInit {
   }
 
   async RegisterInformation() {
-    debugger
+    this.UserForm.controls['Date'].setValue(new Date());
     this.user.FullName = this.UserForm.get('FullName').value;
     this.user.FullLastName = this.UserForm.get('FullLastName').value;
     this.user.Birthday = this.UserForm.get('Birthday').value;``
@@ -55,6 +57,7 @@ export class InformationRegisterComponent implements OnInit {
       let company : Company;
 
       try {
+        this.CompanyForm.controls['Date'].setValue(new Date());
         company = await this.companyService.createCompany(this.CompanyForm.value as Company)
         this.user.Id_company = company.id;
         this.user.Rol = "empresa";
@@ -65,7 +68,7 @@ export class InformationRegisterComponent implements OnInit {
       }
     } else {
       this.user.Rol = "cliente";
-      this.user.Company = true;
+      this.user.Company = false;
     }
 
     this.userService.updateUser(this.user).then(success => {

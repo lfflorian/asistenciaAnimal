@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Editar Perfil</h4>
+                        <h4 class="card-title">Editar informacion de perfil de usuario</h4>
                         <p class="card-category">Completa tus datos</p>
                     </div>
                     <div class="card-body">
@@ -34,6 +34,42 @@
                                 </div>
                             </div>
                             <button mat-raised-button type="submit" (click)="save()" class="btn btn-danger pull-right">Actualizar Perfil</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+                <div *ngIf="ShowCompany" class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Editar informacion de empresa</h4>
+                        <p class="card-category">Completa los datos</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="CompanyForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput formControlName="Name" placeholder="Nombre">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                      <input matInput formControlName="Description" placeholder="Descripción" type="email">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput formControlName="DateIgnauration" placeholder="Fecha ignauracion" type="text">
+                                  </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                  <mat-form-field class="example-full-width">
+                                    <input matInput formControlName="AsociationType" placeholder="Tipo de asociacion" type="text">
+                                  </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" (click)="saveCompany()" class="btn btn-danger pull-right">Actualizar Empresa</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
