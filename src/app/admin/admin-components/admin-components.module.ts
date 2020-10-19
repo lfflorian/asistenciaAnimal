@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { TableListComponent } from './table-list/table-list.component';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
 
 @NgModule({
   declarations: [
-    TableListComponent
+    TableListComponent,
+    ImageUploadComponent
   ],
   imports: [
     CommonModule,
@@ -14,7 +16,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     Ng2SearchPipeModule
   ],
   exports: [
-    TableListComponent
+    TableListComponent,
+    ImageUploadComponent
   ]
 })
 export class AdminComponentsModule { }

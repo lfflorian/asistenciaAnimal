@@ -17,30 +17,6 @@ import { Company } from 'app/model/company';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  Data: any;
-  ShowCompany : boolean = false;
-  UserForm: FormGroup = this._fb.group({
-    Uid: [''],
-      Email: ['', Validators.required],
-      FullName: ['', Validators.required],
-      FullLastName: ['', Validators.required],
-      Birthday: ['', Validators.required],
-      Date: [''],
-      ProfileImage: ['']
-  });
-
-  CompanyForm = this._fb.group({
-    Id_creator_user: [''],
-    Name: [''],
-    Description: [''],
-    DateIgnauration: [''],
-    AsociationType: ['']
-  })
-
-  Edicion: boolean;
-  Image: ImageUpload;
-
   constructor(private modelService: UserService,
     private companyService: CompanyService,
     private _fb: FormBuilder,
@@ -50,46 +26,70 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService) {
   }
 
+  Data: any;
+  ShowCompany : boolean = false;
+  user: User;
+  company: Company;
+  Edicion: boolean;
+  ProfileImage: ImageUpload;
+  LogoCompanyImage: ImageUpload;
+  
+  UserForm: FormGroup = this._fb.group({
+      Email: ['', Validators.required],
+      FullName: ['', Validators.required],
+      FullLastName: ['', Validators.required],
+      Birthday: ['', Validators.required],
+      Phone: ['', Validators.required]
+  });
+
+  CompanyForm: FormGroup = this._fb.group({
+    Id_creator_user: [''],
+    Name: [''],
+    Description: [''],
+    DateIgnauration: [''],
+    AsociationType: ['']
+  })
+
   async ngOnInit() {
-    var user = await this.authService.getUser();
-    if (user !== null) {
-      this.UserForm.controls['Uid'].setValue(user.Uid)
-      this.UserForm.controls['Email'].setValue(user.Email)
-      this.UserForm.controls['FullName'].setValue(user.FullName)
-      this.UserForm.controls['FullLastName'].setValue(user.FullLastName)
-      this.UserForm.controls['Birthday'].setValue(user.Birthday)
-      this.UserForm.controls['Date'].setValue(user.Date)
-      this.UserForm.controls['ProfileImage'].setValue(user.ProfileImage)
-      this.UserForm.addControl('id', new FormControl(user.id))
-      this.Image = new ImageUpload(user.ProfileImage);
-      this.Image.Url = user.ProfileImage;
-      this.Image.ItsNew = false;
+    this.user = await this.authService.getUser();
+    if (this.user !== null) {
+      this.UserForm.controls['FullName'].setValue(this.user.FullName)
+      this.UserForm.controls['FullLastName'].setValue(this.user.FullLastName)
+      this.UserForm.controls['Birthday'].setValue(this.user.Birthday)
+      this.UserForm.controls['Phone'].setValue(this.user.Phone)
 
-      if (user.Company) {
+      this.ProfileImage = new ImageUpload(this.user.ProfileImage);
+      this.ProfileImage.Url = this.user.ProfileImage;
+      this.ProfileImage.ItsNew = false;
+
+      if (this.user.Company) {
         this.ShowCompany = true;
-        var company = await this.companyService.getCompany(user.Id_company).pipe(take(1)).toPromise();
-        console.log(company)
-        this.CompanyForm.controls['Name'].setValue(company.Name)
-        this.CompanyForm.controls['Description'].setValue(company.Description)
-        this.CompanyForm.controls['DateIgnauration'].setValue(company.DateIgnauration)
-        this.CompanyForm.controls['AsociationType'].setValue(company.AsociationType)
-      }
+        this.company = await this.companyService.getCompany(this.user.Id_company).pipe(take(1)).toPromise();
 
+        this.CompanyForm.controls['Name'].setValue(this.company.Name)
+        this.CompanyForm.controls['Description'].setValue(this.company.Description)
+        this.CompanyForm.controls['DateIgnauration'].setValue(this.company.DateIgnauration)
+        this.CompanyForm.controls['AsociationType'].setValue(this.company.AsociationType)
+
+        this.LogoCompanyImage = new ImageUpload(this.company.Logo);
+        this.LogoCompanyImage.Url = this.company.Logo;
+        this.LogoCompanyImage.ItsNew = false;
+      }
     } else {
       alert('Hubo un error al cargar la información de perfil de usuario')
     }
   }
 
-  disabledButton: boolean = false;
   async save() {
-    this.disabledButton = true;
-    this.UserForm.controls['Date'].setValue(new Date());
+    if (this.ProfileImage.ItsNew)
+    { this.user.ProfileImage = await this.UploadImage(this.ProfileImage, 'Profile'); }
 
-    var Uid = this.UserForm.get("Uid").value;
-    if (this.Image.ItsNew)
-    { await this.UploadImage(); }
+    this.user.FullName = this.UserForm.get("FullName").value;
+    this.user.FullLastName = this.UserForm.get("FullLastName").value;
+    this.user.Birthday = this.UserForm.get("Birthday").value;
+    this.user.Phone = this.UserForm.get("Phone").value;
     
-    this.modelService.updateUser(this.UserForm.value as User).then(success => {
+    this.modelService.updateUser(this.user).then(success => {
       alert('usuario actualizado!')
       this.router.navigateByUrl('admin')
     }, error => {
@@ -97,19 +97,16 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  async UploadImage() {
-    var urlImage = await this.fileService.UploadFile(this.Image.Image, 'Profile');
-    this.UserForm.controls['ProfileImage'].setValue(urlImage);
-  }
+  async saveCompany() {
+    if (this.LogoCompanyImage.ItsNew)
+    { this.company.Logo = await this.UploadImage(this.LogoCompanyImage, 'Logo'); }
 
-  saveCompany() {
-    this.disabledButton = true;
+    this.company.Name = this.CompanyForm.get("Name").value;
+    this.company.Description = this.CompanyForm.get("Description").value;
+    this.company.DateIgnauration = this.CompanyForm.get("DateIgnauration").value;
+    this.company.AsociationType = this.CompanyForm.get("AsociationType").value;
 
-    var Uid = this.UserForm.get("Uid").value;
-    // if (this.Image.ItsNew)
-    // { await this.UploadImage(); }
-    
-    this.companyService.updateCompany(this.CompanyForm.value as Company).then(success => {
+    this.companyService.updateCompany(this.company).then(success => {
       alert('empresa actualizada!')
       this.router.navigateByUrl('admin')
     }, error => {
@@ -118,30 +115,15 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-
-  File: any;
-  FileName: string;
-  FileUploadEvent(event) {
-    let file = event.target.files[0];
-    if (file) {
-      this.File = file
-      this.FileName = file.name;
-      var reader = new FileReader();
-      reader.onload = (event: any) => {
-        console.log(event)
-        this.Image.Image = file;
-        this.Image.ItsNew = true;
-        this.Image.Url = event.target.result;
-      }
-
-      reader.readAsDataURL(file)
-    }
+  async UploadImage(image: ImageUpload, path) {
+    return await this.fileService.UploadFile(image.Image,path);
   }
 
-  GuidGenerate() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
+  GetProfileImage(image : ImageUpload) {
+    this.ProfileImage = image;
+  }
+
+  GetLogoImage(image : ImageUpload) {
+    this.LogoCompanyImage = image;
   }
 }

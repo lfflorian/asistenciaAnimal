@@ -2,7 +2,6 @@ import { Entity } from 'app/model/entity';
 import { Tag } from './tag';
 
 export interface Company extends Entity {
-    Uid: string;
     Id_creator_user : string;
     Name: string;
     Description: string;

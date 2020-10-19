@@ -1,0 +1,14 @@
+<div class="card card-profile">
+    <div class="card-avatar">
+        <a href="javascript:void(0)">
+            <img class="img" *ngIf="!Image" [src]="'assets/img/user.png'" />
+            <img class="img" *ngIf="Image" [src]="Image.Url || 'assets/img/user.png'" />
+        </a>
+    </div>
+    <div class="card-body">
+        <label class="input-file">
+            <input type="file" (change)="FileUploadEvent($event)" class="btn-file"
+                accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps" multiple> {{ Title }}
+        </label>
+    </div>
+</div>
