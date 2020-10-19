@@ -126,4 +126,8 @@ export class ProfileComponent implements OnInit {
   GetLogoImage(image : ImageUpload) {
     this.LogoCompanyImage = image;
   }
+
+  goToCreateCompany() {
+    this.router.navigateByUrl('form/formulario-empresa')
+  }
 }

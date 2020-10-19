@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormLayoutRoutes } from './form-layout.routing';
 
 import { AdoptionFormComponent } from 'app/form/adoption-form/adoption-form.component';
+import { CompanyFormComponent } from 'app/form/company-form/company-form.component';
 
 import {
   MatButtonModule,
@@ -33,7 +34,8 @@ import {
     MatRadioModule
   ],
   declarations: [
-    AdoptionFormComponent
+    AdoptionFormComponent,
+    CompanyFormComponent
   ]
 })
 
