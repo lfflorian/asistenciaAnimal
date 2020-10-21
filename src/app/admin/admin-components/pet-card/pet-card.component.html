@@ -1,0 +1,15 @@
+<div class="contenedor">
+    <mat-card class="tarjeta">
+      <mat-card-header>
+        <mat-card-title>{{pet.Nombre}}</mat-card-title>
+        <mat-card-subtitle>{{pet.Raza}}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="pet.Image">
+      <mat-card-content>
+        <p>Edad: {{pet.Edad}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button (click)="selected(pet.link)" color="primary">Editar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

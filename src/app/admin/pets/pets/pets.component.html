@@ -19,8 +19,10 @@
                         <p class="card-category">Listado de mascotas</p>
                     </div>
                     <div class="card-body">
-                        <div *ngIf="Data">
-                            <app-table-list [Data]="Data"></app-table-list>
+                        <div class="row">
+                            <div *ngFor="let pet of Data" class="col-sm-12 col-md-4">
+                                <app-pet-card [pet]="pet"></app-pet-card>
+                            </div>
                         </div>
                     </div>
                 </div>

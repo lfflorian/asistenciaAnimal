@@ -144,23 +144,8 @@ export class PetEditorComponent implements OnInit {
     }
   }
 
-  FileUploadEvent(event) {
-    let images = event.target.files;
-    if (images && images[0]) {
-      var filesAmount = images.length;
-      for (let i = 0; i < filesAmount; i++) {
-        var reader = new FileReader();
-        reader.onload = (event: any) => {
-          this.Images.push(new ImageUpload(event.target.result, images[i], true))
-        }
-
-        reader.readAsDataURL(images[i]);
-      }
-    }
-  }
-
-  deleteImage(index) {
-    this.Images.splice(index, 1);
+  GetImages(images : ImageUpload[]) {
+    this.Images = images;
   }
 
   GuidGenerate() {

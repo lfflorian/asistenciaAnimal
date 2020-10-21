@@ -41,6 +41,12 @@
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-12 col-md-12">
+                                    <mat-radio-group aria-label="Select an option">
+                                        <mat-radio-button value="Macho">Macho</mat-radio-button>
+                                        <mat-radio-button value="Hembra">Hembra</mat-radio-button>
+                                      </mat-radio-group>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
                                     <mat-form-field class="example-full-width">
                                         <textarea matInput formControlName="MoreAbout" placeholder="Descripción u otros destalles"
                                             rows="5"></textarea>
@@ -57,23 +63,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="card card-profile">
-                    <div class="card-body left">
-                        <label class="input-file">
-                            <input type="file" (change)="FileUploadEvent($event)" class="btn-file"
-                                accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps" multiple> Agregar
-                            Fotos
-                        </label>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="image-card" *ngFor="let item of Images; let i = index">
-                                    <img [src]="item.Url || 'assets/img/cover.jpg'" alt="">
-                                    <div class="erase"><a (click)='deleteImage(i)' class="erase-button"></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <app-files-upload *ngIf="Images" [Files]="Images" (ImageEventReturn)="GetImages($event)"></app-files-upload>
             </div>
             <div class="col-md-12">
                 <div class="card card-profile">

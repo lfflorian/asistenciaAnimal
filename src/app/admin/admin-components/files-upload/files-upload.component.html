@@ -1,0 +1,17 @@
+<div class="card card-profile">
+    <div class="card-body left">
+        <label class="input-file">
+            <input type="file" (change)="FileUploadEvent($event)" class="btn-file"
+                accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps" multiple> Agregar
+            Fotos
+        </label>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="image-card" *ngFor="let item of Files; let i = index">
+                    <img [src]="item.Url || 'assets/img/cover.jpg'" alt="">
+                    <div class="erase"><a (click)='deleteImage(i)' class="erase-button"></a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

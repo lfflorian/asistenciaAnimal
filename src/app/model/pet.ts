@@ -6,6 +6,7 @@ export interface Pet extends Entity {
     Uid: string;
     Name: string;
     Age: number;
+    Gender: string;
     Race: string;
     Height: number;
     Weight: number;

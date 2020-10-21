@@ -24,11 +24,11 @@ export class PetsComponent implements OnInit {
           Raza: pet.Race,
           Edad: pet.Age,
           Fecha: pet.Date,
+          Image: pet.Images[0],
           link: this.router.createUrlTree(['admin', 'edicion-mascota', pet.id]).toString()
         }))
     }, (error) => {
       alert('Hubo un error en la comunicación con el servido')
     })
   }
-
 }
