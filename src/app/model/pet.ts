@@ -1,21 +1,21 @@
 import { Entity } from 'app/model/entity';
 
 export interface Pet extends Entity {
-    IdUSer : string;
-    IdCompany : string;
-    Uid: string;
-    Name: string;
-    Age: number;
-    Gender: string;
-    Race: string;
-    Height: number;
-    Weight: number;
-    Color: string;
-    Date: string;
-    MoreAbout : string;
-    Images: string[]
-    InAdoption : boolean
-    MedicalHistory : MedicalHistory[];
+    IdUser? : string;
+    IdCompany? : string;
+    Uid?: string;
+    Name?: string;
+    Age?: number;
+    Gender?: string;
+    Race?: string;
+    Height?: number;
+    Weight?: number;
+    Color?: string;
+    Date?: Date;
+    MoreAbout?: string;
+    Images?: string[]
+    InAdoption? : boolean
+    MedicalHistory? : MedicalHistory[];
 }
 
 export interface MedicalHistory extends Entity {

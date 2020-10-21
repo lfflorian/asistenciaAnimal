@@ -7,6 +7,7 @@ import { Pet } from 'app/model/pet';
 import { ImageUpload } from 'app/model/imageUpload';
 import { FileService } from 'app/services/utilities/file.service';
 import { AuthService } from 'app/services/utilities/auth.service';
+import { User } from 'app/model/user';
 
 @Component({
   selector: 'app-pet-editor',
@@ -14,11 +15,6 @@ import { AuthService } from 'app/services/utilities/auth.service';
   styleUrls: ['./pet-editor.component.scss']
 })
 export class PetEditorComponent implements OnInit {
-
-  Data: any;
-  Edicion: boolean;
-  Images : ImageUpload[] = [];
-  InAdoptionEnable : boolean = false;
 
   constructor(private petService:PetService,
     private _fb: FormBuilder,
@@ -28,27 +24,32 @@ export class PetEditorComponent implements OnInit {
     private authService: AuthService) {
     }
 
+  Data: any;
+  Edicion: boolean;
+  Images : ImageUpload[] = [];
+  InAdoptionEnable : boolean = false;
+  user : User;
+  pet : Pet;
+
+  
+
   PetForm = this._fb.group({
-    IdUser: [''],
-    Uid: [''],
     Name: ['', Validators.required],
     Age: ['', Validators.required],
     Race: [''],
     Height: [''],
     Weight: [''],
     Color: [''],
-    Date: [''],
     MoreAbout : [''],
     InAdoption : [false],
-    Images: ['']
+    Gender : ['']
   });
 
   async ngOnInit() {
     let Id  = this.route.snapshot.paramMap.get("id")
-    let user = await this.authService.getUser();
+    this.user = await this.authService.getUser();
 
-    this.PetForm.controls['IdUser'].setValue(user.id)
-    this.InAdoptionEnable = (user.Rol == "empresa");
+    this.InAdoptionEnable = (this.user.Rol == "empresa");
 
     if (Id !== null)
     {
@@ -56,18 +57,16 @@ export class PetEditorComponent implements OnInit {
       this.petService.getPet(Id).subscribe(info => {
         if (info !== undefined)
         {
-          this.PetForm.controls['Uid'].setValue(info.Uid)
+          this.pet = info
           this.PetForm.controls['Name'].setValue(info.Name)
           this.PetForm.controls['Age'].setValue(info.Age)
           this.PetForm.controls['Race'].setValue(info.Race)
           this.PetForm.controls['Height'].setValue(info.Height)
           this.PetForm.controls['Weight'].setValue(info.Weight)
           this.PetForm.controls['Color'].setValue(info.Color)
-          this.PetForm.controls['Date'].setValue(info.Date)
           this.PetForm.controls['MoreAbout'].setValue(info.MoreAbout)
-          this.PetForm.controls['Images'].setValue(info.Images)
           this.PetForm.controls['InAdoption'].setValue(info.InAdoption)
-          this.PetForm.addControl('id', new FormControl(info.id))
+          this.PetForm.controls['Gender'].setValue(info.Gender)
           info.Images.forEach(i => { this.Images.push(new ImageUpload(i)) })
         } else
         {
@@ -78,20 +77,26 @@ export class PetEditorComponent implements OnInit {
       });
     } else 
     {
+      this.pet = {}
       this.Edicion = false;
     }
   }
 
-  disabledButton : boolean = false;
   async Save() {
-    this.disabledButton = true;
-    this.PetForm.controls['Date'].setValue(new Date());
+    this.pet.Name = this.PetForm.get("Name").value;
+    this.pet.Age = this.PetForm.get("Age").value;
+    this.pet.Race = this.PetForm.get("Race").value;
+    this.pet.Height = this.PetForm.get("Height").value;
+    this.pet.Weight = this.PetForm.get("Weight").value;
+    this.pet.Color = this.PetForm.get("Color").value;
+    this.pet.MoreAbout = this.PetForm.get("MoreAbout").value;
+    this.pet.InAdoption = this.PetForm.get("InAdoption").value;
+    this.pet.Gender = this.PetForm.get("Gender").value;
 
     if (this.Edicion == true)
     {
-      var Uid = this.PetForm.get("Uid").value;
-      await this.UploadImages(this.Images, Uid);
-      this.petService.updatePet(this.PetForm.value as Pet).then(success => {
+      await this.UploadImages(this.Images, this.pet.id);
+      this.petService.updatePet(this.pet).then(success => {
         alert('mascota actualizada!')
         this.router.navigateByUrl('admin/mascotas')
       }, error => {
@@ -101,9 +106,11 @@ export class PetEditorComponent implements OnInit {
     } else 
     {
       var uuid = this.GuidGenerate();
-      this.PetForm.controls['Uid'].setValue(uuid)
+      this.pet.IdUser = this.user.id
+      this.pet.Date = new Date();
+
       await this.UploadImages(this.Images, uuid);
-      this.petService.createPet(this.PetForm.value as Pet).then(success => {
+      this.petService.createPet(this.pet).then(success => {
         alert('mascota creada!')
       this.router.navigateByUrl('admin/mascotas')
       }, error => {
@@ -113,8 +120,7 @@ export class PetEditorComponent implements OnInit {
   }
 
   Delete() {
-    var id = this.PetForm.get('id').value;
-    this.petService.deletePet(id).then(success => {
+    this.petService.deletePet(this.pet.id).then(success => {
       alert('mascota eliminada!')
       this.router.navigateByUrl('admin/mascotas')
     }, error => {
@@ -136,11 +142,11 @@ export class PetEditorComponent implements OnInit {
       var newImages = this.Images.filter(x => x.ItsNew == true)
       var urlImages = await this.fileService.UploadFiles(newImages, Uid, 'Alert');
       oldImages.forEach(i => { urlImages.push(i.Url) })
-      this.PetForm.controls['Images'].setValue(urlImages)
+      this.pet.Images = urlImages
     } else 
     {
       var urlImages = await this.fileService.UploadFiles(this.Images, Uid, 'Alert');
-      this.PetForm.controls['Images'].setValue(urlImages)
+      this.pet.Images = urlImages
     }
   }
 
