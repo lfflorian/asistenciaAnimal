@@ -1,7 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 
@@ -13,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { FormLayoutComponent } from './layouts/form-layout/form-layout.component';
+import { LandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
 
 import {
   AgmCoreModule
@@ -30,7 +30,6 @@ import { environment } from 'environments/environment';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
     ComponentsModule,
     RouterModule,
     AppRoutingModule,
@@ -47,7 +46,8 @@ import { environment } from 'environments/environment';
     AppComponent,
     AdminLayoutComponent,
     LoginLayoutComponent,
-    FormLayoutComponent
+    FormLayoutComponent,
+    LandingLayoutComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

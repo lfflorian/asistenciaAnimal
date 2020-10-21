@@ -7,12 +7,20 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { FormLayoutComponent } from './layouts/form-layout/form-layout.component';
 import { AuthenticationGuard } from './guard/authentication.guard';
+import { LandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
 
 const routes: Routes =[
   {
     path: '',
-    redirectTo: 'session',
+    redirectTo: 'page',
     pathMatch: 'full',
+  }, {
+    path: '',
+    component: LandingLayoutComponent,
+    children: [{
+      path: 'page',
+      loadChildren: './layouts/landing-layout/landing-layout.module#LandingLayoutModule'
+    }]
   }, {
     path: 'session',
     component: LoginLayoutComponent,
