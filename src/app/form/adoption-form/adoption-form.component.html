@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <mat-form-field class="example-full-width">
-                        <input matInput type="number" formControlName="Email" placeholder="Correo Electrónico">
+                        <input matInput type="email" formControlName="Email" placeholder="Correo Electrónico">
                     </mat-form-field>
                 </div>
                 <div class="col-sm-12 col-md-4">
@@ -153,6 +153,10 @@
                     <mat-form-field class="example-full-width">
                         <input matInput formControlName="PersonaResponsableEnHorasNoHabiles" placeholder="¿Quien estará con la mascota en horas no habiles?">
                     </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <button (click)="save()" class="btn btn-lg btn-primary btn-block text-uppercase"
+                type="submit">Enviar solicitud de adopción</button>
                 </div>
             </div>
         </form>

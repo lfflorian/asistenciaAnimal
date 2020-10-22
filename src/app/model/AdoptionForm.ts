@@ -1,6 +1,10 @@
 import { Entity } from 'app/model/entity';
 
 export interface AdoptionForm extends Entity {
+    IdUsuario : string;
+    IdMascota : string;
+    IdEmpresa : string;
+    Date : Date
     Estado : string
     NombreAdoptivo : string
     Nombre : string

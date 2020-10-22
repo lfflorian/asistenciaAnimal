@@ -1,1 +1,120 @@
-<p>config-form works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12  col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Formulario</h4>
+                        <p class="card-category">Solicitud de adopción</p>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="Form">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Fecha:" [Value]="Form.Date"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Estado:" [Value]="Form.Estado"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Nombre adoptivo de la mascota:" [Value]="Form.NombreAdoptivo"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Nombre:" [Value]="Form.Nombre"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Apellido:" [Value]="Form.Apellido"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="DPI:" [Value]="Form.NoDPI"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Teléfono:" [Value]="Form.Telefono"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Celular:" [Value]="Form.Celular"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Dirección:" [Value]="Form.Direccion"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="No. Personas que viven en casa:" [Value]="Form.NoPersonasEnCasa"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="No. de mascotas que viven en casa:" [Value]="Form.NoPerrosEnCasa"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Tiene lugar para no escapar?:" [Value]="Form.LugarSinEscapar == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Dirección:" [Value]="Form.TienePatio == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Tiene patio?:" [Value]="Form.TienePatio == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Tiene suficiente espacio?:" [Value]="Form.TieneSuficienteEspacio == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Descripción del ambiente a dormir:" [Value]="Form.AmbienteADormir"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Descripción del lugar a dormir::" [Value]="Form.DescripcionDelLugarADormir"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Aceptan MAscotas en la vivienda?:" [Value]="Form.AceptanMascotas == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Por que razon quiere adoptar:" [Value]="Form.RazonDeAdopcion"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Compromiso a cuidarlo:" [Value]="Form.CompromisoCuidarlo == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Compromiso a llevarselo al cambiar de hogar:" [Value]="Form.CompromisoCambioHogar == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Compromiso a realizar todos los gastos necearios:" [Value]="Form.CompromisoGastos == true ? 'Si' : 'No'"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Comrpomiso a enviar fotografias de eeste:" [Value]="Form.CompromisoEnvioFotografias == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Conciente que en cualquier mala sircunstancia se puede retirar a la mascota:" [Value]="Form.ConcienciaDeRetiro == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Compromiso a tener paciencia con la mascota:" [Value]="Form.CompromisoPaciencia == true ? 'Si' : 'No' "></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Horario de actividades fuera de casa:" [Value]="Form.HorarioDeActividades"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Persona responsable en horarios no habiles:" [Value]="Form.PersonaResponsableEnHorasNoHabiles"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Facebook:" [Value]="Form.Facebook"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Instagram:" [Value]="Form.instagram"></app-info-field>
+                                </div>
+                            </div>
+                        </div>        
+                        <!-- /*
+                            ImagenesDelLugar : string[]
+                            PerrosEnCasa : PerrosEnCasa[]
+                            PrsonasEnCasa : PersonasEnCasa[]*/ 
+                        -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-profile">
+                    <div class="card-body left">
+                        <a (click)="seleccion(true)" class="btn btn-info left">Aceeptar</a>
+                        <a (click)="seleccion(false)" class="btn btn-info">Rechazar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

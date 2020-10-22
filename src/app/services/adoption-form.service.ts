@@ -20,8 +20,8 @@ export class AdoptionFormService {
     return this.crudService.add(adoptionForm);
   }
 
-  getAdoptionForms() {
-    return this.crudService.list();
+  getAdoptionForms(id : string) {
+    return this.crudService.listByReference(id, 'IdEmpresa');
   }
 
   getAdoptionForm(id : string) {

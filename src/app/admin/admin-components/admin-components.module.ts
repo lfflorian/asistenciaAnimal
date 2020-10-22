@@ -7,13 +7,15 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { PetCardComponent } from './pet-card/pet-card.component';
 import { MatCardModule , MatButtonModule  } from '@angular/material';
 import { FilesUploadComponent } from './files-upload/files-upload.component';
+import { InfoFieldComponent } from './info-field/info-field.component';
 
 @NgModule({
   declarations: [
     TableListComponent,
     ImageUploadComponent,
     PetCardComponent,
-    FilesUploadComponent
+    FilesUploadComponent,
+    InfoFieldComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { FilesUploadComponent } from './files-upload/files-upload.component';
     TableListComponent,
     ImageUploadComponent,
     PetCardComponent,
-    FilesUploadComponent
+    FilesUploadComponent,
+    InfoFieldComponent
   ]
 })
 export class AdminComponentsModule { }

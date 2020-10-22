@@ -23,10 +23,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage/public_api';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgSurveysModule } from 'ng-surveys';
 import { environment } from 'environments/environment';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
   imports: [
+    CommonModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

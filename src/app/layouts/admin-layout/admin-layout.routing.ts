@@ -20,7 +20,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'edicion-alerta',      component: AlertEditorComponent },
     { path: 'edicion-alerta/:id',      component: AlertEditorComponent },
     { path: 'adopciones',      component: AdoptionsComponent },
-    { path: 'configuracion-formulario',      component: ConfigFormComponent },
+    { path: 'configuracion-formulario/:id',      component: ConfigFormComponent },
     { path: 'citas',      component: AppointmentsComponent },
     { path: 'articulos',      component: ArticlesComponent },
     { path: 'edicion-articulo',      component: ArticleEditorComponent },

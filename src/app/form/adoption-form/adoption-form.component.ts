@@ -6,6 +6,11 @@ import { AuthService } from 'app/services/utilities/auth.service';
 import { PetService } from 'app/services/pet.service';
 import { CompanyService } from 'app/services/company.service';
 import { AdoptionFormService } from 'app/services/adoption-form.service';
+import { Pet } from 'app/model/pet';
+import { Company } from 'app/model/company';
+import { User } from 'app/model/user';
+import { take } from 'rxjs/Operators';
+import { AdoptionForm } from 'app/model/AdoptionForm';
 
 @Component({
   selector: 'app-adoption-form',
@@ -24,8 +29,15 @@ export class AdoptionFormComponent implements OnInit {
     private formService: AdoptionFormService,
   ) { }
 
+  pet : Pet;
+  user : User;
+  company : Company;
 
   AdoptionForm = this._fb.group({
+    IdUsuario : [''],
+    IdMascota : [''],
+    IdEmpresa : [''],
+    Date : [''],
     Estado : [''],
     NombreAdoptivo : [''],
     Nombre : [''],
@@ -73,23 +85,31 @@ export class AdoptionFormComponent implements OnInit {
 
   async ngOnInit() {
     let Id  = this.route.snapshot.paramMap.get("id")
-    let user = await this.authService.getUser();
 
     if (Id !== null) {
-      this.petService.getPet(Id).subscribe(pet => {
-        this.companyService.getCompany(pet.IdCompany).subscribe(copmany => {
-          // este momento sera para obtener la compañia
-        })
-      }, error => {
-        // go out
-      });
-    } else {
-      // go out
+      try {
+        this.user = await this.authService.getUser();
+      } catch (error) {
+        this.user = null;
+      }
+      
+      this.pet = await this.petService.getPet(Id).pipe(take(1)).toPromise(); 
+      this.company = await this.companyService.getCompany(this.pet.IdCompany).pipe(take(1)).toPromise();
+
+    this.AdoptionForm.controls['IdUsuario'].setValue(this.user.id);
+    this.AdoptionForm.controls['IdMascota'].setValue(Id);
+    this.AdoptionForm.controls['IdEmpresa'].setValue(this.user.Id_company);
     }
   }
 
   async save() {
-
+    this.AdoptionForm.controls['Date'].setValue(new Date());
+    this.AdoptionForm.controls['Estado'].setValue('Enviado');
+    
+    this.formService.createAdoptionForm(this.AdoptionForm.value as AdoptionForm).then((response) => {
+      alert('Gracias por llenar el formulario de adopcion, tus datos han sido enviados, pronto estaran en contacto contigo')
+      this.router.navigateByUrl('')
+    });
   }
   
   Cancel() {

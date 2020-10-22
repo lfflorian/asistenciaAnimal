@@ -61,7 +61,7 @@ export class FirestoreCrudService<T extends Entity> {
         );
     }
 
-    listByReference(id: string, field : string) : Promise<T[]> {
+    listByReference(id: any, field : string) : Promise<T[]> {
         return new Promise((resolve, reject) => {
             this.collection
             .ref.where(field, '==', id)

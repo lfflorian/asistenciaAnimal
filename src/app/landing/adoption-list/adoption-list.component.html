@@ -1,2 +1,6 @@
 <p>adoption-list works!</p>
 <app-pet-card></app-pet-card>
+<div *ngFor="let pet of PetsInAdoption">
+    {{pet.Name}}
+    <button (click)="GoToAdoption(pet.id)">formulario de adopcion</button>
+</div>

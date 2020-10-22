@@ -28,6 +28,10 @@ export class PetService {
     return this.crudService.listByReference(id,'IdUser');
   }
 
+  getPetsForAdoption() {
+    return this.crudService.listByReference(true,'InAdoption');
+  }
+
   getPet(id : string) {
     return this.crudService.get(id);
   }

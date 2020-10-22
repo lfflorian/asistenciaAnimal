@@ -93,6 +93,10 @@ export class PetEditorComponent implements OnInit {
     this.pet.InAdoption = this.PetForm.get("InAdoption").value;
     this.pet.Gender = this.PetForm.get("Gender").value;
 
+    if (this.pet.InAdoption) {
+      this.pet.IdCompany = this.user.Id_company
+    }
+
     if (this.Edicion == true)
     {
       await this.UploadImages(this.Images, this.pet.id);
