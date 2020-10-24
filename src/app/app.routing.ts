@@ -8,6 +8,7 @@ import { LoginLayoutComponent } from './layouts/login-layout/login-layout.compon
 import { FormLayoutComponent } from './layouts/form-layout/form-layout.component';
 import { AuthenticationGuard } from './guard/authentication.guard';
 import { LandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
+import { WebCamComponent } from './WebCam/web-cam.component';
 
 const routes: Routes =[
   {
@@ -15,10 +16,10 @@ const routes: Routes =[
     redirectTo: 'page',
     pathMatch: 'full',
   }, {
-    path: '',
+    path: 'page',
     component: LandingLayoutComponent,
     children: [{
-      path: 'page',
+      path: '',
       loadChildren: './layouts/landing-layout/landing-layout.module#LandingLayoutModule'
     }]
   }, {
@@ -43,6 +44,14 @@ const routes: Routes =[
     children: [{
       path: '',
       loadChildren: './layouts/form-layout/form-layout.module#FormLayoutModule'
+    }]
+  },
+  {
+    path: 'web',
+    component: WebCamComponent,
+    children: [{
+      path: '',
+      loadChildren: './WebCam/web-cam.module#WebCamModule'
     }]
   }
 ];

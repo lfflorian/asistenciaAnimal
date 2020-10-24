@@ -51,4 +51,32 @@ export class PrivateConsultationsComponent implements OnInit {
     })
   }
 
+  urlGenerated : string;
+  generateLink() {
+    let uid = this.GuidGenerate();
+    this.urlGenerated =  `${window.location.hostname}/web/session/${uid}`
+  }
+
+  copyToClickBoard() {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = this.urlGenerated;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+    alert('copiado en el porta papeles')
+  }
+
+  GuidGenerate() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
 }

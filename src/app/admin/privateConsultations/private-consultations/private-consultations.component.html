@@ -7,8 +7,15 @@
                         <h4 class="card-title">Opciones</h4>
                     </div>
                     <div class="card-body">
-                        <!-- <a [routerLink]="['/admin', 'administrador-inmueble']" class="btn btn-warning btn-block">Agregar
-                            nuevo</a> -->
+                        <div class="card card-profile">
+                            <div class="card-body left">
+                                <a (click)="generateLink()" class="btn btn-info left">Generar link para realizar video llamada</a>
+                                <div *ngIf="urlGenerated">
+                                    <p >{{urlGenerated}}</p>
+                                    <a (click)="copyToClickBoard()" class="btn btn-info left">Copiar al porta papeles</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -25,6 +32,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-12 col-md-12  col-lg-9">
                 <div class="card">
                     <div class="card-header card-header-danger">

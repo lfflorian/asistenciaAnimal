@@ -12,6 +12,9 @@ export const environment = {
     projectId: "asistenciaanimal-61b17",
     storageBucket: "asistenciaanimal-61b17.appspot.com",
     messagingSenderId: "1011413892995",
-    appId: "1:1011413892995:web:2d4cf28c66e479aeb980b6"
+    appId: "1:1011413892995:web:2d4cf28c66e479aeb980b6",
+  },
+  agora: {
+    appId: '4f28ae4dc47547d4929ec11758b7cd67'
   }
 };

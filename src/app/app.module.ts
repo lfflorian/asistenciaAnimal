@@ -13,6 +13,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { FormLayoutComponent } from './layouts/form-layout/form-layout.component';
 import { LandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
+import { WebCamComponent } from './WebCam/web-cam.component';
 
 import {
   AgmCoreModule
@@ -24,6 +25,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgSurveysModule } from 'ng-surveys';
 import { environment } from 'environments/environment';
 import { CommonModule } from '@angular/common';
+import { NgxAgoraModule } from 'ngx-agora';
+
 
 
 @NgModule({
@@ -42,14 +45,16 @@ import { CommonModule } from '@angular/common';
     AngularFireStorageModule,
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    }),
+    NgxAgoraModule.forRoot({ AppID: environment.agora.appId })
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     LoginLayoutComponent,
     FormLayoutComponent,
-    LandingLayoutComponent
+    LandingLayoutComponent,
+    WebCamComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
