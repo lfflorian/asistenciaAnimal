@@ -16,11 +16,24 @@
                 <div class="card">
                     <div class="card-header card-header-danger">
                         <h4 class="card-title">Consultas privadas</h4>
-                        <p class="card-category">Listado de consultas privadas realizadas</p>
+                        <p class="card-category">Listado de consultas privadas realizadas a empresas</p>
                     </div>
                     <div class="card-body">
-                        <div *ngIf="Data">
-                            <app-table-list [Data]="Data"></app-table-list>
+                        <div *ngIf="CompanyConsults">
+                            <app-table-list [Data]="CompanyConsults"></app-table-list>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12  col-lg-9">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Consultas privadas</h4>
+                        <p class="card-category">Listado de consultas privadas realizadas a usuarios</p>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="Userconsults">
+                            <app-table-list [Data]="Userconsults"></app-table-list>
                         </div>
                     </div>
                 </div>

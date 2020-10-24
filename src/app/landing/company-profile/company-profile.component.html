@@ -1,0 +1,4 @@
+<div *ngIf="company">
+    <a (click)="contactToCopmany()">quieres realizar una consulta con esta empresa? {{company.Name}}</a>
+    <textarea [formControl]="Message" name="" id="" cols="30" rows="10"></textarea>
+</div>

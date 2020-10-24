@@ -28,6 +28,14 @@ export class PrivateConsultationService {
     return this.crudService.get(id);
   }
 
+  getConsultationsByCompany(id : string) {
+    return this.crudService.listByReference(id,'IdHost');
+  }
+
+  getConsultationsByUser(id : string) {
+    return this.crudService.listByReference(id,'idInvited');
+  }
+
   updatePrivateConsultation(privateConsultation: PrivateConsultation) {
     return this.crudService.update(privateConsultation);
   }

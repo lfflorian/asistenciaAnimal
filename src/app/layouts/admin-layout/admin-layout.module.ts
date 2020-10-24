@@ -32,6 +32,7 @@ import {
 } from '@angular/material';
 import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.component';
 import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form.component';
+import { ConsultComponent } from 'app/admin/privateConsultations/consult/consult.component';
 
 
 
@@ -68,7 +69,8 @@ import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form
     PrivateConsultationsComponent,
     PetsComponent,
     PetEditorComponent,
-    ProfileComponent
+    ProfileComponent,
+    ConsultComponent,
   ]
 })
 

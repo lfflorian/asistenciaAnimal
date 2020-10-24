@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 order-lg-12 col-lg-3">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Opciones</h4>
+                    </div>
+                    <div class="card-body">
+                        <a [routerLink]="['/admin', 'edicion-mascota']" class="btn btn-warning btn-block">Agregar
+                            nuevo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12  col-lg-9">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Respuesta</h4>
+                        <p class="card-category">Usuario</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div *ngIf="consult">
+                                <div>{{consult.UserName}}</div>
+                                <div *ngFor="let message of consult.Messages">
+                                    <p><strong>{{message.Content}}</strong></p>
+                                    <p>{{message.idUser}}</p>
+                                    <p>{{message.Date}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div>
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput [formControl]="Message" placeholder="Responder ..."
+                                            rows="5"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <a (click)="Enviar()" class="btn btn-info left">Enviar respuesta</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

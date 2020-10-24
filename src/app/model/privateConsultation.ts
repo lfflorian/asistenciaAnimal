@@ -1,8 +1,10 @@
 import { Entity } from 'app/model/entity';
 
 export interface PrivateConsultation extends Entity {
-    idAuthor: string;
-    idUser : string;
+    IdHost: string;
+    idInvited : string;
+    CompanyName: string;
+    UserName: string;
     Date : Date;
     Messages: Message[];
 }
