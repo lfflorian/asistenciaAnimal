@@ -7,7 +7,12 @@
                         <h4 class="card-title">Opciones</h4>
                     </div>
                     <div class="card-body">
-                        <a [routerLink]="['/admin', 'edicion-cita', 'U-' + consult.idInvited]" class="btn btn-warning btn-block">Agregar cita</a>
+                        <a *ngIf="consult" [routerLink]="['/admin', 'edicion-cita', 'U-' + consult.idInvited]" class="btn btn-warning btn-block">Agregar cita</a>
+                        <p>Mascota asociada</p>
+                        <div *ngIf="pet" class="contenedor">
+                            <app-pet-card-two *ngIf="pet" [pet]="pet"></app-pet-card-two>
+                            <button mat-flat-button (click)="medicalHistory(pet.id)" color="primary">ver informe médico</button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import { PetCardComponent } from './pet-card/pet-card.component';
 import { MatCardModule , MatButtonModule  } from '@angular/material';
 import { FilesUploadComponent } from './files-upload/files-upload.component';
 import { InfoFieldComponent } from './info-field/info-field.component';
+import { PetCardTwoComponent } from './pet-card-two/pet-card-two.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { InfoFieldComponent } from './info-field/info-field.component';
     ImageUploadComponent,
     PetCardComponent,
     FilesUploadComponent,
-    InfoFieldComponent
+    InfoFieldComponent,
+    PetCardTwoComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { InfoFieldComponent } from './info-field/info-field.component';
     ImageUploadComponent,
     PetCardComponent,
     FilesUploadComponent,
-    InfoFieldComponent
+    InfoFieldComponent,
+    PetCardTwoComponent
   ]
 })
 export class AdminComponentsModule { }

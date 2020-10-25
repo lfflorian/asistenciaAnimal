@@ -14,6 +14,7 @@ import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.compone
 import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form.component';
 import { ConsultComponent } from 'app/admin/privateConsultations/consult/consult.component';
 import { AppointmentEditorComponent } from 'app/admin/appointments/appointment-editor/appointment-editor.component';
+import { PetMedicalReportComponent } from 'app/admin/pets/pet-medical-report/pet-medical-report.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: '',      component: ProfileComponent },
@@ -36,6 +37,6 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'edicion-mascota/:id',      component: PetEditorComponent },
     { path: 'consulta/:id',      component: ConsultComponent },
     { path: 'edicion-cita',      component: AppointmentEditorComponent },
-    { path: 'edicion-cita/:id',      component: AppointmentEditorComponent }
-    //
+    { path: 'edicion-cita/:id',      component: AppointmentEditorComponent },
+    { path: 'historial-medico/:id',      component: PetMedicalReportComponent }
 ];

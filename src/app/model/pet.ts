@@ -19,9 +19,9 @@ export interface Pet extends Entity {
 }
 
 export interface MedicalHistory extends Entity {
-    IdPet : string;
+    /*IdPet : string;*/
     IdCompany : string;
-    Date : string;
+    Date : Date;
     Comments : string;
     Prescription : Prescription[];
 }

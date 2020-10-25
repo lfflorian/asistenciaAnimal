@@ -19,6 +19,7 @@ import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.compone
 import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form.component';
 import { ConsultComponent } from 'app/admin/privateConsultations/consult/consult.component';
 import { AppointmentEditorComponent } from 'app/admin/appointments/appointment-editor/appointment-editor.component';
+import { PetMedicalReportComponent } from 'app/admin/pets/pet-medical-report/pet-medical-report.component';
 
 import { AdminComponentsModule } from 'app/admin/admin-components/admin-components.module';
 import { AddToCalendarModule } from 'add-events-to-google-calendar';
@@ -34,7 +35,9 @@ import {
   MatSlideToggleModule,
   MatRadioModule,
   MatCheckboxModule,
+  MatCardModule,
 } from '@angular/material';
+
 
 @NgModule({
   imports: [
@@ -52,6 +55,7 @@ import {
     MatSlideToggleModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatCardModule,
     AdminComponentsModule,
     AddToCalendarModule
   ],
@@ -70,7 +74,8 @@ import {
     PetEditorComponent,
     ProfileComponent,
     ConsultComponent,
-    AppointmentEditorComponent
+    AppointmentEditorComponent,
+    PetMedicalReportComponent
   ]
 })
 

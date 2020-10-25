@@ -1,0 +1,13 @@
+<mat-card class="tarjeta">
+    <mat-card-header>
+        <mat-card-title>{{pet.Name}}</mat-card-title>
+        <mat-card-subtitle>{{pet.Race}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="pet.Images[0]">
+    <mat-card-content>
+        <p>Edad: {{pet.Age}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <!-- <button mat-flat-button (click)="medicalHistory(pet.id)" color="primary">ver informe médico</button> -->
+    </mat-card-actions>
+</mat-card>
