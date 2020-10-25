@@ -27,11 +27,13 @@ import { environment } from 'environments/environment';
 import { CommonModule } from '@angular/common';
 import { NgxAgoraModule } from 'ngx-agora';
 import { AddToCalendarModule } from 'add-events-to-google-calendar';
+import { PipesModule } from './pipes/pipes.module';
 
 
 
 @NgModule({
   imports: [
+    PipesModule,
     CommonModule,
     BrowserAnimationsModule,
     FormsModule,

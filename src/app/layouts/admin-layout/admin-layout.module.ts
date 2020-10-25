@@ -36,11 +36,14 @@ import {
   MatRadioModule,
   MatCheckboxModule,
   MatCardModule,
+  MatOptionModule,
 } from '@angular/material';
+import { PipesModule } from 'app/pipes/pipes.module';
 
 
 @NgModule({
   imports: [
+    PipesModule,
     CKEditorModule,
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
@@ -51,6 +54,7 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatOptionModule,
     MatTooltipModule,
     MatSlideToggleModule,
     MatRadioModule,

@@ -54,16 +54,19 @@
                     </mat-form-field>
                   </div>
                   <div class="form-label-group">
-                    <mat-form-field>
-                      <input matInput formControlName="AsociationType" id="inputEmail" placeholder="Tipo de asociación"
-                        required autofocus>
+                    <mat-form-field *ngIf="RoleEnum">
+                      <mat-label>Tipo de empresa</mat-label>
+                      <mat-select formControlName="AsociationType">
+                        <mat-option  *ngFor="let item of RoleEnum | enumToArray" [value]="item">
+                          {{ item }}
+                        </mat-option>
+                      </mat-select>
                     </mat-form-field>
                   </div>
                 </form>
               </div>
               <button (click)="RegisterInformation()" class="btn btn-lg btn-primary btn-block text-uppercase"
                 type="submit">Registrar</button>
-            
           </div>
         </div>
       </div>

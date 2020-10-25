@@ -12,8 +12,8 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <mat-form-field>
-                        <input matInput formControlName="DateIgnauration" id="inputEmail" placeholder="Fecha de ignauración"
-                            required autofocus>
+                        <input matInput formControlName="DateIgnauration" id="inputEmail"
+                            placeholder="Fecha de ignauración" required autofocus>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-12 col-md-12">
@@ -23,14 +23,20 @@
                     </mat-form-field>
                 </div>
                 <div class="col-sm-12 col-md-6">
-                    <mat-form-field class="example-full-width">
-                        <input matInput formControlName="AsociationType" id="inputEmail" placeholder="Tipo de asociación"
-                            required autofocus>
-                    </mat-form-field>
+                    <div class="form-label-group">
+                        <mat-form-field *ngIf="RoleEnum">
+                            <mat-label>Tipo de empresa</mat-label>
+                            <mat-select formControlName="AsociationType">
+                                <mat-option *ngFor="let item of RoleEnum | enumToArray" [value]="item">
+                                    {{ item }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
                 </div>
             </div>
         </form>
         <button (click)="save()" class="btn btn-lg btn-primary btn-block text-uppercase"
-                type="submit">Registrar</button>
+            type="submit">Registrar</button>
     </div>
 </div>

@@ -10,6 +10,7 @@ import { AuthService } from 'app/services/utilities/auth.service';
 import { CompanyService } from 'app/services/company.service';
 import { take } from 'rxjs/Operators';
 import { Company } from 'app/model/company';
+import { CopmanyTypes } from 'app/Data/CompanyTypes';
 
 @Component({
   selector: 'app-profile',
@@ -33,6 +34,7 @@ export class ProfileComponent implements OnInit {
   Edicion: boolean;
   ProfileImage: ImageUpload;
   LogoCompanyImage: ImageUpload;
+  RoleEnum: typeof CopmanyTypes;
   
   UserForm: FormGroup = this._fb.group({
       Email: ['', Validators.required],
@@ -51,6 +53,7 @@ export class ProfileComponent implements OnInit {
   })
 
   async ngOnInit() {
+    this.RoleEnum = CopmanyTypes;
     this.user = await this.authService.getUser();
     if (this.user !== null) {
       this.UserForm.controls['FullName'].setValue(this.user.FullName)

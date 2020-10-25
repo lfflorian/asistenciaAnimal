@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CopmanyTypes } from 'app/Data/CompanyTypes';
 import { Company } from 'app/model/company';
 import { User } from 'app/model/user';
 import { CompanyService } from 'app/services/company.service';
@@ -13,6 +14,7 @@ import { AuthService } from 'app/services/utilities/auth.service';
   styleUrls: ['./company-form.component.scss']
 })
 export class CompanyFormComponent implements OnInit {
+  RoleEnum: typeof CopmanyTypes;
 
   constructor(private authService: AuthService,
               private fb: FormBuilder,
@@ -33,6 +35,7 @@ export class CompanyFormComponent implements OnInit {
   })
 
   async ngOnInit() {
+    this.RoleEnum = CopmanyTypes;
     this.user = await this.authService.getUser();
   }
 

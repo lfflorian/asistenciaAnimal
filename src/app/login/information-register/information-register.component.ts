@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { PipeTransform } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CopmanyTypes } from 'app/Data/CompanyTypes';
 import { Company } from 'app/model/company';
 import { User } from 'app/model/user';
 import { CompanyService } from 'app/services/company.service';
@@ -40,8 +42,10 @@ export class InformationRegisterComponent implements OnInit {
     private companyService: CompanyService,
     private router: Router) { }
 
+  RoleEnum: typeof CopmanyTypes;
   async ngOnInit() {
     this.user = await this.authService.getUser();
+    this.RoleEnum = CopmanyTypes;
     console.log(this.user)
   }
 
