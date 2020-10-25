@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12  col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Cita</h4>
+                        <p class="card-category">Agregar cita</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="AppointmentForm">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-8">
+                                    <mat-form-field>
+                                        <input matInput formControlName="DateInit" type="datetime-local"
+                                            placeholder="Fecha Inicial">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-8">
+                                    <mat-form-field>
+                                        <input matInput formControlName="DateFinal" type="datetime-local"
+                                            placeholder="Fecha Final">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- <app-add-to-calendar [startDate]='"8/25/2019"' [startTime]='"5:00 pm"' [endDate]='"8/25/2019"' [endTime]='"8:00 pm"' [title]='"Angular Google Event Component"' [details]='"Angular Google Event Component"' [location]='"The Bar, New York, NY"'></app-add-to-calendar> -->
+            <div class="col-md-12">
+                <div class="card card-profile">
+                    <div class="card-body left">
+                        <a (click)="Save()" class="btn btn-info left">Guardar cita</a>
+                        <a (click)="Delete()" *ngIf="Edicion" class="btn btn-info">Eliminar cita</a>
+                        <a (click)="Cancel()" class="btn btn-info float-right">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

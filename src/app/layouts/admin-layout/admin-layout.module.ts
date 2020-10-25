@@ -15,8 +15,13 @@ import { GeneralConsultationEditorComponent } from 'app/admin/generalConsultatio
 import { PrivateConsultationsComponent } from 'app/admin/privateConsultations/private-consultations/private-consultations.component';
 import { PetsComponent } from 'app/admin/pets/pets/pets.component';
 import { ProfileComponent } from 'app/admin/profile/profile/profile.component';
-import { AdminComponentsModule } from 'app/admin/admin-components/admin-components.module';
+import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.component';
+import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form.component';
+import { ConsultComponent } from 'app/admin/privateConsultations/consult/consult.component';
+import { AppointmentEditorComponent } from 'app/admin/appointments/appointment-editor/appointment-editor.component';
 
+import { AdminComponentsModule } from 'app/admin/admin-components/admin-components.module';
+import { AddToCalendarModule } from 'add-events-to-google-calendar';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import {
@@ -30,13 +35,6 @@ import {
   MatRadioModule,
   MatCheckboxModule,
 } from '@angular/material';
-import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.component';
-import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form.component';
-import { ConsultComponent } from 'app/admin/privateConsultations/consult/consult.component';
-
-
-
-
 
 @NgModule({
   imports: [
@@ -54,7 +52,8 @@ import { ConsultComponent } from 'app/admin/privateConsultations/consult/consult
     MatSlideToggleModule,
     MatRadioModule,
     MatCheckboxModule,
-    AdminComponentsModule
+    AdminComponentsModule,
+    AddToCalendarModule
   ],
   declarations: [
     AlertsComponent,
@@ -71,6 +70,7 @@ import { ConsultComponent } from 'app/admin/privateConsultations/consult/consult
     PetEditorComponent,
     ProfileComponent,
     ConsultComponent,
+    AppointmentEditorComponent
   ]
 })
 

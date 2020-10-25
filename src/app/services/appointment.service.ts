@@ -24,6 +24,14 @@ export class AppointmentService {
     return this.crudService.list();
   }
 
+  getAppointmentsByCompanyId(id : string) {
+    return this.crudService.listByReference(id, 'IdAuthor');
+  }
+
+  getAppointmentsByUserId(id : string) {
+    return this.crudService.listByReference(id, 'IdUser');
+  }
+
   getAppointment(id : string) {
     return this.crudService.get(id);
   }

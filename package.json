@@ -35,6 +35,7 @@
     "@ckeditor/ckeditor5-build-classic": "^18.0.0",
     "@ckeditor/ckeditor5-image": "^18.0.0",
     "@fortawesome/fontawesome-free": "^5.13.0",
+    "add-events-to-google-calendar": "^1.1.9",
     "agora-rtc-sdk": "3.0.2",
     "ajv": "6.10.0",
     "arrive": "2.4.1",

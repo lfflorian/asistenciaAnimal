@@ -26,6 +26,7 @@ import { NgSurveysModule } from 'ng-surveys';
 import { environment } from 'environments/environment';
 import { CommonModule } from '@angular/common';
 import { NgxAgoraModule } from 'ngx-agora';
+import { AddToCalendarModule } from 'add-events-to-google-calendar';
 
 
 
@@ -46,7 +47,8 @@ import { NgxAgoraModule } from 'ngx-agora';
     AgmCoreModule.forRoot({
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
-    NgxAgoraModule.forRoot({ AppID: environment.agora.appId })
+    NgxAgoraModule.forRoot({ AppID: environment.agora.appId }),
+    AddToCalendarModule 
   ],
   declarations: [
     AppComponent,

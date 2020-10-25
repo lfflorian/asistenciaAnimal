@@ -49,7 +49,7 @@ export class ConsultComponent implements OnInit {
       Images : null,
       Content : this.Message.value
     }
-
+    
     this.consult.Messages.push(message);
 
     this.modelService.updatePrivateConsultation(this.consult).then((response) => {

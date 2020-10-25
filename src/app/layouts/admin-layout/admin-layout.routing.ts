@@ -13,6 +13,7 @@ import { AlertEditorComponent } from 'app/admin/alerts/alert-editor/alert-editor
 import { PetEditorComponent } from 'app/admin/pets/pet-editor/pet-editor.component';
 import { ConfigFormComponent } from 'app/admin/adoptions/config-form/config-form.component';
 import { ConsultComponent } from 'app/admin/privateConsultations/consult/consult.component';
+import { AppointmentEditorComponent } from 'app/admin/appointments/appointment-editor/appointment-editor.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: '',      component: ProfileComponent },
@@ -33,5 +34,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'mascotas',      component: PetsComponent },
     { path: 'edicion-mascota',      component: PetEditorComponent },
     { path: 'edicion-mascota/:id',      component: PetEditorComponent },
-    { path: 'consulta/:id',      component: ConsultComponent }
+    { path: 'consulta/:id',      component: ConsultComponent },
+    { path: 'edicion-cita',      component: AppointmentEditorComponent },
+    { path: 'edicion-cita/:id',      component: AppointmentEditorComponent }
+    //
 ];
