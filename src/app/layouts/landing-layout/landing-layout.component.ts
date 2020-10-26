@@ -8,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class LandingLayoutComponent implements OnInit {
 
   constructor() { }
-
+  isIn = false;   // store state
+  toggleState() { // click handler
+      let bool = this.isIn;
+      this.isIn = bool === false ? true : false; 
+  }
+  
   ngOnInit() {
   }
 

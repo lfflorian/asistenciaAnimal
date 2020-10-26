@@ -1,3 +1,24 @@
-<div class="background">
-    <router-outlet></router-outlet>
-</div>
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#"style="padding: 0;margin: 0;margin-left: 20px;"><img style="width: 50px" src="/assets/img/logo-aa.png" alt="" ></a>
+    <button (click)="toggleState()" style="border: none !important" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+    </button>
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isIn }" >
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<router-outlet></router-outlet>
+
+<footer class="page-footer font-small blue">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a > Asistencia Animal</a>
+    </div>
+  </footer>

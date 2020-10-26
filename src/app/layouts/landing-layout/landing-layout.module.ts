@@ -8,18 +8,25 @@ import { LandingLayoutRoutes } from './landing-layout.routing';
 
 import { AdoptionListComponent } from 'app/landing/adoption-list/adoption-list.component';
 import { CompanyProfileComponent } from 'app/landing/company-profile/company-profile.component';
+import { HomeComponent } from 'app/landing/home/home.component';
 
+import {
+  MatFormFieldModule,
+  MatInputModule,
+} from '@angular/material';
 
 @NgModule({
   declarations: [
     AdoptionListComponent,
-    CompanyProfileComponent
+    CompanyProfileComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(LandingLayoutRoutes),
+    
     LandingComponentsModule
   ]
 })
