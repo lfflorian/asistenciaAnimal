@@ -75,6 +75,8 @@ export class InformationRegisterComponent implements OnInit {
       this.user.Company = false;
     }
 
+    this.user.FullDataEntry = true;
+    
     this.userService.updateUser(this.user).then(success => {
       this.router.navigateByUrl('admin');
     }, error => {
