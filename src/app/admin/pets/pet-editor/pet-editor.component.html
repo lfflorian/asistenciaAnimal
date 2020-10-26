@@ -10,41 +10,52 @@
                     <div class="card-body">
                         <form [formGroup]="PetForm">
                             <div class="row">
-                                <div class="col-sm-12 col-md-12">
+                                <div class="col-sm-12 col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="Name" placeholder="Nombre">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-sm-12 col-md-12">
+                                <div class="col-sm-12 col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="Age" placeholder="Edad">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-sm-12 col-md-12">
+                                <div class="col-sm-12 col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="Race" placeholder="Raza">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-sm-12 col-md-12">
+                                <div class="col-sm-12 col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="Height" placeholder="Altura">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-sm-12 col-md-12">
+                                <div class="col-sm-12 col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="Weight" placeholder="Peso">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-sm-12 col-md-12">
+                                <div class="col-sm-12 col-md-4">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="Color" placeholder="Color">
                                     </mat-form-field>
                                 </div>
-                                <div class="col-sm-12 col-md-12">
+                                <div class="col-sm-12 col-md-4">
                                     <mat-radio-group formControlName="Gender" aria-label="Select an option">
                                         <mat-radio-button value="Macho">Macho</mat-radio-button>
                                         <mat-radio-button value="Hembra">Hembra</mat-radio-button>
                                     </mat-radio-group>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <mat-form-field *ngIf="TipoMascotas">
+                                        <mat-label>Tipo de mascota</mat-label>
+                                        <mat-select formControlName="AnimalType">
+                                            <mat-option *ngFor="let item of TipoMascotas"
+                                                [value]="item">
+                                                {{ item }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
                                 </div>
                                 <div class="col-sm-12 col-md-12">
                                     <mat-form-field class="example-full-width">

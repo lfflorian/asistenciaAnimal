@@ -15,6 +15,7 @@ export interface Pet extends Entity {
     MoreAbout?: string;
     Images?: string[]
     InAdoption? : boolean
+    AnimalType? : string
     MedicalHistory? : MedicalHistory[];
 }
 

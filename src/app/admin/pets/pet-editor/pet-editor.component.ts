@@ -8,6 +8,7 @@ import { ImageUpload } from 'app/model/imageUpload';
 import { FileService } from 'app/services/utilities/file.service';
 import { AuthService } from 'app/services/utilities/auth.service';
 import { User } from 'app/model/user';
+import { AnimalTypes } from 'app/Data/AnimalTypes';
 
 @Component({
   selector: 'app-pet-editor',
@@ -15,6 +16,7 @@ import { User } from 'app/model/user';
   styleUrls: ['./pet-editor.component.scss']
 })
 export class PetEditorComponent implements OnInit {
+  
 
   constructor(private petService:PetService,
     private _fb: FormBuilder,
@@ -30,7 +32,7 @@ export class PetEditorComponent implements OnInit {
   InAdoptionEnable : boolean = false;
   user : User;
   pet : Pet;
-
+  TipoMascotas: typeof AnimalTypes;
   
 
   PetForm = this._fb.group({
@@ -42,10 +44,13 @@ export class PetEditorComponent implements OnInit {
     Color: [''],
     MoreAbout : [''],
     InAdoption : [false],
-    Gender : ['']
+    Gender : [''],
+    AnimalType : ['']
   });
 
   async ngOnInit() {
+    this.TipoMascotas = AnimalTypes;
+    console.log(this.TipoMascotas)
     let Id  = this.route.snapshot.paramMap.get("id")
     this.user = await this.authService.getUser();
 
@@ -92,6 +97,7 @@ export class PetEditorComponent implements OnInit {
     this.pet.MoreAbout = this.PetForm.get("MoreAbout").value;
     this.pet.InAdoption = this.PetForm.get("InAdoption").value;
     this.pet.Gender = this.PetForm.get("Gender").value;
+    this.pet.AnimalType = this.PetForm.get("AnimalType").value;
 
     if (this.pet.InAdoption) {
       this.pet.IdCompany = this.user.Id_company

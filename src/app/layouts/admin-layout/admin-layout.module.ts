@@ -37,6 +37,8 @@ import {
   MatCheckboxModule,
   MatCardModule,
   MatOptionModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 } from '@angular/material';
 import { PipesModule } from 'app/pipes/pipes.module';
 
@@ -60,6 +62,8 @@ import { PipesModule } from 'app/pipes/pipes.module';
     MatRadioModule,
     MatCheckboxModule,
     MatCardModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     AdminComponentsModule,
     AddToCalendarModule
   ],

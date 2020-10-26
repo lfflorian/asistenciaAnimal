@@ -30,9 +30,11 @@
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput formControlName="Birthday" placeholder="Fecha de nacimiento"
-                                            type="text">
+                                    <mat-form-field>
+                                        <mat-label>Fecha de nacimiento</mat-label>
+                                        <input formControlName="Birthday" matInput [matDatepicker]="picker">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -51,7 +53,8 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <app-image-upload *ngIf="ProfileImage" [Image]="ProfileImage" Title="Cambiar foto de perfil" (ImageEventReturn)="GetProfileImage($event)">
+                <app-image-upload *ngIf="ProfileImage" [Image]="ProfileImage" Title="Cambiar foto de perfil"
+                    (ImageEventReturn)="GetProfileImage($event)">
                 </app-image-upload>
             </div>
         </div>
@@ -66,36 +69,39 @@
                         <div class="card-body">
                             <form [formGroup]="CompanyForm">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <mat-form-field class="example-full-width">
                                             <input matInput formControlName="Name" placeholder="Nombre">
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <mat-form-field class="example-full-width">
-                                            <input matInput formControlName="Description" placeholder="Descripción"
-                                                type="email">
+                                            <textarea matInput formControlName="Description" placeholder="Descripción de empresa"
+                                                rows="5"></textarea>
                                         </mat-form-field>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <mat-form-field class="example-full-width">
-                                            <input matInput formControlName="DateIgnauration"
-                                                placeholder="Fecha ignauracion" type="text">
+                                        <mat-form-field>
+                                            <mat-label>Fecha de ignauración</mat-label>
+                                            <input formControlName="DateIgnauration" matInput [matDatepicker]="picker">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
                                             <mat-form-field *ngIf="RoleEnum">
-                                              <mat-label>Tipo de empresa</mat-label>
-                                              <mat-select formControlName="AsociationType">
-                                                <mat-option  *ngFor="let item of RoleEnum | enumToArray" [value]="item">
-                                                  {{ item }}
-                                                </mat-option>
-                                              </mat-select>
+                                                <mat-label>Tipo de empresa</mat-label>
+                                                <mat-select formControlName="AsociationType">
+                                                    <mat-option *ngFor="let item of RoleEnum"
+                                                        [value]="item">
+                                                        {{ item }}
+                                                    </mat-option>
+                                                </mat-select>
                                             </mat-form-field>
-                                          </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <button mat-raised-button type="submit" (click)="saveCompany()"
@@ -106,7 +112,8 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <app-image-upload *ngIf="LogoCompanyImage" [Image]="LogoCompanyImage" Title="Cambiar logo de empresa" (ImageEventReturn)="GetLogoImage($event)">
+                    <app-image-upload *ngIf="LogoCompanyImage" [Image]="LogoCompanyImage"
+                        Title="Cambiar logo de empresa" (ImageEventReturn)="GetLogoImage($event)">
                     </app-image-upload>
                 </div>
             </div>
@@ -117,7 +124,8 @@
                     <div class="card">
                         <div class="card-header card-header-danger">
                             <h4 class="card-title">¿Tienes una empresa?</h4>
-                            <p class="card-category">Si posees una empresa o prestas servicios para el cuidado de la salud de los animales, has click en el siguiente botón</p>
+                            <p class="card-category">Si posees una empresa o prestas servicios para el cuidado de la
+                                salud de los animales, has click en el siguiente botón</p>
                         </div>
                         <div class="card-body">
                             <button mat-raised-button type="submit" (click)="goToCreateCompany()"

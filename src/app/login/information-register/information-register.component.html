@@ -57,7 +57,7 @@
                     <mat-form-field *ngIf="RoleEnum">
                       <mat-label>Tipo de empresa</mat-label>
                       <mat-select formControlName="AsociationType">
-                        <mat-option  *ngFor="let item of RoleEnum | enumToArray" [value]="item">
+                        <mat-option  *ngFor="let item of RoleEnum" [value]="item">
                           {{ item }}
                         </mat-option>
                       </mat-select>
