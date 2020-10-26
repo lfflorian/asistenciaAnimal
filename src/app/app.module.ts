@@ -19,8 +19,8 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore/public_api';
-import { AngularFireStorageModule } from '@angular/fire/storage/public_api';
+// import { AngularFirestoreModule } from '@angular/fire/firestore/public_api';
+/*import { AngularFireStorageModule } from '@angular/fire/storage/public_api';*/
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgSurveysModule } from 'ng-surveys';
 import { environment } from 'environments/environment';
@@ -28,6 +28,8 @@ import { CommonModule } from '@angular/common';
 import { NgxAgoraModule } from 'ngx-agora';
 import { AddToCalendarModule } from 'add-events-to-google-calendar';
 import { PipesModule } from './pipes/pipes.module';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 

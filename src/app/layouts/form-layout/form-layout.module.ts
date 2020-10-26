@@ -17,9 +17,11 @@ import {
   MatCheckboxModule,
   MatRadioModule
 } from '@angular/material';
+import { PipesModule } from 'app/pipes/pipes.module';
 
 @NgModule({
   imports: [
+    PipesModule,
     CommonModule,
     RouterModule.forChild(FormLayoutRoutes),
     FormsModule,
