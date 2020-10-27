@@ -1,15 +1,27 @@
 <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#"style="padding: 0;margin: 0;margin-left: 20px;"><img style="width: 50px" src="/assets/img/logo-aa.png" alt="" ></a>
+    <a class="navbar-brand" (click)="GoTo('/page')" style="padding: 0;margin: 0;margin-left: 20px;"><img style="width: 50px" src="/assets/img/logo-aa.png" alt="" ></a>
     <button (click)="toggleState()" style="border: none !important" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       Menu
     </button>
     <div class="collapse navbar-collapse" [ngClass]="{ 'show': isIn }" >
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" (click)="GoTo('/page')">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" (click)="GoTo('/page/listado-empresas')">Empresas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="GoTo('/page/adopcion')">Mascotas en adopción</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="GoTo('/page/listado-alertas')">Alertas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="GoTo('/page/listado-consultas')">Consultas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="GoTo('/page/listado-articulos')">Articulos</a>
         </li>
       </ul>
     </div>

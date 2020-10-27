@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-layout',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
   isIn = false;   // store state
   toggleState() { // click handler
       let bool = this.isIn;
@@ -17,4 +18,7 @@ export class LandingLayoutComponent implements OnInit {
   ngOnInit() {
   }
 
+  GoTo(url : string) {
+    this.router.navigateByUrl(url)
+  }
 }

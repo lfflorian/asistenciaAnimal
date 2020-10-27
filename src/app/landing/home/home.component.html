@@ -14,7 +14,7 @@
                     <div class="center-v">
                         <h2>Adopción de mascotas</h2>
                         <p>En esta plataforma podras realizar adopciones en linea, en tan pocos clicks, directo a la asociación encargada, con tan solo la espera de la respuesta de este pronto podras disfrutar de tu mascota</p>
-                        <button type="button" mat-raised-button class="btn btn-info">Adopta</button>
+                        <button (click)="GoTo('/page/adopcion')" type="button" mat-raised-button class="btn btn-info">Adopta</button>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6">
@@ -81,13 +81,13 @@
                     <img class="image-sec-2" src="/assets/img/consultas.jpg" alt="">
                     <h4>Consultas</h4>
                     <p>Revisa las consultas que realizan las demas personas o ayudalos con sus dudas y has crecer esta comunidad</p>
-                    <button type="button" mat-raised-button class="btn btn-info">Consultas</button>
+                    <button (click)="GoTo('/page/listado-consultas')" type="button" mat-raised-button class="btn btn-info">Consultas</button>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <img class="image-sec-2" src="/assets/img/articulos.jpg" alt="">
                     <h4>Articulos</h4>
                     <p>Revisa los articulos que las personas han publicado, puede existir alguno de tu interes</p>
-                    <button type="button" mat-raised-button class="btn btn-info">Articulos</button>
+                    <button (click)="GoTo('/page/listado-articulos')" type="button" mat-raised-button class="btn btn-info">Articulos</button>
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
                 <div class="col-sm-12">
                     <div class="center-v">
                         <h2>¡Que esperas para registrarte!</h2>
-                        <button type="button" mat-raised-button class="btn btn-info">REGISTRATE</button>
+                        <button (click)="GoTo('/session/singup')" type="button" mat-raised-button class="btn btn-info">REGISTRATE</button>
                     </div>
                 </div>
             </div>
