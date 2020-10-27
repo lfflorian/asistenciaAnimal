@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 center">
+            <h1 class="title">Empresas</h1>
+        </div>
+        <div class="col-sm-12">
+            <div class="contain">
+                <div class="row">
+                    <div *ngFor="let company of CompanyList; index as i" class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="cart">
+                            <img [src]="company.Logo" alt="">
+                            <div class="body-cart">
+                                <h5>{{company.Name}}</h5>
+                                <h5>{{company.AsociationType}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

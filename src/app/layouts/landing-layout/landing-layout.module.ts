@@ -14,19 +14,20 @@ import {
   MatFormFieldModule,
   MatInputModule,
 } from '@angular/material';
+import { CopmanyListComponent } from 'app/landing/copmany-list/copmany-list.component';
 
 @NgModule({
   declarations: [
     AdoptionListComponent,
     CompanyProfileComponent,
-    HomeComponent
+    HomeComponent,
+    CopmanyListComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(LandingLayoutRoutes),
-    
     LandingComponentsModule
   ]
 })

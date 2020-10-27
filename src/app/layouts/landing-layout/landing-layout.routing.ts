@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AdoptionListComponent } from 'app/landing/adoption-list/adoption-list.component';
 import { CompanyProfileComponent } from 'app/landing/company-profile/company-profile.component';
+import { CopmanyListComponent } from 'app/landing/copmany-list/copmany-list.component';
 import { HomeComponent } from 'app/landing/home/home.component';
 
 export const LandingLayoutRoutes: Routes = [
@@ -8,4 +9,5 @@ export const LandingLayoutRoutes: Routes = [
      { path: 'lista-adopcion',      component: AdoptionListComponent },
      { path: 'adopcion',      component: AdoptionListComponent },
      { path: 'empresa/:id',      component: CompanyProfileComponent },
+     { path: 'listado-empresas',      component: CopmanyListComponent },
 ];
