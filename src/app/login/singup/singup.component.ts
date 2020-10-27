@@ -29,7 +29,7 @@ export class SingupComponent implements OnInit {
       if (password == confirmPassword) {
         await this.auth.RegisterWithEmail(this.user, password).then((result) => {
           console.log(result) // ar
-          alert("usuario creado correctamente")
+          alert("usuario creado correctamente, debes confirmar tu correo electronico")
         });
       } else
       {
