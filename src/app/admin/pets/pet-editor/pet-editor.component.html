@@ -77,6 +77,27 @@
                 <app-files-upload *ngIf="Images" [Files]="Images" (ImageEventReturn)="GetImages($event)"></app-files-upload>
             </div>
             <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div *ngIf="pet.MedicalHistory">
+                            <h3>Expediente médico</h3>
+                            <div *ngFor="let history of pet.MedicalHistory" class="row">
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Fecha:" [Value]="history.Date | date:'shortDate'"></app-info-field>
+                                </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <app-info-field Field="Descripción del histórico:" [Value]="history.Comments"></app-info-field>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div *ngIf="!pet.MedicalHistory">
+                            <p>Esta mascota aun no tiene expediente médico</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
                 <div class="card card-profile">
                     <div class="card-body left">
                         <a (click)="Save()" class="btn btn-info left">Guardar mascota</a>

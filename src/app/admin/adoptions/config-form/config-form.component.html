@@ -11,7 +11,7 @@
                         <div *ngIf="Form">
                             <div class="row">
                                 <div class="col-sm-12 col-md-4">
-                                    <app-info-field Field="Fecha:" [Value]="Form.Date"></app-info-field>
+                                    <app-info-field Field="Fecha:" [Value]="Form.Date | date:'shortDate'"></app-info-field>
                                 </div>
                                 <div class="col-sm-12 col-md-4">
                                     <app-info-field Field="Estado:" [Value]="Form.Estado"></app-info-field>
@@ -98,20 +98,17 @@
                                     <app-info-field Field="Instagram:" [Value]="Form.instagram"></app-info-field>
                                 </div>
                             </div>
-                        </div>        
-                        <!-- /*
-                            ImagenesDelLugar : string[]
-                            PerrosEnCasa : PerrosEnCasa[]
-                            PrsonasEnCasa : PersonasEnCasa[]*/ 
-                        -->
+                        </div>      
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div *ngIf="adminUser" class="col-md-12 buttons">
                 <div class="card card-profile">
                     <div class="card-body left">
                         <a (click)="seleccion(true)" class="btn btn-info left">Aceeptar</a>
                         <a (click)="seleccion(false)" class="btn btn-info">Rechazar</a>
+                        <a (click)="confirmado()" class="btn btn-info">Confirmar</a>
+                        <a (click)="Print()" class="btn btn-info">Imprimir</a>
                     </div>
                 </div>
             </div>

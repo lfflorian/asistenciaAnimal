@@ -14,14 +14,17 @@ export class AppointmentsComponent implements OnInit {
               private router: Router,
               private modelService: AppointmentService) { }
 
-  Data: any;
+  DataCompany: any;
+  DataUser: any;
+  adminUser: boolean;
 
   async ngOnInit() {
     let user = await this.authService.getUser();
+    this.adminUser = (user.Rol == "empresa");
 
     if (user.Company) {
       this.modelService.getAppointmentsByCompanyId(user.Id_company).then((appointments) => {
-        this.Data = appointments.map(appointment =>
+        this.DataCompany = appointments.map(appointment =>
           Object.assign({}, {
             'Fecha inicial': appointment.DateInit,
             'Fecha Final': appointment.DateFinal,
@@ -30,18 +33,19 @@ export class AppointmentsComponent implements OnInit {
       }, (error) => {
         alert('Hubo un error en la comunicación con el servido' + error)
       })
-    } else {
-      this.modelService.getAppointmentsByUserId(user.id).then((appointments) => {
-        this.Data = appointments.map(appointment =>
-          Object.assign({}, {
-            'Fecha inicial': appointment.DateInit,
-            'Fecha Final': appointment.DateFinal,
-            link: this.router.createUrlTree(['admin', 'edicion-cita', 'A-' + appointment.id]).toString()
-          }))
-      }, (error) => {
-        alert('Hubo un error en la comunicación con el servido' + error)
-      })
-    }
+    } 
+
+    this.modelService.getAppointmentsByUserId(user.id).then((appointments) => {
+      console.log(appointments)
+      this.DataUser = appointments.map(appointment =>
+        Object.assign({}, {
+          'Fecha inicial': appointment.DateInit,
+          'Fecha Final': appointment.DateFinal,
+          link: this.router.createUrlTree(['admin', 'edicion-cita', 'A-' + appointment.id]).toString()
+        }))
+    }, (error) => {
+      alert('Hubo un error en la comunicación con el servido' + error)
+    })
   }
 
 }

@@ -63,7 +63,7 @@ export class PetMedicalReportComponent implements OnInit {
     
 
     this.modelService.updatePet(this.pet).then((pet) => {
-      alert(pet)
+      alert('Se ha almacenado el nuevo historial de la mascota')
     })
   }
 

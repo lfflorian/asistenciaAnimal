@@ -10,6 +10,13 @@
                     <div class="card-body">
                         <form [formGroup]="AppointmentForm">
                             <div class="row">
+                                <div class="col-sm-12">
+                                    <h4>Agregar usuario a la cita (correo)</h4>
+                                    <mat-form-field  class="example-full-width">
+                                        <input matInput *ngIf="!userInvited" [formControl]="Correo" placeholder="Buscar usuario por correo">
+                                        <input matInput *ngIf="userInvited" [formControl]="Correo" placeholder="Buscar usuario por correo" [value]="userInvited.Email">
+                                    </mat-form-field>
+                                </div>
                                 <div class="col-sm-12 col-md-8">
                                     <mat-form-field>
                                         <input matInput formControlName="DateInit" type="datetime-local"
@@ -24,11 +31,11 @@
                                 </div>
                             </div>
                         </form>
+                        <app-add-to-calendar *ngIf="Edicion"  startDate="{{appointment.DateInit | date:'shortDate'}}" [startTime]="appointment.DateFinal | date:'shortTime'" [endDate]="appointment.DateFinal | date:'shortDate'" endTime="{{appointment.DateInit | date:'shortTime'}}" [title]='"Cita de asistencia animal"' [details]='"cita de " + user.FullName' [location]='"Guatemala"'></app-add-to-calendar>
                     </div>
                 </div>
             </div>
-            <!-- <app-add-to-calendar [startDate]='"8/25/2019"' [startTime]='"5:00 pm"' [endDate]='"8/25/2019"' [endTime]='"8:00 pm"' [title]='"Angular Google Event Component"' [details]='"Angular Google Event Component"' [location]='"The Bar, New York, NY"'></app-add-to-calendar> -->
-            <div class="col-md-12">
+            <div *ngIf="adminUser" class="col-md-12">
                 <div class="card card-profile">
                     <div class="card-body left">
                         <a (click)="Save()" class="btn btn-info left">Guardar cita</a>

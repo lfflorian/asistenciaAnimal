@@ -16,12 +16,31 @@ export class AdoptionsComponent implements OnInit {
               private router : Router) { }
 
   user : User;
-  Data: any;
-  
+  DataCompany: any;
+  DataUser: any;
+  adminUser: boolean;
+
   async ngOnInit() {
     this.user = await this.authService.getUser();
-    this.modelService.getAdoptionForms(this.user.Id_company).then((pets) => {
-      this.Data = pets.map(form =>
+
+    this.adminUser = (this.user.Rol == "empresa");
+
+    if (this.adminUser) {
+      this.modelService.getAdoptionForms(this.user.Id_company).then((pets) => {
+        this.DataCompany = pets.map(form =>
+          Object.assign({}, {
+            'Nombre Adoptante' : form.Nombre,
+            'Nombre solicitante' : form.Nombre,
+            Estado : form.Estado,
+            link: this.router.createUrlTree(['admin', 'configuracion-formulario', form.id]).toString()
+          }))
+      }, (error) => {
+        alert('Hubo un error en la comunicación con el servido')
+      })
+    }
+
+    this.modelService.getAdoptionFormsByUSer(this.user.id).then((pets) => {
+      this.DataUser = pets.map(form =>
         Object.assign({}, {
           'Nombre Adoptante' : form.Nombre,
           'Nombre solicitante' : form.Nombre,

@@ -24,12 +24,18 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div *ngIf="consult">
-                                <div>{{consult.UserName}}</div>
-                                <div *ngFor="let message of consult.Messages">
-                                    <p><strong>{{message.Content}}</strong></p>
-                                    <p>{{message.idUser}}</p>
-                                    <p>{{message.Date}}</p>
+                            <div class="col-sm-12">
+                                <div *ngIf="consult">
+                                    <div>{{consult.UserName}}</div>
+                                    <div *ngFor="let message of consult.Messages">
+                                        <div [ngClass]="{
+                                            'caut':user.id === message.idUser,
+                                            'cmsg':user.id !== message.idUser
+                                        }">
+                                        <p><strong>{{message.Content}}</strong></p>
+                                        <p>{{message.Date | date:'shortDate'}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

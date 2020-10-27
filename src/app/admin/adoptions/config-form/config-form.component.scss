@@ -23,3 +23,13 @@
 .btn.btn-info {
     color: white !important;
 }
+
+@media print {
+    .buttons {
+        display: none;
+    }
+
+    footer {
+        display: none;
+    }
+  }

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Appointment } from 'app/model/appointment';
 import { User } from 'app/model/user';
 import { AppointmentService } from 'app/services/appointment.service';
+import { UserService } from 'app/services/user.service';
 import { AuthService } from 'app/services/utilities/auth.service';
+import { take } from 'rxjs/Operators';
 
 @Component({
   selector: 'app-appointment-editor',
@@ -17,13 +19,17 @@ export class AppointmentEditorComponent implements OnInit {
               private _fb: FormBuilder,
               private authService: AuthService,
               private router: Router,
-              private appointmentService: AppointmentService) { }
+              private appointmentService: AppointmentService,
+              private userService: UserService) { }
 
   user : User;
+  userInvited : User;
   userId : string;
   Option : string;
   Edicion : Boolean;
   appointment : Appointment;
+  adminUser: boolean;
+  Correo : FormControl = new FormControl();
 
   AppointmentForm = this._fb.group({
     DateInit: [],
@@ -33,6 +39,7 @@ export class AppointmentEditorComponent implements OnInit {
   async ngOnInit() {
     let parameter = this.route.snapshot.paramMap.get("id")
     this.user = await this.authService.getUser();
+    this.adminUser = (this.user.Rol == "empresa");
     let opcion = parameter.split("-")[0];
     let id = parameter.split("-")[1];
 
@@ -48,6 +55,7 @@ export class AppointmentEditorComponent implements OnInit {
       this.Edicion = true;
     } else if (opcion == "U") {
       this.userId = id;
+      this.userInvited = await this.userService.getUser(id).pipe(take(1)).toPromise();
       this.appointment = {};
       this.Option = "New-W-User"
       this.Edicion = false;
@@ -59,8 +67,22 @@ export class AppointmentEditorComponent implements OnInit {
   }
 
   async Save() {
+    debugger
     this.appointment.DateInit = this.AppointmentForm.get("DateInit").value;
     this.appointment.DateFinal = this.AppointmentForm.get("DateFinal").value;
+
+    if (this.Correo.value) {
+      var u = await this.userService.getUserByEmail(this.Correo.value);
+      if (!u[0]) {
+        if (confirm("El Usuario no existe, decea agregar de todos modos la cita?"))
+        {
+        } else {
+          return;
+        }
+      } else {
+        this.appointment.IdUser = u[0].id;
+      }
+    }
 
     if (this.Option == "New") {
       this.appointment.Date = new Date();
@@ -70,7 +92,7 @@ export class AppointmentEditorComponent implements OnInit {
 
       this.appointmentService.createAppointment(this.appointment).then(sucess => {
         alert('Cita creada!')
-        this.router.navigateByUrl('admin/citas')
+        this.router.navigateByUrl('admin/edicion-cita/A-' + sucess.id)
       }, error => {
         alert('Hubo un error al crear la cita')
       })

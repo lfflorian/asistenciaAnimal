@@ -1,15 +1,28 @@
 <div class="main-content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12 col-md-12  col-lg-12">
+            <div *ngIf="adminUser" class="col-sm-12 col-md-12  col-lg-12">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Solicitudes de adopción</h4>
+                        <h4 class="card-title">Solicitudes de adopción de empresa</h4>
                         <p class="card-category">Listado de solicitudes de adopción recibidas</p>
                     </div>
                     <div class="card-body">
-                        <div *ngIf="Data">
-                            <app-table-list [Data]="Data"></app-table-list>
+                        <div *ngIf="DataCompany">
+                            <app-table-list [Data]="DataCompany"></app-table-list>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12  col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Solicitudes de adopción del usuario</h4>
+                        <p class="card-category">Listado de solicitudes de adopción realizadas</p>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="DataUser">
+                            <app-table-list [Data]="DataUser"></app-table-list>
                         </div>
                     </div>
                 </div>

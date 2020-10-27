@@ -1,4 +1,4 @@
-<div class="main-content">
+<div *ngIf="pet" class="main-content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 col-md-12 order-lg-12 col-lg-3">
@@ -7,7 +7,7 @@
                         <h4 class="card-title">Mascota</h4>
                     </div>
                     <div class="card-body">
-                        <app-pet-card-two *ngIf="pet" [pet]="pet"></app-pet-card-two>
+                        <app-pet-card-two  [pet]="pet"></app-pet-card-two>
                     </div>
                 </div>
             </div>
@@ -22,12 +22,26 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <!-- Agregar todas las historiasl del historial medico -->  
+                                <div *ngIf="pet.MedicalHistory">
+                                    <h3>Expediente médico</h3>
+                                    <div *ngFor="let history of pet.MedicalHistory" class="row">
+                                        <div class="col-sm-12 col-md-4">
+                                            <app-info-field Field="Fecha:" [Value]="history.Date | date:'shortDate'"></app-info-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4">
+                                            <app-info-field Field="Descripción del histórico:" [Value]="history.Comments"></app-info-field>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div *ngIf="!pet.MedicalHistory">
+                                    <p>Esta mascota aun no tiene expediente médico</p>
+                                </div>
                             </div>
                             <div class="col-sm-12">
                                 <a (click)="AddMedicalHistory()" class="btn btn-info left">Agregar historial medico</a>
                             </div>
-                            <div class="col-sm-12" *ngIf="!enableAddMedicalHistory">
+                            <div class="col-sm-12" *ngIf="enableAddMedicalHistory">
                                 <!-- <form [formGroup]="medicalHistoryForm">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
@@ -61,8 +75,8 @@
                                     </div>
                                 </form> -->
                             </div>
-                            <div class="col-sm-12" *ngIf="!enableAddMedicalHistory">
-                                <h5><a (click)="Addprescription()"><strong>Agregar</strong></a> receta medica</h5>
+                            <div class="col-sm-12" *ngIf="enableAddMedicalHistory">
+                                <!-- <h5><a (click)="Addprescription()"><strong>Agregar</strong></a> receta medica</h5> -->
                                 <div class="row">
                                     <form [formGroup]="prescriptionList">
                                         <!-- <div class="col-sm-12"> -->
@@ -93,10 +107,8 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-md-12" *ngIf="!enableAddMedicalHistory">
+                            <div class="col-md-12" *ngIf="enableAddMedicalHistory">
                                 <a  (click)="Save()" class="btn btn-info left">Guardar</a>
-                                <!--  (click)="Cancel()"  <a (click)="Delete()" *ngIf="Edicion" class="btn btn-info">Eliminar
-                                    mascota</a> -->
                                 <a  class="btn btn-info float-right">Cancelar</a>
                             </div>
                         </div>

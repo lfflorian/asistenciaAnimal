@@ -24,6 +24,10 @@ export class AdoptionFormService {
     return this.crudService.listByReference(id, 'IdEmpresa');
   }
 
+  getAdoptionFormsByUSer(id : string) {
+    return this.crudService.listByReference(id, 'IdUsuario');
+  }
+
   getAdoptionForm(id : string) {
     return this.crudService.get(id);
   }
