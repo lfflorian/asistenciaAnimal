@@ -15,13 +15,19 @@ import {
   MatInputModule,
 } from '@angular/material';
 import { CopmanyListComponent } from 'app/landing/copmany-list/copmany-list.component';
+import { ArticleListComponent } from 'app/landing/article-list/article-list.component';
+import { ConsultListComponent } from 'app/landing/consult-list/consult-list.component';
+import { AlertListComponent } from 'app/landing/alert-list/alert-list.component';
 
 @NgModule({
   declarations: [
     AdoptionListComponent,
     CompanyProfileComponent,
     HomeComponent,
-    CopmanyListComponent
+    CopmanyListComponent,
+    ArticleListComponent,
+    ConsultListComponent,
+    AlertListComponent
   ],
   imports: [
     CommonModule,
