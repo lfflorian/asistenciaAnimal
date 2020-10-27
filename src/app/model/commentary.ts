@@ -6,5 +6,5 @@ export interface Commentary extends Entity {
     Content : string;
     Date : Date
     IdAuthor : string;
-    Likes : Like[] 
+    Likes? : Like[] 
 }
