@@ -6,7 +6,7 @@
         <div class="col-sm-12">
             <div class="contain">
                 <div class="row">
-                    <div *ngFor="let article of articles; index as i" class="col-sm-12">
+                    <div *ngFor="let article of articles; index as i" (click)="GoTo(article.id)" class="col-sm-12">
                         <div class="text-post">
                             <h3>{{article.Title}} </h3>
                             <span>{{article.Date | date:'shortDate'}}</span>

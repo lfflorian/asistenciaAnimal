@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Company } from 'app/model/company';
 import { CompanyService } from 'app/services/company.service';
 
@@ -9,7 +10,8 @@ import { CompanyService } from 'app/services/company.service';
 })
 export class CopmanyListComponent implements OnInit {
 
-  constructor(private companyService: CompanyService) { }
+  constructor(private companyService: CompanyService,
+    private router: Router) { }
 
   CompanyList : Company[];
 
@@ -17,5 +19,9 @@ export class CopmanyListComponent implements OnInit {
     this.companyService.getCompanys().subscribe(c => {
       this.CompanyList = c;
     });
+  }
+
+  GoTo(id : string) {
+    this.router.navigateByUrl('page/empresa/' + id)
   }
 }

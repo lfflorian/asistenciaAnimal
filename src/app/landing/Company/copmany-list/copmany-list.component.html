@@ -6,7 +6,7 @@
         <div class="col-sm-12">
             <div class="contain">
                 <div class="row">
-                    <div *ngFor="let company of CompanyList; index as i" class="col-sm-12 col-md-6 col-lg-4">
+                    <div *ngFor="let company of CompanyList; index as i" (click)="GoTo(company.id)" class="col-sm-12 col-md-6 col-lg-4">
                         <div class="cart">
                             <img [src]="company.Logo" alt="">
                             <div class="body-cart">

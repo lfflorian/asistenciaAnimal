@@ -6,7 +6,7 @@
         <div class="col-sm-12">
             <div class="contain">
                 <div class="row">
-                    <div *ngFor="let pet of PetsInAdoption; index as i" class="col-sm-12 col-md-6 col-lg-4">
+                    <div *ngFor="let pet of PetsInAdoption; index as i" (click)="GoToAdoption(pet.id)" class="col-sm-12 col-md-6 col-lg-4">
                         <div class="cart">
                             <img [src]="pet.Images[0]" alt="">
                             <div class="body-cart">
