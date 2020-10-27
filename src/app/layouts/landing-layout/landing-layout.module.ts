@@ -6,18 +6,14 @@ import { RouterModule } from '@angular/router';
 import { LandingComponentsModule } from 'app/landing/landing-components/landing-components.module';
 import { LandingLayoutRoutes } from './landing-layout.routing';
 
-import { AdoptionListComponent } from 'app/landing/adoption-list/adoption-list.component';
-import { CompanyProfileComponent } from 'app/landing/company-profile/company-profile.component';
+import { AdoptionListComponent } from 'app/landing/Pet/adoption-list/adoption-list.component';
+import { CompanyProfileComponent } from 'app/landing/Company/company-profile/company-profile.component';
 import { HomeComponent } from 'app/landing/home/home.component';
 
-import {
-  MatFormFieldModule,
-  MatInputModule,
-} from '@angular/material';
-import { CopmanyListComponent } from 'app/landing/copmany-list/copmany-list.component';
-import { ArticleListComponent } from 'app/landing/article-list/article-list.component';
-import { ConsultListComponent } from 'app/landing/consult-list/consult-list.component';
-import { AlertListComponent } from 'app/landing/alert-list/alert-list.component';
+import { CopmanyListComponent } from 'app/landing/Company/copmany-list/copmany-list.component';
+import { ArticleListComponent } from 'app/landing/Article/article-list/article-list.component';
+import { ConsultListComponent } from 'app/landing/Consult/consult-list/consult-list.component';
+import { AlertListComponent } from 'app/landing/Alert/alert-list/alert-list.component';
 
 @NgModule({
   declarations: [
