@@ -30,6 +30,7 @@ import { AddToCalendarModule } from 'add-events-to-google-calendar';
 import { PipesModule } from './pipes/pipes.module';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -52,7 +53,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
       apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
     }),
     NgxAgoraModule.forRoot({ AppID: environment.agora.appId }),
-    AddToCalendarModule 
+    AddToCalendarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }) 
   ],
   declarations: [
     AppComponent,
