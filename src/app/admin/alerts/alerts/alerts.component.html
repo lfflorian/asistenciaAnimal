@@ -19,7 +19,10 @@
                     </div>
                     <div class="card-body">
                         <div *ngIf="Data">
-                            <app-table-list [Data]="Data"></app-table-list>
+                            <app-table-list *ngIf="Data.length != 0" [Data]="Data"></app-table-list>
+                        </div>
+                        <div *ngIf="Data" class="col-sm-12 center">
+                            <div *ngIf="Data.length == 0" class="titleIfNotData">No tienes alertas agregadas, si tienes algun problema que reportar (mascota perdida, maltrato aniimal, animal en peligro, etc) <a [routerLink]="['/admin', 'edicion-alerta']">haz click en aqui</a> para agregar una consulta alerta</div>
                         </div>
                     </div>
                 </div>

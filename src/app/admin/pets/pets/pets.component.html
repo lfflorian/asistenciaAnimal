@@ -23,6 +23,9 @@
                             <div *ngFor="let pet of Data" class="col-sm-12 col-md-4">
                                 <app-pet-card [pet]="pet"></app-pet-card>
                             </div>
+                            <div *ngIf="Data" class="col-sm-12 center">
+                                <div *ngIf="Data.length == 0" class="titleIfNotData">Aun no tienes mascotas agregadas,<a [routerLink]="['/admin', 'edicion-mascota']">haz click en aqui</a> para agregar una mascota</div>
+                            </div>
                         </div>
                     </div>
                 </div>

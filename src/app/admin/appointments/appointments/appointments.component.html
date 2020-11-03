@@ -20,7 +20,10 @@
                     </div>
                     <div class="card-body">
                         <div *ngIf="DataCompany">
-                            <app-table-list [Data]="DataCompany"></app-table-list>
+                            <app-table-list *ngIf="DataCompany.length != 0" [Data]="DataCompany"></app-table-list>
+                        </div>
+                        <div *ngIf="DataCompany" class="col-sm-12 center">
+                            <div *ngIf="DataCompany.length == 0" class="titleIfNotData">Aun no has recibido citas de los clientes</div>
                         </div>
                     </div>
                 </div>
@@ -35,7 +38,10 @@
                     </div>
                     <div class="card-body">
                         <div *ngIf="DataUser">
-                            <app-table-list [Data]="DataUser"></app-table-list>
+                            <app-table-list *ngIf="DataUser.length != 0" [Data]="DataUser"></app-table-list>
+                        </div>
+                        <div *ngIf="DataUser" class="col-sm-12 center">
+                            <div *ngIf="DataUser.length == 0" class="titleIfNotData">Aun no has hecho una cita, si necesitas realizar una, busca una empresa <a [routerLink]="['/page', 'istado-empresas']">haciendo click aqui</a> y consulta lo que necesites</div>
                         </div>
                     </div>
                 </div>

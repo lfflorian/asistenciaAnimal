@@ -9,7 +9,10 @@
                     </div>
                     <div class="card-body">
                         <div *ngIf="DataCompany">
-                            <app-table-list [Data]="DataCompany"></app-table-list>
+                            <app-table-list *ngIf="DataCompany.length != 0" [Data]="DataCompany"></app-table-list>
+                        </div>
+                        <div *ngIf="DataCompany" class="col-sm-12 center">
+                            <div *ngIf="DataCompany.length == 0" class="titleIfNotData">Aun no tienes solicitudes de adopción, espera a que un usuario realice una solicitud, o agrega una mascota en adopción <a [routerLink]="['/admin', 'edicion-mascota']">haciendo click en aqui</a> si aun no tienes</div>
                         </div>
                     </div>
                 </div>
@@ -22,7 +25,10 @@
                     </div>
                     <div class="card-body">
                         <div *ngIf="DataUser">
-                            <app-table-list [Data]="DataUser"></app-table-list>
+                            <app-table-list *ngIf="DataUser.length != 0" [Data]="DataUser"></app-table-list>
+                        </div>
+                        <div *ngIf="DataUser" class="col-sm-12 center">
+                            <div *ngIf="DataUser.length == 0" class="titleIfNotData">Aun no has hecho una solicitud de adopción, <a [routerLink]="['/page', 'adopcion']">haz click aqui</a> para adoptar una mascota</div>
                         </div>
                     </div>
                 </div>

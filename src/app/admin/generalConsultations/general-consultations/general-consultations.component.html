@@ -20,7 +20,10 @@
                     </div>
                     <div class="card-body">
                         <div *ngIf="Data">
-                            <app-table-list [Data]="Data"></app-table-list>
+                            <app-table-list *ngIf="Data.length != 0" [Data]="Data"></app-table-list>
+                        </div>
+                        <div *ngIf="Data" class="col-sm-12 center">
+                            <div *ngIf="Data.length == 0" class="titleIfNotData">Aun no tienes consultas agregadas,<a [routerLink]="['/admin', 'edicion-consulta-general']">haz click en aqui</a> para agregar una consulta en la que quieras que te ayuden</div>
                         </div>
                     </div>
                 </div>
