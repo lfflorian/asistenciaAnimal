@@ -23,6 +23,30 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12  col-lg-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Comentarios</h4>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="Comments" class="row">
+                            <div class="col-sm-12 col-md-8">
+                                <div *ngFor="let comment of Comments; index as i">
+                                    <strong>{{i + 1}}) {{comment.Date | date:'short'}}  </strong>
+                                    {{comment.Content}}
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!Comments" class="row">
+                            <div class="col-sm-12 col-md-8">
+                                no tienes comentarios aun
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <div class="card card-profile">
                     <div class="card-body left">

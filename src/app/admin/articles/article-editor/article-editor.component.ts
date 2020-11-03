@@ -7,6 +7,7 @@ import { PostService } from 'app/services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'app/model/post';
 import { AuthService } from 'app/services/utilities/auth.service';
+import { Commentary } from 'app/model/Commentary';
 
 @Component({
   selector: 'app-article-editor',
@@ -18,6 +19,7 @@ export class ArticleEditorComponent implements OnInit {
   @ViewChild('content', { static: true }) someInput: ElementRef;
 
   Data: string;
+  Comments: Commentary[];
   Edicion: boolean;
 
   constructor(private modelService:PostService,
@@ -51,6 +53,7 @@ export class ArticleEditorComponent implements OnInit {
           this.ArticleForm.controls['IdAuthor'].setValue(info.IdAuthor)
           this.ArticleForm.controls['Date'].setValue(info.Date)
           this.ArticleForm.addControl('id', new FormControl(info.id))
+          this.Comments = info.Comments
           console.log(info.Content)
           this.Data = info.Content;
         } else

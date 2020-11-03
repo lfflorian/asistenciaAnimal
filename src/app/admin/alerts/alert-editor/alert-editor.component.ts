@@ -7,6 +7,7 @@ import { ImageUpload } from 'app/model/imageUpload';
 import { FileService } from 'app/services/utilities/file.service';
 import { Post } from 'app/model/post';
 import { AuthService } from 'app/services/utilities/auth.service';
+import { Commentary } from 'app/model/Commentary';
 
 @Component({
   selector: 'app-alert-editor',
@@ -16,6 +17,7 @@ import { AuthService } from 'app/services/utilities/auth.service';
 export class AlertEditorComponent implements OnInit {
 
   Data: any;
+  Comments: Commentary[];
   Edicion: boolean;
   Images : ImageUpload[] = [];
 
@@ -56,6 +58,7 @@ export class AlertEditorComponent implements OnInit {
           this.AlertForm.controls['Images'].setValue(info.Images)
           this.AlertForm.addControl('id', new FormControl(info.id))
           info.Images.forEach(i => { this.Images.push(new ImageUpload(i)) })
+          this.Comments = info.Comments
         } else
         {
           this.router.navigateByUrl('admin/alertas')

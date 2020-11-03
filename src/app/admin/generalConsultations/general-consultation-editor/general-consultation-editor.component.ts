@@ -4,6 +4,7 @@ import { PostService } from 'app/services/post.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from 'app/model/post';
 import { AuthService } from 'app/services/utilities/auth.service';
+import { Commentary } from 'app/model/Commentary';
 
 @Component({
   selector: 'app-general-consultation-editor',
@@ -13,6 +14,7 @@ import { AuthService } from 'app/services/utilities/auth.service';
 export class GeneralConsultationEditorComponent implements OnInit {
 
   Data: any;
+  Comments: Commentary[];
   Edicion: boolean;
 
   constructor(private modelService: PostService,
@@ -43,6 +45,7 @@ export class GeneralConsultationEditorComponent implements OnInit {
           this.ConsultationForm.controls['Content'].setValue(info.Content)
           this.ConsultationForm.controls['Date'].setValue(info.Date)
           this.ConsultationForm.addControl('id', new FormControl(info.id))
+          this.Comments = info.Comments
         } else {
           this.router.navigateByUrl('admin/consultas-generales')
         }
