@@ -7,4 +7,5 @@ export interface Appointment extends Entity {
     Date? : Date;
     DateInit? : Date;
     DateFinal? : Date;
+    Status? : Boolean;
 }

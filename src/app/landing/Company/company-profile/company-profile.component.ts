@@ -31,6 +31,10 @@ export class CompanyProfileComponent implements OnInit {
     this.company = await this.companyService.getCompany(Id).pipe(take(1)).toPromise();
   }
 
+  CreateAppointment() {
+    this.router.navigateByUrl('page/agregar-cita/' + this.company.id)
+  }
+
   async contactToCopmany() {
     if (this.Message.valid) {
       alert("debes llenar el campo de mensaje con al menos 15 caracteres")

@@ -11,6 +11,7 @@ import { PetViewComponent } from 'app/landing/Pet/pet-view/pet-view.component';
 import { ConsultViewComponent } from 'app/landing/Consult/consult-view/consult-view.component';
 import { AlertViewComponent } from 'app/landing/Alert/alert-view/alert-view.component';
 import { ArticleViewComponent } from 'app/landing/Article/article-view/article-view.component';
+import { AddAppointmentComponent } from 'app/landing/add-appointment/add-appointment.component';
 
 export const LandingLayoutRoutes: Routes = [
      { path: '',      component: HomeComponent },
@@ -22,6 +23,7 @@ export const LandingLayoutRoutes: Routes = [
      { path: 'consulta/:id',      component: ConsultViewComponent },
      { path: 'articulo/:id',      component: ArticleViewComponent },
      { path: 'alerta/:id',      component: AlertViewComponent },
+     { path: 'agregar-cita/:id',      component: AddAppointmentComponent },
      { path: 'listado-empresas',      component: CopmanyListComponent },
      { path: 'listado-articulos',      component: ArticleListComponent },
      { path: 'listado-consultas',      component: ConsultListComponent },

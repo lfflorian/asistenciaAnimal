@@ -1,0 +1,29 @@
+
+.title {
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+    color: #d6493E;
+    letter-spacing: 10px;
+}
+
+.calendar-box {
+    border: 1px solid gray;
+    width: 200px;
+    height: 200px;
+    padding: 5px;
+    background: white;
+    margin: 10px 0;
+    p {
+        font-weight: bold;
+    }
+
+    .hour {
+        font-weight: lighter;
+    }
+
+    span {
+        background-color: green;
+    }
+}
+
