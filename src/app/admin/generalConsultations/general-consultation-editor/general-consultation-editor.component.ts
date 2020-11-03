@@ -58,6 +58,11 @@ export class GeneralConsultationEditorComponent implements OnInit {
   Save() {
     this.ConsultationForm.controls['Date'].setValue(new Date());
 
+    if (!this.ConsultationForm.valid) {
+      alert("Debes llenar los campos requeridos")
+      return
+    }
+
     if (this.Edicion == true) {
       this.modelService.updatePost(this.ConsultationForm.value as Post).then(success => {
         alert('Consultas General actualizado!')

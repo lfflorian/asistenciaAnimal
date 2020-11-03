@@ -48,14 +48,14 @@ export class PetEditorComponent implements OnInit {
 
   PetForm = this._fb.group({
     Name: ['', Validators.required],
-    Age: ['', Validators.required],
+    Age: [''],
     Race: [''],
     Height: [''],
     Weight: [''],
     Color: [''],
     MoreAbout : [''],
     InAdoption : [false],
-    Gender : [''],
+    Gender : ['', Validators.required],
     AnimalType : ['']
   });
 
@@ -103,6 +103,11 @@ export class PetEditorComponent implements OnInit {
   }
 
   async Save() {
+    if (!this.PetForm.valid) {
+      alert('Debes llenar todos los campos con sus vaolres correctos')
+      return
+    }
+
     this.pet.Name = this.PetForm.get("Name").value;
     this.pet.Age = this.PetForm.get("Age").value;
     this.pet.Race = this.PetForm.get("Race").value;

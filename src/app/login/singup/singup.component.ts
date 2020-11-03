@@ -16,7 +16,7 @@ export class SingupComponent implements OnInit {
     private auth: AuthService) { }
 
     LoginForm = this.fb.group({
-    Email: ['', Validators.required],
+    Email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required]
   })
@@ -42,7 +42,7 @@ export class SingupComponent implements OnInit {
         alert("Las contraseñas no son las mismas");
       }
     } else {
-      alert("hacen falta campos requeridos")
+      alert("hacen falta campos requeridos y el email debe ser valido")
     }
   }
 

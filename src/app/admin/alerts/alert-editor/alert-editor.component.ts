@@ -74,6 +74,11 @@ export class AlertEditorComponent implements OnInit {
     this.disabledButton = true;
     this.AlertForm.controls['Date'].setValue(new Date());
 
+    if (!this.AlertForm.valid) {
+      alert("Debes llenar los campos requeridos")
+      return
+    }
+
     if (this.Edicion == true)
     {
       var Uid = this.AlertForm.get("Uid").value;

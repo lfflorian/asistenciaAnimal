@@ -15,7 +15,7 @@ export class SinginComponent implements OnInit {
     private router: Router) { }
 
   LoginForm = this.fb.group({
-    Email: ['', Validators.required],
+    Email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   })
 
@@ -45,7 +45,7 @@ export class SinginComponent implements OnInit {
         }
       });
     } else {
-      alert("hacen falta campos requeridos")
+      alert("hacen falta campos requeridos y el email debe ser valido")
     }
   }
 

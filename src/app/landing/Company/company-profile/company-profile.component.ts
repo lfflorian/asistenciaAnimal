@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Company } from 'app/model/company';
 import { Message, PrivateConsultation } from 'app/model/privateConsultation';
@@ -24,7 +24,7 @@ export class CompanyProfileComponent implements OnInit {
 
   company : Company;
   consult : PrivateConsultation;
-  Message : FormControl = new FormControl();
+  Message : FormControl = new FormControl('', [Validators.required, Validators.minLength(15)]);
 
   async ngOnInit() {
     let Id  = this.route.snapshot.paramMap.get("id")
@@ -32,7 +32,10 @@ export class CompanyProfileComponent implements OnInit {
   }
 
   async contactToCopmany() {
-    debugger
+    if (this.Message.valid) {
+      alert("debes llenar el campo de mensaje con al menos 15 caracteres")
+      return;
+    }
     let user: User;
     try {
       user = await this.authService.getUser();
@@ -62,7 +65,7 @@ export class CompanyProfileComponent implements OnInit {
     
     this.consultationService.createPrivateConsultation(this.consult).then((response) => {
       alert("Mensaje creado exitosamente")
-      //this.router.navigateByUrl(`admin/consulta/${this.company.id}`)
+      this.Message.reset()
     })
   }
 }

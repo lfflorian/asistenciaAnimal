@@ -70,6 +70,11 @@ export class ArticleEditorComponent implements OnInit {
     this.ArticleForm.controls['Content'].setValue(this.TextEdition);
     this.ArticleForm.controls['Date'].setValue(new Date());
 
+    if (!this.ArticleForm.valid) {
+      alert("Debes llenar los campos requeridos")
+      return
+    }
+
     if (this.Edicion == true)
     {
       this.modelService.updatePost(this.ArticleForm.value as Post).then(success => {

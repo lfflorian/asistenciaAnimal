@@ -7,13 +7,13 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <mat-form-field>
-                        <input matInput formControlName="Name" id="inputEmail" placeholder="Nombre" required autofocus>
+                        <input matInput formControlName="Name" id="inputEmail" type="text" placeholder="Nombre" required autofocus>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <mat-form-field>
-                        <input matInput formControlName="DateIgnauration" id="inputEmail"
-                            placeholder="Fecha de ignauración" required autofocus>
+                        <input matInput formControlName="DateIgnauration" type="date" id="inputEmail"
+                            placeholder="Fecha de ignauración" required>
                     </mat-form-field>
                 </div>
                 <div class="col-sm-12 col-md-12">
@@ -26,7 +26,7 @@
                     <div class="form-label-group">
                         <mat-form-field *ngIf="RoleEnum">
                             <mat-label>Tipo de empresa:</mat-label>
-                            <mat-select formControlName="AsociationType">
+                            <mat-select formControlName="AsociationType" required>
                                 <mat-option *ngFor="let item of RoleEnum" [value]="item">
                                     {{ item.Name }}
                                 </mat-option>

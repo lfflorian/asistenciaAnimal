@@ -15,7 +15,7 @@ export class ForgottenPasswordComponent implements OnInit {
     private router: Router) { }
 
     LoginForm = this.fb.group({
-      Email: ['', Validators.required]
+      Email: ['', [Validators.required, Validators.email]],
     })
 
   ResetPassword() {

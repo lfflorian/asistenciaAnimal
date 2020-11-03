@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Appointment } from 'app/model/appointment';
 import { User } from 'app/model/user';
@@ -32,8 +32,8 @@ export class AppointmentEditorComponent implements OnInit {
   Correo : FormControl = new FormControl();
 
   AppointmentForm = this._fb.group({
-    DateInit: [],
-    DateFinal: []
+    DateInit: [, Validators.required],
+    DateFinal: [, Validators.required],
   });
 
   async ngOnInit() {
@@ -67,6 +67,11 @@ export class AppointmentEditorComponent implements OnInit {
   }
 
   async Save() {
+    if (!this.AppointmentForm.valid) {
+      alert("Debes llenar los campos requeridos")
+      return
+    }
+
     debugger
     this.appointment.DateInit = this.AppointmentForm.get("DateInit").value;
     this.appointment.DateFinal = this.AppointmentForm.get("DateFinal").value;

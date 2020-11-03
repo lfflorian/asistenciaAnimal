@@ -40,31 +40,31 @@ export class AdoptionFormComponent implements OnInit {
     Date : [''],
     Estado : [''],
     NombreAdoptivo : [''],
-    Nombre : [''],
-    Apellido : [''],
-    NoDPI : [''],
-    Email : [''],
-    Telefono : [''],
-    Celular : [''],
-    Direccion : [''],
-    NoPersonasEnCasa : [''],
-    NoPerrosEnCasa : [''],
+    Nombre : ['', Validators.required],
+    Apellido : ['', Validators.required],
+    NoDPI : ['', Validators.required],
+    Email : ['', [Validators.required, Validators.email]],
+    Telefono : ['', Validators.required],
+    Celular : ['', Validators.required],
+    Direccion : ['', Validators.required],
+    NoPersonasEnCasa : ['', Validators.required],
+    NoPerrosEnCasa : ['', Validators.required],
     LugarSinEscapar : [''],
     TienePatio : [''],
     TieneJardin : [''],
     TieneSuficienteEspacio : [''],
     AmbienteADormir : [''],
-    DescripcionDelLugarADormir : [''],
+    DescripcionDelLugarADormir : ['', Validators.required],
     AceptanMascotas : [''],
-    RazonDeAdopcion : [''],
+    RazonDeAdopcion : ['', Validators.required],
     CompromisoCuidarlo : [''],
     CompromisoCambioHogar : [''],
     CompromisoGastos : [''],
     CompromisoEnvioFotografias : [''],
     ConcienciaDeRetiro : [''],
     CompromisoPaciencia : [''],
-    HorarioDeActividades : [''],
-    PersonaResponsableEnHorasNoHabiles : [''],
+    HorarioDeActividades : ['', Validators.required],
+    PersonaResponsableEnHorasNoHabiles : ['', Validators.required],
     Facebook : [''],
     instagram : [''],
     ImagenesDelLugar : [''],
@@ -103,6 +103,11 @@ export class AdoptionFormComponent implements OnInit {
   }
 
   async save() {
+    if (!this.AdoptionForm.valid) {
+      alert('Debes llenar todos los campos requeridos con sus vaolres correctos')
+      return
+    }
+
     this.AdoptionForm.controls['Date'].setValue(new Date());
     this.AdoptionForm.controls['Estado'].setValue('Enviado');
     

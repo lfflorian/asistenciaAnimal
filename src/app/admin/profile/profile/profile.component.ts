@@ -48,10 +48,10 @@ export class ProfileComponent implements OnInit {
 
   CompanyForm: FormGroup = this._fb.group({
     Id_creator_user: [''],
-    Name: [''],
-    Description: [''],
-    DateIgnauration: [''],
-    AsociationType: ['']
+    Name: ['', Validators.required],
+    Description: ['', Validators.required],
+    DateIgnauration: ['', Validators.required],
+    AsociationType: ['', Validators.required],
   })
 
   async ngOnInit() {
@@ -86,6 +86,11 @@ export class ProfileComponent implements OnInit {
   }
 
   async save() {
+    if (!this.UserForm.valid) {
+      alert('Debes llenar todos los campos con sus vaolres correctos')
+      return
+    }
+
     if (this.ProfileImage.ItsNew)
     { this.user.ProfileImage = await this.UploadImage(this.ProfileImage, 'Profile'); }
 
@@ -103,6 +108,11 @@ export class ProfileComponent implements OnInit {
   }
 
   async saveCompany() {
+    if (!this.CompanyForm.valid) {
+      alert('Debes llenar todos los campos requeridos con sus vaolres correctos')
+      return
+    }
+
     if (this.LogoCompanyImage.ItsNew)
     { this.company.Logo = await this.UploadImage(this.LogoCompanyImage, 'Logo'); }
 

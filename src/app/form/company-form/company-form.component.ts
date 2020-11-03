@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Company } from 'app/model/company';
 import { CompanyType } from 'app/model/CompanyType';
@@ -33,13 +33,12 @@ export class CompanyFormComponent implements OnInit {
 
   CompanyForm = this.fb.group({
     Id_creator_user: [''],
-    Name: [''],
-    Description: [''],
-    DateIgnauration: [''],
-    AsociationType: [''],
+    Name: ['', [Validators.required]],
+    Description: ['', [Validators.required]],
+    DateIgnauration: ['', [Validators.required]],
+    AsociationType: ['', [Validators.required]],
     Date: [''],
     Package: ['']
-    // Logo: ['']
   })
 
   async ngOnInit() {
@@ -48,6 +47,11 @@ export class CompanyFormComponent implements OnInit {
   }
 
   async save() {
+    if (!this.CompanyForm.valid) {
+      alert('Debes llenar todos los campos con sus vaolres correctos')
+      return
+    }
+
     var packages = await this.packageService.getPackages().pipe(take(1)).toPromise();
     var rols = await this.rolService.getRols().pipe(take(1)).toPromise();
 
@@ -58,7 +62,7 @@ export class CompanyFormComponent implements OnInit {
     company.Package = packages.find(p => p.Precio == 0)
 
     this.companyService.createCompany(company).then(success => {
-      debugger
+      
       this.user.Company = true;
       this.user.Id_company = success.id;
       this.user.Rol = rols.find(r => r.Access == 1)

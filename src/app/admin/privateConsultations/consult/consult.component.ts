@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pet } from 'app/model/pet';
 import { Message, PrivateConsultation } from 'app/model/privateConsultation';
@@ -25,7 +25,7 @@ export class ConsultComponent implements OnInit {
   itsCompany : boolean = false;
   consult : PrivateConsultation;
   pet : Pet;
-  Message : FormControl = new FormControl();
+  Message : FormControl = new FormControl('', Validators.required);
   user : User;
 
   async ngOnInit() {
@@ -39,6 +39,11 @@ export class ConsultComponent implements OnInit {
   }
   
   Enviar() {
+    if (!this.Message.valid) {
+      alert("Debes escribir un mensaje para enviar")
+      return
+    }
+
     let message : Message;
     message = { 
       idUser : this.user.id,

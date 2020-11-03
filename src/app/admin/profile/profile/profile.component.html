@@ -18,7 +18,7 @@
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="FullName" placeholder="Nombre completo"
-                                            type="text">
+                                            type="text" required>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -26,22 +26,20 @@
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
                                         <input matInput formControlName="FullLastName" placeholder="Apellidos completos"
-                                            type="text">
+                                            type="text" required>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field>
-                                        <mat-label>Fecha de nacimiento</mat-label>
-                                        <input formControlName="Birthday" matInput [matDatepicker]="picker">
-                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                        <mat-datepicker #picker></mat-datepicker>
+                                        <input matInput formControlName="Birthday" type="date" id="inputEmail"
+                                            placeholder="Fecha de nacimiento" required>
                                     </mat-form-field>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput formControlName="Phone" placeholder="Teléfono" type="text">
+                                        <input matInput formControlName="Phone" placeholder="Teléfono" type="number" required>
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -71,30 +69,28 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <mat-form-field class="example-full-width">
-                                            <input matInput formControlName="Name" placeholder="Nombre">
+                                            <input matInput formControlName="Name" placeholder="Nombre" required>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-12">
                                         <mat-form-field class="example-full-width">
                                             <textarea matInput formControlName="Description" placeholder="Descripción de empresa"
-                                                rows="5"></textarea>
+                                                rows="5" required></textarea>
                                         </mat-form-field>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <mat-form-field>
-                                            <mat-label>Fecha de ignauración</mat-label>
-                                            <input formControlName="DateIgnauration" matInput [matDatepicker]="picker">
-                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker></mat-datepicker>
+                                            <input matInput formControlName="DateIgnauration" type="date" id="inputEmail"
+                                                placeholder="Fecha de ignauración" required>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-label-group">
                                             <mat-form-field *ngIf="RoleEnum">
                                                 <mat-label>Tipo de empresa: {{ CompanyForm.get('AsociationType').value.Name }}</mat-label>
-                                                <mat-select formControlName="AsociationType">
+                                                <mat-select formControlName="AsociationType" required>
                                                     <mat-option *ngFor="let item of RoleEnum"
                                                         [value]="item">
                                                         {{ item.Name }}

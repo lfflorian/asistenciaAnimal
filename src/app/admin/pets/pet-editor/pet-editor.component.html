@@ -12,12 +12,14 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput formControlName="Name" placeholder="Nombre">
+                                        <input matInput formControlName="Name" placeholder="Nombre" required>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-12 col-md-4">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput formControlName="Age" placeholder="Edad">
+                                        <input matInput formControlName="Age" type="text" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        type = "number"
+                                        maxlength = "3" placeholder="Edad">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-12 col-md-4">
@@ -41,7 +43,7 @@
                                     </mat-form-field>
                                 </div>
                                 <div class="col-sm-12 col-md-4">
-                                    <mat-radio-group formControlName="Gender" aria-label="Select an option">
+                                    <mat-radio-group formControlName="Gender" aria-label="Select an option" required>
                                         <mat-radio-button value="Macho">Macho</mat-radio-button>
                                         <mat-radio-button value="Hembra">Hembra</mat-radio-button>
                                     </mat-radio-group>
