@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'app/model/user';
+import { AuthService } from 'app/services/utilities/auth.service';
+import { VideoSessionService } from 'app/services/video-session.service';
+import { debug } from 'console';
 import { NgxAgoraService, Stream, AgoraClient, ClientEvent, StreamEvent } from 'ngx-agora';
 
 @Component({
@@ -11,6 +15,7 @@ export class SessionCamComponent implements OnInit {
   title = 'Cam-App';
   remoteCalls: string[] = [];
   localCallId = 'agora_local';
+  user: User;
 
   private client: AgoraClient;
   private localStream: Stream;
@@ -18,12 +23,42 @@ export class SessionCamComponent implements OnInit {
   private channel : string;
 
   constructor(private agoraService: NgxAgoraService,
-              private route: ActivatedRoute,) {
-    this.channel  = this.route.snapshot.paramMap.get("id")
-    this.uid = Math.floor(Math.random() * 100);
+              private route: ActivatedRoute,
+              private router: Router,
+              private videoSesService: VideoSessionService,
+              private authService: AuthService,) {
+    
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    
+    this.user = await this.authService.getUser();
+    if (!this.user) {
+      alert('Debes inciar session primero')
+      this.router.navigateByUrl('session/singin');
+    }
+
+    this.channel  = this.route.snapshot.paramMap.get("id")
+
+    try {
+      var videoSes = await this.videoSesService.getSessionByIdSes(this.channel)
+      if (videoSes.length == 0) {
+        alert('Esta sesión no existe')
+        this.router.navigateByUrl('session/singin');
+      } 
+
+      // debugger
+      // var r = (new Date()).getTime()
+      // var e = new Date(videoSes[0].Date).getTime()
+      // var difDates = r-e;
+      // var ras = alert(difDates/(1000*60*60*24)); 
+    } catch (error) {
+      alert('Esta sesión no existe')
+      this.router.navigateByUrl('session/singin');
+    }
+    
+    this.uid = Math.floor(Math.random() * 100);
+
     this.client = this.agoraService.createClient({ mode: 'rtc' , codec: 'h264' });
     this.assignClientHandlers();
 

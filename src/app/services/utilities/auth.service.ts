@@ -50,14 +50,18 @@ export class AuthService {
   }
 
   async getUser() {
-    var user = await new Promise<any>(resolve => {
-      this.afa.authState.subscribe(u => {
-        resolve(u)
-      });
-    }) 
-
-    var users = await this.userService.getUserByEmail(user.email);
-    return users[0];
+    try {
+      var user = await new Promise<any>(resolve => {
+        this.afa.authState.subscribe(u => {
+          resolve(u)
+        });
+      }) 
+  
+      var users = await this.userService.getUserByEmail(user.email);
+      return users[0];
+    } catch (error) {
+      return null;
+    }
   }
   getStatus() {
     return this.afa.authState;
