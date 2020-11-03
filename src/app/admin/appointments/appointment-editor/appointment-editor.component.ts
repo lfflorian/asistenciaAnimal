@@ -72,7 +72,6 @@ export class AppointmentEditorComponent implements OnInit {
       return
     }
 
-    debugger
     this.appointment.DateInit = this.AppointmentForm.get("DateInit").value;
     this.appointment.DateFinal = this.AppointmentForm.get("DateFinal").value;
 
