@@ -27,6 +27,7 @@ export class AddAppointmentComponent implements OnInit {
 
   AppointmentForm = this.fb.group({
     InitDate: ['', [Validators.required]],
+    DateFinal: ['', [Validators.required]],
   })
 
   async ngOnInit() {
@@ -56,6 +57,7 @@ export class AddAppointmentComponent implements OnInit {
       IdAuthor: this.Id,
       IdUser: this.user.id,
       DateInit: this.AppointmentForm.get('InitDate').value,
+      DateFinal: this.AppointmentForm.get('DateFinal').value,
       Status: false,
       Date: new Date()
     }

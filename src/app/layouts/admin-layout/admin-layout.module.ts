@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 
@@ -45,6 +45,7 @@ import { PipesModule } from 'app/pipes/pipes.module';
 
 @NgModule({
   imports: [
+    // DatePipe,
     PipesModule,
     CKEditorModule,
     CommonModule,

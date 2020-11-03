@@ -29,6 +29,9 @@
                                             placeholder="Fecha Final">
                                     </mat-form-field>
                                 </div>
+                                <div *ngIf="itsOwner" class="col-sm-6 col-md-8">
+                                    <mat-checkbox formControlName="Status" class="example-margin">¿Acepta el horario de Cita?</mat-checkbox>
+                                </div>
                             </div>
                         </form>
                         <app-add-to-calendar *ngIf="Edicion"  startDate="{{appointment.DateInit | date:'shortDate'}}" [startTime]="appointment.DateFinal | date:'shortTime'" [endDate]="appointment.DateFinal | date:'shortDate'" endTime="{{appointment.DateInit | date:'shortTime'}}" [title]='"Cita de asistencia animal"' [details]='"cita de " + user.FullName' [location]='"Guatemala"'></app-add-to-calendar>

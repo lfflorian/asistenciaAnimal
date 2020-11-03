@@ -29,11 +29,13 @@ export class AppointmentEditorComponent implements OnInit {
   Edicion : Boolean;
   appointment : Appointment;
   adminUser: boolean;
+  itsOwner: boolean
   Correo : FormControl = new FormControl();
 
   AppointmentForm = this._fb.group({
     DateInit: [, Validators.required],
     DateFinal: [, Validators.required],
+    Status: ['']
   });
 
   async ngOnInit() {
@@ -49,6 +51,10 @@ export class AppointmentEditorComponent implements OnInit {
           this.appointment = info
           this.AppointmentForm.controls['DateInit'].setValue(info.DateInit)
           this.AppointmentForm.controls['DateFinal'].setValue(info.DateFinal)
+          this.AppointmentForm.controls['Status'].setValue(info.Status)
+
+          this.itsOwner = (info.IdAuthor == this.user.Id_company)
+          
           this.Option = "edition"
         }
       });
@@ -74,6 +80,7 @@ export class AppointmentEditorComponent implements OnInit {
 
     this.appointment.DateInit = this.AppointmentForm.get("DateInit").value;
     this.appointment.DateFinal = this.AppointmentForm.get("DateFinal").value;
+    this.appointment.Status = this.AppointmentForm.get("Status").value;
 
     if (this.Correo.value) {
       var u = await this.userService.getUserByEmail(this.Correo.value);

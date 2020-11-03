@@ -24,7 +24,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgSurveysModule } from 'ng-surveys';
 import { environment } from 'environments/environment';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgxAgoraModule } from 'ngx-agora';
 import { AddToCalendarModule } from 'add-events-to-google-calendar';
 import { PipesModule } from './pipes/pipes.module';
@@ -64,7 +64,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     LandingLayoutComponent,
     WebCamComponent
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

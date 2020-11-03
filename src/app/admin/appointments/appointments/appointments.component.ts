@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppointmentService } from 'app/services/appointment.service';
 import { AuthService } from 'app/services/utilities/auth.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-appointments',
@@ -11,6 +12,7 @@ import { AuthService } from 'app/services/utilities/auth.service';
 export class AppointmentsComponent implements OnInit {
 
   constructor(private authService: AuthService,
+              private datePipe: DatePipe,
               private router: Router,
               private modelService: AppointmentService) { }
 
@@ -26,8 +28,9 @@ export class AppointmentsComponent implements OnInit {
       this.modelService.getAppointmentsByCompanyId(user.Id_company).then((appointments) => {
         this.DataCompany = appointments.map(appointment =>
           Object.assign({}, {
-            'Fecha inicial': appointment.DateInit,
-            'Fecha Final': appointment.DateFinal,
+            'Fecha inicial': this.datePipe.transform(appointment.DateInit,'short'),
+            'Fecha Final': this.datePipe.transform(appointment.DateFinal,'short'),
+            'Estado': (appointment.Status) ? 'Aceptado' : 'Sin aceptar',
             link: this.router.createUrlTree(['admin', 'edicion-cita', 'A-' + appointment.id]).toString()
           }))
       }, (error) => {
@@ -36,11 +39,11 @@ export class AppointmentsComponent implements OnInit {
     } 
 
     this.modelService.getAppointmentsByUserId(user.id).then((appointments) => {
-      console.log(appointments)
       this.DataUser = appointments.map(appointment =>
         Object.assign({}, {
-          'Fecha inicial': appointment.DateInit,
-          'Fecha Final': appointment.DateFinal,
+          'Fecha inicial': this.datePipe.transform(appointment.DateInit,'short'),
+          'Fecha Final': this.datePipe.transform(appointment.DateFinal,'short'),
+          'Estado': (appointment.Status) ? 'No Aceptado' : 'Aceptado',
           link: this.router.createUrlTree(['admin', 'edicion-cita', 'A-' + appointment.id]).toString()
         }))
     }, (error) => {

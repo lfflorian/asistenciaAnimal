@@ -9,13 +9,15 @@
                     <div class="col-sm-12">
                         <h3>Fechas ocupadas</h3>
                     </div>
-                    <div *ngFor="let af of appointFormat">
-                        <div class="col-sm-4 col-sm-3">
-                            <div class="calendar-box">
-                                <p>{{af.day}}</p>
-                                <div *ngFor="let l of af.hours">
-                                    <span></span>
-                                    <p class="hour">{{l}}</p>
+                    <div class="row">
+                        <div *ngFor="let af of appointFormat">
+                            <div class="col-sm-4 col-sm-3">
+                                <div class="calendar-box">
+                                    <p>{{af.day}}</p>
+                                    <div *ngFor="let l of af.hours">
+                                        <span></span>
+                                        <p class="hour">{{l}}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -24,12 +26,20 @@
                         <h3>crea tu cita ahora</h3>
                     </div>
                     <div class="col-sm-12">
-                        <form [formGroup]="AppointmentForm">
-                            <input matInput formControlName="InitDate" type="datetime-local"
-                            placeholder="Fecha Inicial">
-                        </form>
-                        <p>Hora inicial</p>
                         
+                            <form [formGroup]="AppointmentForm">
+                                <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <p>Hora inicial</p>
+                                    <input matInput formControlName="InitDate" type="datetime-local" placeholder="Fecha Inicial">
+                                </div>
+                                <div class="col-sm-12  col-md-6">
+                                    <p>Hora final</p>
+                                    <input matInput formControlName="DateFinal" type="datetime-local" placeholder="Fecha Final">
+                                </div>
+                            
+                        </div>
+                    </form>
                         <p>Debes tener usuario para crear la cita</p>
                         <button (click)="createDate()" class="btn btn-lg btn-primary btn-block text-uppercase"
                             type="submit">Registrar</button>
