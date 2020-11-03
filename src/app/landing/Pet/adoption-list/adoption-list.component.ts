@@ -21,6 +21,9 @@ export class AdoptionListComponent implements OnInit {
   }
 
   GoToAdoption(idPet : string) {
+    if (!confirm("Quieres realizar el formulario de adopción de esta mascota?")) {
+      return;
+    }
     this.router.navigateByUrl('form/formulario-adopcion/'+idPet);
   }
 }
