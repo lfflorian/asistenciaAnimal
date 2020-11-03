@@ -20,7 +20,7 @@ export class AppointmentsComponent implements OnInit {
 
   async ngOnInit() {
     let user = await this.authService.getUser();
-    this.adminUser = (user.Rol == "empresa");
+    this.adminUser = (user.Rol.Access > 0);
 
     if (user.Company) {
       this.modelService.getAppointmentsByCompanyId(user.Id_company).then((appointments) => {

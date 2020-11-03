@@ -23,7 +23,7 @@ export class AdoptionsComponent implements OnInit {
   async ngOnInit() {
     this.user = await this.authService.getUser();
 
-    this.adminUser = (this.user.Rol == "empresa");
+    this.adminUser = (this.user.Rol.Access > 0);
 
     if (this.adminUser) {
       this.modelService.getAdoptionForms(this.user.Id_company).then((pets) => {

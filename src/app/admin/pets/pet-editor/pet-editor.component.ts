@@ -8,7 +8,13 @@ import { ImageUpload } from 'app/model/imageUpload';
 import { FileService } from 'app/services/utilities/file.service';
 import { AuthService } from 'app/services/utilities/auth.service';
 import { User } from 'app/model/user';
-import { AnimalTypes } from 'app/Data/AnimalTypes';
+import { Company } from 'app/model/company';
+import { PackageService } from 'app/services/package.service';
+import { take } from 'rxjs/Operators';
+import { UserService } from 'app/services/user.service';
+import { Package } from 'app/model/package';
+import { AnimalTypeService } from 'app/services/animal-type.service';
+import { AnimalType } from 'app/model/AnimalType';
 
 @Component({
   selector: 'app-pet-editor',
@@ -23,16 +29,21 @@ export class PetEditorComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private fileService : FileService,
+    private packageService: PackageService,
+    private animalTypeService: AnimalTypeService,
+    private companyService: UserService,
     private authService: AuthService) {
     }
 
+  Packages: Package[];
   Data: any;
   Edicion: boolean;
   Images : ImageUpload[] = [];
   InAdoptionEnable : boolean = false;
   user : User;
+  company : Company;
   pet : Pet;
-  TipoMascotas: typeof AnimalTypes;
+  TipoMascotas: AnimalType[];
   
 
   PetForm = this._fb.group({
@@ -48,13 +59,16 @@ export class PetEditorComponent implements OnInit {
     AnimalType : ['']
   });
 
-  async ngOnInit() {
-    this.TipoMascotas = AnimalTypes;
-    console.log(this.TipoMascotas)
-    let Id  = this.route.snapshot.paramMap.get("id")
-    this.user = await this.authService.getUser();
 
-    this.InAdoptionEnable = (this.user.Rol == "empresa");
+  async ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('userLoged'))  as User;
+    this.company = JSON.parse(localStorage.getItem('companyLoged'))  as Company;
+
+    this.TipoMascotas = await this.animalTypeService.getAnimalTypes().pipe(take(1)).toPromise();
+
+    let Id  = this.route.snapshot.paramMap.get("id")
+
+    this.InAdoptionEnable = (this.user.Rol.Access > 0);
 
     if (Id !== null)
     {
@@ -72,6 +86,7 @@ export class PetEditorComponent implements OnInit {
           this.PetForm.controls['MoreAbout'].setValue(info.MoreAbout)
           this.PetForm.controls['InAdoption'].setValue(info.InAdoption)
           this.PetForm.controls['Gender'].setValue(info.Gender)
+          this.PetForm.controls['AnimalType'].setValue(info.AnimalType)
           info.Images.forEach(i => { this.Images.push(new ImageUpload(i)) })
         } else
         {
@@ -100,6 +115,13 @@ export class PetEditorComponent implements OnInit {
     this.pet.AnimalType = this.PetForm.get("AnimalType").value;
 
     if (this.pet.InAdoption) {
+      var noPets = this.user.Pets.length
+
+      if (noPets > this.company.Package.NoMascotas)
+      {
+        alert("Ha superado el limite de mascotas en adopción, por favor actualiza tu cuenta para poder agregar mas mascotas en adopcion")
+      }
+      
       this.pet.IdCompany = this.user.Id_company
     }
 
@@ -116,11 +138,19 @@ export class PetEditorComponent implements OnInit {
     } else 
     {
       var uuid = this.GuidGenerate();
+      var userM = await this.companyService.getUser(this.user.id).pipe(take(1)).toPromise();
       this.pet.IdUser = this.user.id
       this.pet.Date = new Date();
 
       await this.UploadImages(this.Images, uuid);
       this.petService.createPet(this.pet).then(success => {
+        if (!userM.Pets) {
+          userM.Pets = []
+        }
+        
+        userM.Pets.push(success.id)
+        this.companyService.updateUser(userM)
+
         alert('mascota creada!')
       this.router.navigateByUrl('admin/mascotas')
       }, error => {
@@ -129,8 +159,14 @@ export class PetEditorComponent implements OnInit {
     }
   }
 
-  Delete() {
+  async Delete() {
+    var userM = await this.companyService.getUser(this.company.id).pipe(take(1)).toPromise();
     this.petService.deletePet(this.pet.id).then(success => {
+
+      var petDeleted = userM.Pets.filter(p => p !== this.pet.id);
+      userM.Pets = petDeleted
+      this.companyService.updateUser(userM)
+
       alert('mascota eliminada!')
       this.router.navigateByUrl('admin/mascotas')
     }, error => {

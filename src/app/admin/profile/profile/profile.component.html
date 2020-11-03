@@ -93,11 +93,11 @@
                                     <div class="col-md-6">
                                         <div class="form-label-group">
                                             <mat-form-field *ngIf="RoleEnum">
-                                                <mat-label>Tipo de empresa</mat-label>
+                                                <mat-label>Tipo de empresa: {{ CompanyForm.get('AsociationType').value.Name }}</mat-label>
                                                 <mat-select formControlName="AsociationType">
                                                     <mat-option *ngFor="let item of RoleEnum"
                                                         [value]="item">
-                                                        {{ item }}
+                                                        {{ item.Name }}
                                                     </mat-option>
                                                 </mat-select>
                                             </mat-form-field>

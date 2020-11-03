@@ -1,4 +1,7 @@
 import { Entity } from 'app/model/entity';
+import { CompanyType } from './CompanyType';
+import { Package } from './package';
+import { Pet } from './pet';
 import { Tag } from './tag';
 
 export interface Company extends Entity {
@@ -6,10 +9,10 @@ export interface Company extends Entity {
     Name: string;
     Description: string;
     DateIgnauration: string;
-    AsociationType: string;
+    AsociationType: CompanyType;
     Logo: string;
     Date: Date;
     Users: string[];
     tags: Tag[];
-    /* Aqui es donde iran los usuarios normales, asociaciones y demas */
+    Package: Package;
 }

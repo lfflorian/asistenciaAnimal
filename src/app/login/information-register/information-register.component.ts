@@ -2,12 +2,13 @@ import { PipeTransform } from '@angular/core';
 import { Component, OnInit, Pipe } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CopmanyTypes } from 'app/Data/CompanyTypes';
 import { Company } from 'app/model/company';
 import { User } from 'app/model/user';
 import { CompanyService } from 'app/services/company.service';
+import { RolService } from 'app/services/rol.service';
 import { UserService } from 'app/services/user.service';
 import { AuthService } from 'app/services/utilities/auth.service';
+import { take } from 'rxjs/Operators';
 
 @Component({
   selector: 'app-information-register',
@@ -39,17 +40,20 @@ export class InformationRegisterComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private userService: UserService,
+    private rolService: RolService,
     private companyService: CompanyService,
     private router: Router) { }
 
-  RoleEnum: typeof CopmanyTypes;
+  RoleEnum: any;
   async ngOnInit() {
     this.user = await this.authService.getUser();
-    this.RoleEnum = CopmanyTypes;
+    this.RoleEnum = [];
     console.log(this.user)
   }
 
   async RegisterInformation() {
+    var rols = await this.rolService.getRols().pipe(take(1)).toPromise();
+    this.user.Rol = rols.find(r => { r.Access = 0})
     this.UserForm.controls['Date'].setValue(new Date());
     this.user.FullName = this.UserForm.get('FullName').value;
     this.user.FullLastName = this.UserForm.get('FullLastName').value;
@@ -64,14 +68,12 @@ export class InformationRegisterComponent implements OnInit {
         this.CompanyForm.controls['Date'].setValue(new Date());
         company = await this.companyService.createCompany(this.CompanyForm.value as Company)
         this.user.Id_company = company.id;
-        this.user.Rol = "empresa";
         this.user.Company = true;
       } catch (error) {
         // Hubo un error con este tema
         return;
       }
     } else {
-      this.user.Rol = "cliente";
       this.user.Company = false;
     }
 

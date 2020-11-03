@@ -1,9 +1,10 @@
 import { Entity } from 'app/model/entity';
+import { Rol } from './Rol';
 
 export interface User extends Entity {
     Id_company : string;
     FullDataEntry : boolean;
-    Rol : string;
+    Rol : Rol;
     Email: string;
     FullName: string;
     FullLastName: string;
@@ -12,4 +13,5 @@ export interface User extends Entity {
     ProfileImage: string;
     Company: boolean;
     Phone: string;
+    Pets: string[];
 }

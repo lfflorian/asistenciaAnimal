@@ -10,7 +10,8 @@ import { AuthService } from 'app/services/utilities/auth.service';
 import { CompanyService } from 'app/services/company.service';
 import { take } from 'rxjs/Operators';
 import { Company } from 'app/model/company';
-import { CopmanyTypes } from 'app/Data/CompanyTypes';
+import { CompanyTypeService } from 'app/services/company-type.service';
+import { CompanyType } from 'app/model/CompanyType';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,7 @@ import { CopmanyTypes } from 'app/Data/CompanyTypes';
 })
 export class ProfileComponent implements OnInit {
   constructor(private modelService: UserService,
+    private companyTypeServices: CompanyTypeService,
     private companyService: CompanyService,
     private _fb: FormBuilder,
     private route: ActivatedRoute,
@@ -34,7 +36,7 @@ export class ProfileComponent implements OnInit {
   Edicion: boolean;
   ProfileImage: ImageUpload;
   LogoCompanyImage: ImageUpload;
-  RoleEnum: typeof CopmanyTypes;
+  RoleEnum: CompanyType[];
   
   UserForm: FormGroup = this._fb.group({
       Email: ['', Validators.required],
@@ -53,7 +55,7 @@ export class ProfileComponent implements OnInit {
   })
 
   async ngOnInit() {
-    this.RoleEnum = CopmanyTypes;
+    this.RoleEnum = await this.companyTypeServices.getCompanyTypes().pipe(take(1)).toPromise();
     this.user = await this.authService.getUser();
     if (this.user !== null) {
       this.UserForm.controls['FullName'].setValue(this.user.FullName)
@@ -107,8 +109,8 @@ export class ProfileComponent implements OnInit {
     this.company.Name = this.CompanyForm.get("Name").value;
     this.company.Description = this.CompanyForm.get("Description").value;
     this.company.DateIgnauration = this.CompanyForm.get("DateIgnauration").value;
-    this.company.AsociationType = this.CompanyForm.get("AsociationType").value;
-
+    this.company.AsociationType = this.CompanyForm.get('AsociationType').value;
+    
     this.companyService.updateCompany(this.company).then(success => {
       alert('empresa actualizada!')
       this.router.navigateByUrl('admin')

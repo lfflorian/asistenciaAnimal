@@ -48,11 +48,11 @@
                                 </div>
                                 <div class="col-sm-12 col-md-4">
                                     <mat-form-field *ngIf="TipoMascotas">
-                                        <mat-label>Tipo de mascota</mat-label>
+                                        <mat-label>Tipo de mascota: {{ PetForm.get('AnimalType').value.Name }}</mat-label>
                                         <mat-select formControlName="AnimalType">
                                             <mat-option *ngFor="let item of TipoMascotas"
                                                 [value]="item">
-                                                {{ item }}
+                                                {{ item.Name }}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>

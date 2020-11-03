@@ -19,6 +19,7 @@ import { ArticleViewComponent } from 'app/landing/Article/article-view/article-v
 import { UserViewComponent } from 'app/landing/Company/user-view/user-view.component';
 import { ConsultViewComponent } from 'app/landing/Consult/consult-view/consult-view.component';
 import { PetViewComponent } from 'app/landing/Pet/pet-view/pet-view.component';
+import { MatFormFieldModule } from '@angular/material';
 
 @NgModule({
   declarations: [

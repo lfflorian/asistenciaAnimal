@@ -39,7 +39,7 @@ export class AppointmentEditorComponent implements OnInit {
   async ngOnInit() {
     let parameter = this.route.snapshot.paramMap.get("id")
     this.user = await this.authService.getUser();
-    this.adminUser = (this.user.Rol == "empresa");
+    this.adminUser = (this.user.Rol.Access > 0);
     let opcion = parameter.split("-")[0];
     let id = parameter.split("-")[1];
 

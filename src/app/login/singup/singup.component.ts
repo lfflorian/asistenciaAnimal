@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'app/services/utilities/auth.service';
 import { User } from 'app/model/user';
+import { RolService } from 'app/services/rol.service';
+import { take } from 'rxjs/Operators';
 
 @Component({
   selector: 'app-singup',
@@ -10,6 +12,7 @@ import { User } from 'app/model/user';
 })
 export class SingupComponent implements OnInit {
   constructor(private fb: FormBuilder,
+    private rolService: RolService,
     private auth: AuthService) { }
 
     LoginForm = this.fb.group({
@@ -20,6 +23,9 @@ export class SingupComponent implements OnInit {
 
   user = {} as User;
   async createUser() {
+    debugger
+    var rols = await this.rolService.getRols().pipe(take(1)).toPromise();
+    this.user.Rol = rols.find(r =>  r.Access == 0)
     var password = this.LoginForm.get("password").value;
     var confirmPassword = this.LoginForm.get("confirmPassword").value;
     this.user.Email = this.LoginForm.get("Email").value;
