@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'app/model/user';
 import { AuthService } from 'app/services/utilities/auth.service';
 import { VideoSessionService } from 'app/services/video-session.service';
-import { debug } from 'console';
 import { NgxAgoraService, Stream, AgoraClient, ClientEvent, StreamEvent } from 'ngx-agora';
 
 @Component({
