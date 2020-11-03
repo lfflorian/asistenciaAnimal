@@ -162,11 +162,13 @@
                             class="btn btn-info">CLICK AQUI PARA REALIZAR TU PAGO EN PAYPAL</button>
                             <!-- formulario de confirmacion -->
                             <div *ngIf="paymentSelection && !comfirmPayment">
-                                <h4>Ingresa los siguientes datos para contactarte</h4>
+                                <h4>Los siguientes datos son de contacto para gestionar el pago de tu empresa</h4>
                                 <form [formGroup]="PayMentForm">
-                                    <input class="form-control" formControlName="Name" matInput  id="inputEmail" placeholder="Nombre" required>
-                                    <input class="form-control" formControlName="Email" matInput  id="inputEmail" placeholder="Correo" required>
-                                    <input class="form-control" formControlName="Phone" matInput  id="inputEmail" placeholder="Telefono" required>
+                                    <div class="row paymenyform">
+                                        <div class="col-sm-12"><input class="form-control" formControlName="Name" matInput type="text" id="inputEmail" placeholder="Nombre" required></div>
+                                        <div class="col-sm-12"><input class="form-control" formControlName="Email" matInput type="email" id="inputEmail" placeholder="Correo" required></div>
+                                        <div class="col-sm-12"><input class="form-control" formControlName="Phone" matInput type="number" id="inputEmail" placeholder="Telefono" required></div>
+                                    </div>
                                     <button type="button" (click)="comfirmPaymentEvnt()" mat-raised-button class="btn btn-info">Enviar y realizar pago</button>
                                 </form>
                             </div>
@@ -186,6 +188,27 @@
                                     <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
                                 </form>
                             </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spot bck-col-2">
+    <div class="container">
+        <div class="con center space-incontent">
+            <div class="row ">
+                <div class="col-sm-12 backForm">
+                    <form [formGroup]="ContactForm">
+                        <div class="row">
+                            <div class="col-sm-12"><input class="form-control" formControlName="Name" matInput  id="nombre" placeholder="Nombre" required></div>
+                            <div class="col-sm-12"><input class="form-control" formControlName="Email"  matInput  id="email" placeholder="Correo" required></div>
+                            <div class="col-sm-12"><textarea  class="form-control" formControlName="Description" matInput placeholder="Descripción de empresa"
+                                rows="5"></textarea></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-12">
+                    <button (click)="contactUs()" type="button" mat-raised-button class="btn btn-info">CONTACTANOS</button>
                 </div>
             </div>
         </div>
