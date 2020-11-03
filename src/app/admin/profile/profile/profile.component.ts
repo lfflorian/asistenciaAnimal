@@ -39,7 +39,7 @@ export class ProfileComponent implements OnInit {
   RoleEnum: CompanyType[];
   
   UserForm: FormGroup = this._fb.group({
-      Email: ['', Validators.required],
+      Email: [''],
       FullName: ['', Validators.required],
       FullLastName: ['', Validators.required],
       Birthday: ['', Validators.required],
@@ -98,6 +98,7 @@ export class ProfileComponent implements OnInit {
     this.user.FullLastName = this.UserForm.get("FullLastName").value;
     this.user.Birthday = this.UserForm.get("Birthday").value;
     this.user.Phone = this.UserForm.get("Phone").value;
+    //this.user.Rol = { Name : "Admin",Access : 1, id : 'y5VDgHZlNsKSpDHrf1Q2' }
     
     this.modelService.updateUser(this.user).then(success => {
       alert('usuario actualizado!')
