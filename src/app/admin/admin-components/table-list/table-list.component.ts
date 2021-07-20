@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class TableListComponent implements OnInit {
   @Input() Data;
   @Input() RouteLink;
+  @Input() Title;
   ShowData : any;
   Headers : Array<any>;
   ElementsCount : number;
